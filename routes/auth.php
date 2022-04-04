@@ -70,6 +70,10 @@ Route::prefix('/staff')->name('staff.')->group(function(){
         Route::get('/logout', [StaffAuth::class, 'destroy'])->name('logout');
 
         Route::get('/dashboard', [StaffController::class,'index']);
+        Route::get('/members', [StaffController::class,'members_get']);
+        Route::get('/gym-management', [StaffController::class,'gym_management_get']);
+        Route::get('/plan-management', [StaffController::class,'plan_management_get']);
+
         Route::get('/create', [StaffController::class,'create'])->name('create');
         Route::post('/store', [StaffController::class,'store'])->name('store');
 

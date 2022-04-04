@@ -20,6 +20,21 @@ class StaffController extends Controller
         return view('staff.dashboard');
     }
 
+    public function members_get()
+    {
+        return view('staff.members');
+    }
+
+    public function gym_management_get()
+    {
+        return view('staff.gym_management');
+    }
+
+    public function plan_management_get()
+    {
+        return view('staff.plan_management');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
