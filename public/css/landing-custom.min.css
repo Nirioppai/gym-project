@@ -1,0 +1,22 @@
+.landingHeader {
+    font-family: "Barlow", sans-serif;
+    font-size: 64px;
+    align-items: left;
+}
+.orangeHeader {
+    color: #ed501d;
+}
+
+.landingSecondary {
+    font-family: "Poppins", sans-serif;
+}
+
+.landingMetricCount {
+    font-family: "Barlow", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.bgFrosty {
+    background-color: rgba(248, 249, 250, 0.9);
+}
