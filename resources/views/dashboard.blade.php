@@ -6,9 +6,8 @@
 
 @section('styles')
     <script src="https://kit.fontawesome.com/d3fbd9c521.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
     <link rel="stylesheet" href="{{ asset('css/member-custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
 @endsection
 
 @section('navbar')
@@ -41,7 +40,7 @@
     <div class="masthead" style="background-image: url('{{ asset('img/banner-half-img.jpg') }}');">
         <div class="color-overlay d-flex flex-column justify-content-center text-left ">
             <div class="container ">
-                <h1 class="barlow banner-header">My Account</h1>
+                <h1 class="barlow banner-header">My <span class="color-orange">Account</span></h1>
 
                 <p class="poppins">Your one stop for all of your membership needs and more!</p>
             </div>
@@ -53,21 +52,253 @@
 @endsection
 
 @section('mainContent')
+    <div class="container">
+        <div class="row my-5">
+            <h1 class="text-center">Featured <span class="color-orange">Gyms</span></h1>
+            <p class="fw-light w-75 mx-auto text-center">
+                Get in touch with one of our reputable and lets help you plan your perfect routine towards fitness!
+            </p>
+            <div class="text-center">
+
+                <a class="btn btn-orange" href="/gym" role="button">View all Gyms <i
+                        class="fa-solid fa-arrow-right-long"></i></a>
+
+
+
+            </div>
+        </div>
+
+        <div class="row g-4 my-5 mx-auto owl-carousel owl-theme">
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-1.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-2.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-3.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-4.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-5.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-6.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-7.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-8.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+
+            <div class="col product-item mx-auto">
+                <div class="product-img">
+                    <img src="img/owl/product-9.jpg" alt="" class="img-fluid d-block mx-auto" />
+
+                    <div class="row btns w-100 mx-auto text-center">
+                        <button type="button">
+                            <i class="fa-solid fa-badge-check"></i> Register as Member
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="product-info p-3">
+                    <span class="product-type">Gym City</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-price">$ 100.50</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="p-5 border">
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus veniam ipsa earum quibusdam, atque ipsum error maiores
-            natus iusto fugit id saepe neque rerum magni laudantium accusantium
-            dolorem numquam quasi. df
+            FOR POTENTIAL MEMBERS
+            <br />
+
+            EXPLORE HUNDREDS OF GYMS
+
+            <br />
+
+            excuses don't kill the fat, exercies do. join our membership today in just 4 easy steps!
+
         </p>
     </div>
+    <div class="p-5 border">
+        <p>
+            FOR POTENTIAL MEMBERS
+            <br />
+
+            EXPLORE HUNDREDS OF GYMS
+
+            <br />
+
+            excuses don't kill the fat, exercies do. join our membership today in just 4 easy steps!
+
+        </p>
+    </div>
+    <div class="p-5 border">
+        <p>
+            FOR POTENTIAL MEMBERS
+            <br />
+
+            EXPLORE HUNDREDS OF GYMS
+
+            <br />
+
+            excuses don't kill the fat, exercies do. join our membership today in just 4 easy steps!
+
+        </p>
+    </div>
+
+
 
     <div class="p-5 border">
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Necessitatibus veniam ipsa earum quibusdam, atque ipsum error maiores
             natus iusto fugit id saepe neque rerum magni laudantium accusantium
-            dolorem numquam quasi. df
+            dolorem numquam quasi.
         </p>
     </div>
     <div class="p-5 border">
@@ -103,10 +334,12 @@
             }
         });
     </script>
+
+    <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- owl carousel -->
     <script src="{{ asset('js/owl.carousel.js') }}"></script>
-    <script src="{{ asset('script.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 @endsection

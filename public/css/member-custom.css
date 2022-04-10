@@ -30,3 +30,37 @@
 .banner-header {
     font-size: 36px;
 }
+
+.color-orange {
+    color: #ed501d;
+}
+
+.btn-orange {
+    color: #fff;
+    background-color: #ed501d;
+    border-color: #ed501d;
+}
+
+.btn-orange:hover {
+    color: #fff;
+    background-color: #f36130;
+    border-color: #f77043;
+}
+
+.btn-check:focus + .btn-orange,
+.btn-orange:focus {
+    color: #fff;
+    background-color: #f36130;
+    border-color: #f77043;
+    box-shadow: 0 0 0 0.2rem rgba(237, 80, 29, 0.5);
+}
+
+.btn-check:checked + .btn-orange,
+.btn-check:active + .btn-orange,
+.btn-orange:active,
+.btn-orange.active,
+.show > .btn-orange.dropdown-toggle {
+    color: #fff;
+    background-color: #f36130;
+    border-color: #f77043;
+}
