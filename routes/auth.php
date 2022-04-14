@@ -77,6 +77,8 @@ Route::prefix('/staff')->name('staff.')->group(function(){
         Route::get('/create', [StaffController::class,'create'])->name('create');
         Route::post('/store', [StaffController::class,'store'])->name('store');
 
+        Route::post('/gym-create', [StaffController::class,'gym_create'])->name('gym-create');
+
 
     });
 

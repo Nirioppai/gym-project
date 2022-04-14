@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Haruncpi\LaravelIdGenerator\IdGenerator as IdGenerator;
+Use DB;
 
 class RegisteredUserController extends Controller
 {
@@ -39,15 +41,32 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $config=['table'=>'users','length'=>10,'prefix'=>'GM-', 'field' => 'MEMBER_ID'];
+        $id = IdGenerator::generate($config);
 
-        event(new Registered($user));
+        DB::table('users')->insert(
+            ['MEMBER_ID' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password),'created_at' => now(), 'updated_at' => now()]
+        );
 
-        Auth::login($user);
+
+
+        //  $user = User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'MEMBER_ID' => $id,
+        //     'password' => Hash::make($request->password),
+        // ]);
+
+        // event(new Registered($user));
+
+        // Auth::login($user);
+
+        // Auth::login([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'MEMBER_ID' => $id,
+        //     'password' => Hash::make($request->password),
+        // ]);
 
         return redirect(RouteServiceProvider::HOME);
     }

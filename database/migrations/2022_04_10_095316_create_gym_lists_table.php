@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('gym_lists', function (Blueprint $table) {
             $table->id();
+            $table->string('GYM_ID');
+            $table->string('GYM_NAME');
+            $table->string('GYM_OWNER'); // owner ID
+            $table->string('GYM_LOCATION');
+            $table->string('GYM_IMAGE');
+            $table->string('GYM_DETAILS');
             $table->timestamps();
         });
     }

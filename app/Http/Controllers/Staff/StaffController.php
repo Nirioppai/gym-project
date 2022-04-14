@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GymCreateRequest;
+use App\Models\GymList;
 use Illuminate\Http\Request;
 
 use App\Models\Staff;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use \Auth;
+
+use Haruncpi\LaravelIdGenerator\IdGenerator as IdGenerator;
 
 class StaffController extends Controller
 {
@@ -17,7 +24,16 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('staff.dashboard');
+        // Generate ID
+        // return Str::uuid()->toString();
+        // 
+        $staffID = auth()->guard('staff')->user()->MEMBER_ID;
+
+        $staffGym = DB::table('gym_lists')
+            ->where('GYM_OWNER', $staffID)
+            ->first();
+
+            return view('staff.dashboard', ['staffGym' => $staffGym]);
     }
 
     public function members_get()
@@ -53,11 +69,13 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        Staff::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+
+        $config=['table'=>'staff','length'=>10,'prefix'=>'GS-', 'field' => 'MEMBER_ID'];
+        $id = IdGenerator::generate($config);
+
+        DB::table('staff')->insert(
+            ['MEMBER_ID' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password),'created_at' => now(), 'updated_at' => now()]
+        );
         
         return redirect('staff/dashboard');
     }
@@ -105,5 +123,28 @@ class StaffController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function gym_create(GymCreateRequest $request)
+    {
+        $image = $request->file('GYM_IMAGE')->store('storage/images/gym_images');
+        $staffID = auth()->guard('staff')->user()->MEMBER_ID;
+
+        $config=['table'=>'gym_lists','length'=>10,'prefix'=>'GYM-', 'field' => 'GYM_ID'];
+        $id = IdGenerator::generate($config);
+
+        DB::table('gym_lists')->insert(
+            ['GYM_ID' => $id, 
+             'GYM_NAME' => $request->GYM_NAME,
+             'GYM_OWNER' => $staffID,
+             'GYM_LOCATION' => $request->GYM_LOCATION, 
+             'GYM_IMAGE' => $image, 
+             'GYM_DETAILS' => $request->GYM_DETAILS, 
+             'created_at' => now(), 
+             'updated_at' => now()]
+        );
+
+        return redirect('staff/dashboard');
+
     }
 }
