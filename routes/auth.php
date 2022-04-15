@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberController;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -55,6 +56,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+    Route::get('/dashboard', [MemberController::class, 'index'])->name('member.index');
 });
 
 
@@ -64,6 +67,8 @@ Route::prefix('/staff')->name('staff.')->group(function(){
     Route::get('/login', [StaffAuth::class, 'create'])->middleware('guest:staff')->name('login');
     Route::post('/login', [StaffAuth::class, 'store'])->middleware('guest:staff');
 
+    Route::get('/create', [StaffController::class,'create'])->name('create');
+    Route::post('/store', [StaffController::class,'store'])->name('store');
     
 
     Route::middleware('staff')->group(function(){
@@ -74,8 +79,7 @@ Route::prefix('/staff')->name('staff.')->group(function(){
         Route::get('/gym-management', [StaffController::class,'gym_management_get']);
         Route::get('/plan-management', [StaffController::class,'plan_management_get']);
 
-        Route::get('/create', [StaffController::class,'create'])->name('create');
-        Route::post('/store', [StaffController::class,'store'])->name('store');
+        
 
         Route::post('/gym-create', [StaffController::class,'gym_create'])->name('gym-create');
 

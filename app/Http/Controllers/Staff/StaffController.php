@@ -22,33 +22,46 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        // Generate ID
-        // return Str::uuid()->toString();
-        // 
+
+     public function getGym(){
         $staffID = auth()->guard('staff')->user()->MEMBER_ID;
 
         $staffGym = DB::table('gym_lists')
             ->where('GYM_OWNER', $staffID)
             ->first();
 
+            return $staffGym;
+     }
+
+    public function index()
+    {
+        $staffGym = $this->getGym();
+
             return view('staff.dashboard', ['staffGym' => $staffGym]);
     }
 
     public function members_get()
     {
-        return view('staff.members');
+        $staffGym = $this->getGym();
+
+        return view('staff.members', ['staffGym' => $staffGym]);
     }
 
     public function gym_management_get()
     {
-        return view('staff.gym_management');
+
+        $staffGym = $this->getGym();
+
+        return view('staff.gym_management', ['staffGym' => $staffGym]);
     }
 
     public function plan_management_get()
     {
-        return view('staff.plan_management');
+
+        $staffGym = $this->getGym();
+
+
+        return view('staff.plan_management', ['staffGym' => $staffGym]);
     }
 
     /**
@@ -70,7 +83,7 @@ class StaffController extends Controller
     public function store(Request $request)
     {
 
-        $config=['table'=>'staff','length'=>10,'prefix'=>'GS-', 'field' => 'MEMBER_ID'];
+        $config=['table'=>'staff','length'=>10,'prefix'=>'GO-', 'field' => 'MEMBER_ID'];
         $id = IdGenerator::generate($config);
 
         DB::table('staff')->insert(
@@ -127,7 +140,7 @@ class StaffController extends Controller
 
     public function gym_create(GymCreateRequest $request)
     {
-        $image = $request->file('GYM_IMAGE')->store('storage/images/gym_images');
+        $image = $request->file('GYM_IMAGE')->store('public/gym_images');
         $staffID = auth()->guard('staff')->user()->MEMBER_ID;
 
         $config=['table'=>'gym_lists','length'=>10,'prefix'=>'GYM-', 'field' => 'GYM_ID'];
@@ -138,7 +151,7 @@ class StaffController extends Controller
              'GYM_NAME' => $request->GYM_NAME,
              'GYM_OWNER' => $staffID,
              'GYM_LOCATION' => $request->GYM_LOCATION, 
-             'GYM_IMAGE' => $image, 
+             'GYM_IMAGE' => $request->GYM_IMAGE->hashName(), 
              'GYM_DETAILS' => $request->GYM_DETAILS, 
              'created_at' => now(), 
              'updated_at' => now()]

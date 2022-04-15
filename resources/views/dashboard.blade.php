@@ -69,9 +69,11 @@
         </div>
 
         <div class="row g-4 my-5 mx-auto owl-carousel owl-theme">
+
+            @foreach ($gyms as $gym)
             <div class="col product-item mx-auto">
                 <div class="product-img">
-                    <img src="img/owl/product-1.jpg" alt="" class="img-fluid d-block mx-auto" />
+                    <img src="{{ asset('storage/gym_images/'.$gym->GYM_IMAGE) }}" alt="" class="img-fluid d-block mx-auto" />
 
                     <div class="row btns w-100 mx-auto text-center">
                         <button type="button">
@@ -82,172 +84,19 @@
                 </div>
 
                 <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
+                    <span class="product-type">{{ $gym->GYM_LOCATION }}</span>
+                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
                     <span class="product-price">$ 100.50</span>
 
                 </div>
-            </div>
+            </div> 
+            @endforeach
 
-            <div class="col product-item mx-auto">
-                <div class="product-img">
-                    <img src="img/owl/product-2.jpg" alt="" class="img-fluid d-block mx-auto" />
 
-                    <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
 
-                    </div>
-                </div>
+           
 
-                <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
-                    <span class="product-price">$ 100.50</span>
 
-                </div>
-            </div>
-
-            <div class="col product-item mx-auto">
-                <div class="product-img">
-                    <img src="img/owl/product-3.jpg" alt="" class="img-fluid d-block mx-auto" />
-
-                    <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
-                    <span class="product-price">$ 100.50</span>
-
-                </div>
-            </div>
-
-            <div class="col product-item mx-auto">
-                <div class="product-img">
-                    <img src="img/owl/product-4.jpg" alt="" class="img-fluid d-block mx-auto" />
-
-                    <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
-                    <span class="product-price">$ 100.50</span>
-
-                </div>
-            </div>
-
-            <div class="col product-item mx-auto">
-                <div class="product-img">
-                    <img src="img/owl/product-5.jpg" alt="" class="img-fluid d-block mx-auto" />
-
-                    <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
-                    <span class="product-price">$ 100.50</span>
-
-                </div>
-            </div>
-
-            <div class="col product-item mx-auto">
-                <div class="product-img">
-                    <img src="img/owl/product-6.jpg" alt="" class="img-fluid d-block mx-auto" />
-
-                    <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
-                    <span class="product-price">$ 100.50</span>
-
-                </div>
-            </div>
-
-            <div class="col product-item mx-auto">
-                <div class="product-img">
-                    <img src="img/owl/product-7.jpg" alt="" class="img-fluid d-block mx-auto" />
-
-                    <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
-                    <span class="product-price">$ 100.50</span>
-
-                </div>
-            </div>
-
-            <div class="col product-item mx-auto">
-                <div class="product-img">
-                    <img src="img/owl/product-8.jpg" alt="" class="img-fluid d-block mx-auto" />
-
-                    <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
-                    <span class="product-price">$ 100.50</span>
-
-                </div>
-            </div>
-
-            <div class="col product-item mx-auto">
-                <div class="product-img">
-                    <img src="img/owl/product-9.jpg" alt="" class="img-fluid d-block mx-auto" />
-
-                    <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="product-info p-3">
-                    <span class="product-type">Gym City</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">Gym Name</a>
-                    <span class="product-price">$ 100.50</span>
-
-                </div>
-            </div>
         </div>
     </div>
 

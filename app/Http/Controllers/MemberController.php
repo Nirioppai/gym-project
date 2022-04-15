@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -15,7 +16,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $gyms = DB::table('gym_lists')->get();
+        return view('dashboard', ['gyms' => $gyms]);
     }
 
     /**

@@ -1,4 +1,5 @@
 @extends('layouts.staff') @section('title') VSGym - Dashboard @endsection
+
 @section('breadcrumb') @if ($staffGym)
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -13,7 +14,9 @@
         </li>
     </ol>
 </nav>
-@endif @endsection @section('sidenav') @if ($staffGym)
+@endif 
+@endsection 
+@section('sidenav') @if ($staffGym)
 <aside
     class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
     id="sidenav-main"
@@ -119,7 +122,11 @@
         </ul>
     </div>
 </aside>
-@endif @endsection @section('content') @if ($staffGym)
+@endif
+ 
+@endsection 
+@section('content') 
+@if ($staffGym)
 
 <div class="row">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Haruncpi\LaravelIdGenerator\IdGenerator as IdGenerator;
-Use DB;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {

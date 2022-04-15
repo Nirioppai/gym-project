@@ -292,6 +292,8 @@
 .product-img {
     position: relative;
     overflow: hidden;
+    min-height: 298px;
+    min-width: 298px;
 }
 .btns {
     position: absolute;
