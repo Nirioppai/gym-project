@@ -60,7 +60,7 @@
             </p>
             <div class="text-center">
 
-                <a class="btn btn-orange" href="/gym" role="button">View all Gyms <i
+                <a class="btn btn-orange" href="/gyms" role="button">View all Gyms <i
                         class="fa-solid fa-arrow-right-long"></i></a>
 
 
@@ -85,7 +85,7 @@
 
                 <div class="product-info p-3">
                     <span class="product-type">{{ $gym->GYM_LOCATION }}</span>
-                    <a href="#" class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
+                    <a href="/gym-register" class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
                     <span class="product-price">$ 100.50</span>
 
                 </div>

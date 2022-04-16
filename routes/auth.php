@@ -58,6 +58,8 @@ Route::middleware('auth')->group(function () {
                 ->name('logout');
 
     Route::get('/dashboard', [MemberController::class, 'index'])->name('member.index');
+
+    Route::get('/gym-register', [MemberController::class, 'gym_register'])->name('member.gym-register');
 });
 
 
