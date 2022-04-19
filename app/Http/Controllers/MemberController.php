@@ -20,10 +20,6 @@ class MemberController extends Controller
         return view('dashboard', ['gyms' => $gyms]);
     }
 
-    public function gym_register()
-    {
-        return view('register-gym');
-    }
 
     /**
      * Show the form for creating a new resource.

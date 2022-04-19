@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\GymController;
 use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
@@ -59,7 +60,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [MemberController::class, 'index'])->name('member.index');
 
-    Route::get('/gym-register', [MemberController::class, 'gym_register'])->name('member.gym-register');
+    Route::resource('gym', GymController::class);
+
+    Route::post('/gym/register-member', [GymController::class, 'store'])
+                ->name('gym-register-member');
+
+    Route::post('/gym/store-member', [GymController::class, 'store_member_details'])
+                ->name('store-member-details');
 });
 
 
@@ -84,7 +91,7 @@ Route::prefix('/staff')->name('staff.')->group(function(){
         
 
         Route::post('/gym-create', [StaffController::class,'gym_create'])->name('gym-create');
-
+        Route::post('/plan-create', [StaffController::class,'plan_create'])->name('plan-create');
 
     });
 

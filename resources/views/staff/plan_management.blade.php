@@ -1,9 +1,4 @@
-@extends('layouts.staff')
-
-@section('title')
-    VSGym - Plan Management
-@endsection
-
+@extends('layouts.staff') @section('title') VSGym - Plan Management @endsection
 @section('breadcrumb') @if ($staffGym)
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -18,9 +13,7 @@
         </li>
     </ol>
 </nav>
-@endif 
-@endsection 
-@section('sidenav') @if ($staffGym)
+@endif @endsection @section('sidenav') @if ($staffGym)
 <aside
     class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
     id="sidenav-main"
@@ -126,175 +119,217 @@
         </ul>
     </div>
 </aside>
-@endif
- 
-@endsection 
-
-
-
-@section('content')
-    <div class="row">
-        <div class="col-lg">
-            <div class="card ">
-                <div class="card-header pb-0 p-3">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="mb-2">Plan Management</h6>
-                    </div>
+@endif @endsection @section('content')
+<div class="row">
+    <div class="col-lg">
+        <div class="card">
+            <div class="card-header pb-0 p-3">
+                <div class="d-flex justify-content-between">
+                    <h6 class="mb-2">Plan Management</h6>
                 </div>
-                <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-md">
-                                <div class="form-group">
-                                    <div class="input-group ">
-                                        <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                                        <input class="form-control" placeholder="Search" type="text">
-                                    </div>
+            </div>
+            <div class="card-body">
+                @if ($gym_plans->isEmpty())
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addPlanModal"
+                >
+                    Add Plan
+                </button>
+                @endif @if (!$gym_plans->isEmpty())
+                <form>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                        ><i class="ni ni-zoom-split-in"></i
+                                    ></span>
+                                    <input
+                                        class="form-control"
+                                        placeholder="Search"
+                                        type="text"
+                                    />
                                 </div>
                             </div>
-                            <div class="col-md d-flex justify-content-end">
-                                <button type="button" class="btn btn-primary btn-sm">Add</button>
-                            </div>
                         </div>
-                    </form>
-
-                    <div class="table-responsive">
-
-                        <table class="table align-items-center ">
-                            <tbody>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="{{ asset('img/icons/flags/US.png') }}" alt="Country flag">
-                                            </div>
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                <h6 class="text-sm mb-0">United States</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                            <h6 class="text-sm mb-0">2500</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                            <h6 class="text-sm mb-0">$230,900</h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">29.9%</h6>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="{{ asset('img/icons/flags/DE.png') }}" alt="Country flag">
-                                            </div>
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                <h6 class="text-sm mb-0">Germany</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                            <h6 class="text-sm mb-0">3.900</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                            <h6 class="text-sm mb-0">$440,000</h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">40.22%</h6>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="{{ asset('img/icons/flags/GB.png') }}" alt="Country flag">
-                                            </div>
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                <h6 class="text-sm mb-0">Great Britain</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                            <h6 class="text-sm mb-0">1.400</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                            <h6 class="text-sm mb-0">$190,700</h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">23.44%</h6>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="{{ asset('img/icons/flags/BR.png') }}" alt="Country flag">
-                                            </div>
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                <h6 class="text-sm mb-0">Brasil</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                            <h6 class="text-sm mb-0">562</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                            <h6 class="text-sm mb-0">$143,960</h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">32.14%</h6>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="col-md d-flex justify-content-end">
+                            <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addPlanModal"
+                            >
+                                Add Plan
+                            </button>
+                        </div>
                     </div>
+                </form>
+
+                <div class="table-responsive">
+                    <table class="table align-items-center">
+                        <tbody>
+
+                            @foreach ($gym_plans as $gym_plan)
+                            <tr>
+
+                                <td>
+                                    <p
+                                    class="text-xs font-weight-bold mb-0"
+                                >
+                                   Plan ID:
+                                </p>
+                                    <h6 class="text-sm mb-0">{{ $gym_plan->PLAN_ID }}</h6>
+                                </td>
+                                <td>
+                                    <p
+                                    class="text-xs font-weight-bold mb-0"
+                                >
+                                    Plan Name:
+                                </p>
+                                    <h6 class="text-sm mb-0">{{ $gym_plan->PLAN_NAME }}</h6>
+                                </td>
+                                <td>
+                                    <p
+                                    class="text-xs font-weight-bold mb-0"
+                                >
+                                    Plan Description:
+                                </p>
+                                    <h6 class="text-sm mb-0">{{ $gym_plan->PLAN_DESCRIPTION }}</h6>
+                                </td>
+                                <td>
+                                    <p
+                                    class="text-xs font-weight-bold mb-0"
+                                >
+                                    Plan Validity:
+                                </p>
+                                    <h6 class="text-sm mb-0">{{ $gym_plan->PLAN_VALIDITY }} Day/s</h6>
+                                </td>
+                                <td>
+                                    <p
+                                    class="text-xs font-weight-bold mb-0"
+                                >
+                                    Plan Amount:
+                                </p>
+                                    <h6 class="text-sm mb-0">₱{{ $gym_plan->PLAN_AMOUNT }}</h6>
+                                </td>
+                                <td>
+                                    <p
+                                    class="text-xs font-weight-bold mb-0"
+                                >
+                                    Plan Status:
+                                </p>
+                                    <h6 class="text-sm mb-0">{{ $gym_plan->PLAN_STATUS }}</h6>
+                                </td>
+                            </tr>
+                            @endforeach
+                            
+                            
+                
+
+                        </tbody>
+                    </table>
                 </div>
-
-
-
+                @endif
             </div>
         </div>
-
     </div>
+</div>
+
+<div
+                    class="modal fade"
+                    id="addPlanModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    Create Gym Plan
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <form
+                                method="POST"
+                                action="{{ route('staff.plan-create') }}"
+                            >
+                                @csrf
+
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Plan Name</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="PLAN_NAME"
+                                            id="PLAN_NAME"
+                                        />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Plan Description</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="PLAN_DESCRIPTION"
+                                            id="PLAN_DESCRIPTION"
+                                        />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Plan Validity</label
+                                        >
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            name="PLAN_VALIDITY"
+                                            id="PLAN_VALIDITY"
+                                        />
+                                        <div id="validity_help" class="form-text">Enter plan validity in Days.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Plan Amount</label
+                                        >
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            name="PLAN_AMOUNT"
+                                            id="PLAN_AMOUNT"
+                                        />
+                                        <div id="amount_help" class="form-text">Enter plan amount in Pesos.</div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-bs-dismiss="modal"
+                                    >
+                                        Close
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary"
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 @endsection

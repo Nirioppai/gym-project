@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GymCreateRequest;
-use App\Models\GymList;
+use App\Http\Requests\PlanCreateRequest;
 use Illuminate\Http\Request;
 
-use App\Models\Staff;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-use \Auth;
+
 
 use Haruncpi\LaravelIdGenerator\IdGenerator as IdGenerator;
 
@@ -31,7 +29,18 @@ class StaffController extends Controller
             ->first();
 
             return $staffGym;
-     }
+    }
+
+    public function getPlan(){
+        $staffGym = $this->getGym();
+
+        $gym_plans = DB::table('plans')
+            ->where('GYM_ID', $staffGym->GYM_ID)
+            ->where('PLAN_STATUS', 'Active')
+            ->get();
+
+        return $gym_plans;
+    }
 
     public function index()
     {
@@ -57,11 +66,11 @@ class StaffController extends Controller
 
     public function plan_management_get()
     {
-
         $staffGym = $this->getGym();
 
-
-        return view('staff.plan_management', ['staffGym' => $staffGym]);
+        $gym_plans = $this->getPlan();
+    
+        return view('staff.plan_management', ['staffGym' => $staffGym], ['gym_plans' => $gym_plans]);
     }
 
     /**
@@ -159,5 +168,30 @@ class StaffController extends Controller
 
         return redirect('staff/dashboard');
 
+    }
+
+    public function plan_create(PlanCreateRequest $request)
+    {
+
+        $staffGym = $this->getGym();
+
+        $config=['table'=>'plans','length'=>10,'prefix'=>'PLAN-', 'field' => 'PLAN_ID'];
+        $id = IdGenerator::generate($config);
+
+        DB::table('plans')->insert(
+            ['PLAN_ID' => $id, 
+             'PLAN_NAME' => $request->PLAN_NAME,
+             'PLAN_DESCRIPTION' => $request->PLAN_DESCRIPTION,
+             'PLAN_VALIDITY' => $request->PLAN_VALIDITY, 
+             'PLAN_AMOUNT' => $request->PLAN_AMOUNT, 
+             'PLAN_STATUS' => 'Active', 
+             'GYM_ID' => $staffGym->GYM_ID, 
+             'created_at' => now(), 
+             'updated_at' => now()]
+        );
+
+
+
+        return redirect('/staff/plan-management');
     }
 }

@@ -16,7 +16,7 @@ class GymListSeeder extends Seeder
     public function run()
     {
         GymList::create([
-            'GYM_ID' => 'GYM-001',
+            'GYM_ID' => 'GYM-000001',
             'GYM_NAME' => 'Gym Name',
             'GYM_OWNER' => 'GO-0000001',
             'GYM_LOCATION' => 'Gym Location',

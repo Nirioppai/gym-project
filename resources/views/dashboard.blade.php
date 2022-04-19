@@ -76,16 +76,19 @@
                     <img src="{{ asset('storage/gym_images/'.$gym->GYM_IMAGE) }}" alt="" class="img-fluid d-block mx-auto" />
 
                     <div class="row btns w-100 mx-auto text-center">
-                        <button type="button">
-                            <i class="fa-solid fa-badge-check"></i> Register as Member
-                        </button>
+
+                        <button type="button" onclick="window.location.href='/gym/{{ $gym->GYM_ID }}'">
+                            
+                            
+                            <i class="fa-solid fa-badge-check"></i> Register as Member</button>
+
 
                     </div>
                 </div>
 
                 <div class="product-info p-3">
                     <span class="product-type">{{ $gym->GYM_LOCATION }}</span>
-                    <a href="/gym-register" class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
+                    <a href="/gym/{{ $gym->GYM_ID }}" class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
                     <span class="product-price">$ 100.50</span>
 
                 </div>
