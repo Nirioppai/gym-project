@@ -17,7 +17,24 @@ class MemberController extends Controller
     public function index()
     {
         $gyms = DB::table('gym_lists')->get();
-        return view('dashboard', ['gyms' => $gyms]);
+
+        $active_member_plans = DB::table('view_plan_list')
+        ->where('MEMBER_ID', Auth::user()->MEMBER_ID)
+        ->where('MEMBER_STATUS', 'Active')
+        ->get();
+
+        $other_plans = DB::table('view_plan_list')
+        ->where('MEMBER_ID', Auth::user()->MEMBER_ID)
+        ->whereNot(function ($query) {
+            $query->where('MEMBER_STATUS', 'Active');
+        })
+        ->get();
+    
+
+        return view('dashboard')
+            ->with('gyms',  $gyms)
+            ->with('active_member_plans', $active_member_plans)
+            ->with('other_plans', $other_plans);
     }
 
 

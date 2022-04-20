@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('MEMBER_PHONE_NUMBER');
             $table->string('MEMBER_STATUS');
             $table->string('GYM_ID');
+            $table->string('PAYMENT_ID');
+            $table->string('MEMBER_PAYMENT');
+            $table->string('PLAN_ID');
             $table->timestamps();
         });
     }

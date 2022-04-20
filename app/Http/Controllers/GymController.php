@@ -59,20 +59,8 @@ class GymController extends Controller
 
     public function store_member_details(Request $request)
     {
-        $config=['table'=>'payments','length'=>10,'prefix'=>'PAY-', 'field' => 'PAYMENT_ID'];
+        $config=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'PAYMENT_ID'];
         $id = IdGenerator::generate($config);
-
-        // return $request->all();
-
-        DB::table('payments')->insert(
-            ['PAYMENT_ID' => $id,
-             'MEMBER_ID' => Auth::user()->MEMBER_ID, 
-             'MEMBER_PAYMENT' => $request->MEMBER_PAYMENT, 
-             'PLAN_ID' => $request->PLAN_ID, 
-             'created_at' => now(), 
-             'updated_at' => now()]
-        );
-
         $newDateTime = Carbon::now()->addDays($request->PLAN_VALIDITY);
         
         DB::table('member_details')->insert(
@@ -84,6 +72,9 @@ class GymController extends Controller
              'MEMBER_PHONE_NUMBER' => $request->MEMBER_PHONE_NUMBER, 
              'MEMBER_STATUS' => 'Pending', 
              'GYM_ID' => $request->GYM_ID, 
+             'MEMBER_PAYMENT' => $request->MEMBER_PAYMENT, 
+             'PLAN_ID' => $request->PLAN_ID, 
+             'PAYMENT_ID' => $id,
              'created_at' => now(), 
              'updated_at' => now()]
         );

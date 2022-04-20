@@ -10,6 +10,6 @@ class MemberDetails extends Model
     use HasFactory;
 
     protected $fillable = [
-        'MEMBER_EXPIRY_DATE', 'MEMBER_ADDRESS', 'MEMBER_GENDER', 'MEMBER_DATE_OF_BIRTH', 'MEMBER_PHONE_NUMBER', 'GYM_ID'
+        'MEMBER_EXPIRY_DATE', 'MEMBER_ADDRESS', 'MEMBER_GENDER', 'MEMBER_DATE_OF_BIRTH', 'MEMBER_PHONE_NUMBER', 'GYM_ID', 'MEMBER_ID', 'MEMBER_PAYMENT', 'PLAN_ID',
     ];
 }
