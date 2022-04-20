@@ -113,71 +113,91 @@
 				<div class="card-body">
 					<div class="tab-content" id="myTabContent">
 						<div class="tab-pane fade show active" id="member-list" role="tabpanel" aria-labelledby="member-list-tab">
-							<form>
-								<div class="row">
-									<div class="col-md">
-										<div class="form-group">
-											<div class="input-group ">
-												<span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-												<input class="form-control" placeholder="Search" type="text">
+
+							@if ($activeMembers->isEmpty())
+								<div class="text-center justify-content-center">
+
+									<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
+									<h2 class="mt-4">Kruu Kruu~</h2>
+
+									<h6 class="mt-4 mb-3">There are no members for now. You can create one, or approve some on the next tab.
+									</h6>
+									<div class="mb-7">
+										<button type="button" class="btn btn-primary btn-sm">Add Member</button>
+									</div>
+
+								</div>
+							@endif
+
+							@if (!$activeMembers->isEmpty())
+								<form>
+									<div class="row">
+										<div class="col-md">
+											<div class="form-group">
+												<div class="input-group ">
+													<span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+													<input class="form-control" placeholder="Search" type="text">
+												</div>
 											</div>
 										</div>
+										<div class="col-md d-flex justify-content-end">
+											<button type="button" class="btn btn-primary btn-sm">Add Member</button>
+										</div>
 									</div>
-									<div class="col-md d-flex justify-content-end">
-										<button type="button" class="btn btn-primary btn-sm">Add</button>
-									</div>
-								</div>
-							</form>
-							<div class="table-responsive">
+								</form>
+								<div class="table-responsive">
 
-								<table class="table align-items-start ">
-									<tbody>
-										@foreach ($activeMembers as $activeMember)
-											<tr>
-												<td class="w-30">
-													<div class="d-flex px-2 py-1 align-items-start">
+									<table class="table align-items-start ">
+										<tbody>
+											@foreach ($activeMembers as $activeMember)
+												<tr>
+													<td class="w-30">
+														<div class="d-flex px-2 py-1 align-items-start">
 
-														<div class="ms-4">
-															<p class="text-xs font-weight-bold mb-0">Name:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->name }}</h6>
+															<div class="ms-4">
+																<p class="text-xs font-weight-bold mb-0">Name:</p>
+																<h6 class="text-sm mb-0">{{ $activeMember->name }}</h6>
+															</div>
 														</div>
-													</div>
-												</td>
-												<td>
-													<div class="text-start">
-														<p class="text-xs font-weight-bold mb-0">Address:</p>
-														<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_ADDRESS }}</h6>
-													</div>
-												</td>
-												<td>
-													<div class="text-start">
-														<p class="text-xs font-weight-bold mb-0">Gender:</p>
-														<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_GENDER }}</h6>
-													</div>
-												</td>
-												<td>
-													<div class="text-start">
-														<p class="text-xs font-weight-bold mb-0">Contact Number:</p>
-														<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_PHONE_NUMBER }}</h6>
-													</div>
-												</td>
-												<td>
-													<div class="text-start">
-														<p class="text-xs font-weight-bold mb-0">Date of Birth:</p>
-														<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_DATE_OF_BIRTH }}</h6>
-													</div>
-												</td>
-												<td>
-													<div class="text-start">
-														<p class="text-xs font-weight-bold mb-0">Membership Status:</p>
-														<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_STATUS }}</h6>
-													</div>
-												</td>
-											</tr>
-										@endforeach
-									</tbody>
-								</table>
-							</div>
+													</td>
+													<td>
+														<div class="text-start">
+															<p class="text-xs font-weight-bold mb-0">Address:</p>
+															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_ADDRESS }}</h6>
+														</div>
+													</td>
+													<td>
+														<div class="text-start">
+															<p class="text-xs font-weight-bold mb-0">Gender:</p>
+															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_GENDER }}</h6>
+														</div>
+													</td>
+													<td>
+														<div class="text-start">
+															<p class="text-xs font-weight-bold mb-0">Contact Number:</p>
+															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_PHONE_NUMBER }}</h6>
+														</div>
+													</td>
+													<td>
+														<div class="text-start">
+															<p class="text-xs font-weight-bold mb-0">Date of Birth:</p>
+															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_DATE_OF_BIRTH }}</h6>
+														</div>
+													</td>
+													<td>
+														<div class="text-start">
+															<p class="text-xs font-weight-bold mb-0">Membership Status:</p>
+															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_STATUS }}</h6>
+														</div>
+													</td>
+												</tr>
+											@endforeach
+										</tbody>
+									</table>
+								</div>
+							@endif
+
+
 						</div>
 						<div class="tab-pane fade" id="approval" role="tabpanel" aria-labelledby="approval-tab">
 
