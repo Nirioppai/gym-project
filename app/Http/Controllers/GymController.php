@@ -82,6 +82,33 @@ class GymController extends Controller
         return redirect('/dashboard');
     }
 
+    public function activate_member(Request $request)
+    {
+
+        $affected = DB::table('member_details')
+              ->where('PAYMENT_ID', $request->member_payment_id)
+              ->update(['MEMBER_STATUS' => 'Active']);
+
+
+        return redirect('/staff/members');
+    }
+
+    public function edit_plan(Request $request)
+    {
+
+        
+        $affected = DB::table('plans')
+              ->where('PLAN_ID', $request->PLAN_ID_EDIT)
+              ->update([
+              'PLAN_NAME' =>  $request->PLAN_NAME_EDIT, 
+              'PLAN_DESCRIPTION' =>  $request->PLAN_DESCRIPTION_EDIT,
+              'PLAN_VALIDITY' =>  $request->PLAN_VALIDITY_EDIT,
+              'PLAN_AMOUNT' =>  $request->PLAN_AMOUNT_EDIT]);
+              
+
+        return redirect('/staff/plan-management');
+    }
+
     /**
      * Display the specified resource.
      *

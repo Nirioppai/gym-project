@@ -53,7 +53,24 @@ class StaffController extends Controller
     {
         $staffGym = $this->getGym();
 
-        return view('staff.members', ['staffGym' => $staffGym]);
+        $activeMembers = DB::table('view_plan_list')
+        ->where('GYM_ID', $staffGym->GYM_ID)
+        ->where('MEMBER_STATUS', 'Active')
+        ->get();
+
+        $pendingMembers = DB::table('view_plan_list')
+        ->where('GYM_ID', $staffGym->GYM_ID)
+        ->whereNot(function ($query) {
+            $query->where('MEMBER_STATUS', 'Active');
+        })
+        ->get();
+
+        
+
+        return view('staff.members')
+            ->with('staffGym',  $staffGym)
+            ->with('activeMembers', $activeMembers)
+            ->with('pendingMembers', $pendingMembers);
     }
 
     public function gym_management_get()

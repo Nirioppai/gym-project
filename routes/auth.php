@@ -67,6 +67,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/gym/store-member', [GymController::class, 'store_member_details'])
                 ->name('store-member-details');
+
+    
+
+    
 });
 
 
@@ -92,6 +96,12 @@ Route::prefix('/staff')->name('staff.')->group(function(){
 
         Route::post('/gym-create', [StaffController::class,'gym_create'])->name('gym-create');
         Route::post('/plan-create', [StaffController::class,'plan_create'])->name('plan-create');
+
+        Route::post('/plan/edit', [GymController::class, 'edit_plan'])
+                ->name('edit-plan');
+
+        Route::post('/member/activate', [GymController::class, 'activate_member'])
+                ->name('activate-member');
 
     });
 

@@ -26,11 +26,13 @@ Select
     vs_gym.member_details.MEMBER_DATE_OF_BIRTH,
     vs_gym.member_details.MEMBER_PHONE_NUMBER,
     vs_gym.member_details.PAYMENT_ID,
-    vs_gym.member_details.MEMBER_PAYMENT
+    vs_gym.member_details.MEMBER_PAYMENT,
+    vs_gym.member_details.GYM_ID,
+    vs_gym.users.name
 From
-    vs_gym.users,
-    vs_gym.plans Inner Join
-    vs_gym.member_details On vs_gym.plans.PLAN_ID = vs_gym.member_details.PLAN_ID
+    vs_gym.users Inner Join
+    vs_gym.member_details On vs_gym.users.MEMBER_ID = vs_gym.member_details.MEMBER_ID Inner Join
+    vs_gym.plans On vs_gym.plans.PLAN_ID = vs_gym.member_details.PLAN_ID
                                 
                              ");
 
