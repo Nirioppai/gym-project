@@ -95,133 +95,142 @@
 				</div>
 				<div class="card-body">
 					@if ($gym_plans->isEmpty())
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlanModal">
-							Add Plan
-						</button>
-						@endif @if (!$gym_plans->isEmpty())
-							<form>
-								<div class="row">
-									<div class="col-md">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-												<input class="form-control" placeholder="Search" type="text" />
-											</div>
+						<div class="text-center justify-content-center">
+
+							<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
+							<h2 class="mt-4">Kruu Kruu~</h2>
+							<h6 class="mt-4 mb-3">There are no new plans for now. Start by creating one.</h6>
+							<div class="mb-7">
+								<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#addPlanModal">
+									Add Plan
+								</button>
+							</div>
+						</div>
+					@endif
+					@if (!$gym_plans->isEmpty())
+						<form>
+							<div class="row">
+								<div class="col-md">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+											<input class="form-control" placeholder="Search" type="text" />
 										</div>
 									</div>
-									<div class="col-md d-flex justify-content-end">
-										<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlanModal">
-											Add Plan
-										</button>
-									</div>
 								</div>
-							</form>
+								<div class="col-md d-flex justify-content-end">
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlanModal">
+										Add Plan
+									</button>
+								</div>
+							</div>
+						</form>
 
-							<div class="table-responsive">
-								<table class="table align-items-center">
-									<tbody>
+						<div class="table-responsive">
+							<table class="table align-items-center">
+								<tbody>
 
 
 
 
-										@foreach ($gym_plans as $gym_plan)
-											<form action="{{ route('staff.edit-plan') }}" name="edit-plan-form" id="edit-plan-form" method="post">
+									@foreach ($gym_plans as $gym_plan)
+										<form action="{{ route('staff.edit-plan') }}" name="edit-plan-form" id="edit-plan-form" method="post">
 
-												@csrf
-												<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-													aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalLabel">Edit Plan</h5>
-																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											@csrf
+											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+												aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel">Edit Plan</h5>
+															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+														</div>
+														<div class="modal-body">
+															<input type="hidden" name="PLAN_ID_EDIT" id="PLAN_ID_EDIT">
+															<div class="mb-3">
+																<label class="form-label">Plan Name</label>
+																<input type="text" class="form-control" name="PLAN_NAME_EDIT" id="PLAN_NAME_EDIT" />
 															</div>
-															<div class="modal-body">
-																<input type="hidden" name="PLAN_ID_EDIT" id="PLAN_ID_EDIT">
-																<div class="mb-3">
-																	<label class="form-label">Plan Name</label>
-																	<input type="text" class="form-control" name="PLAN_NAME_EDIT" id="PLAN_NAME_EDIT" />
-																</div>
-																<div class="mb-3">
-																	<label class="form-label">Plan Description</label>
-																	<input type="text" class="form-control" name="PLAN_DESCRIPTION_EDIT" id="PLAN_DESCRIPTION_EDIT" />
-																</div>
-																<div class="mb-3">
-																	<label class="form-label">Plan Validity</label>
-																	<input type="number" class="form-control" name="PLAN_VALIDITY_EDIT" id="PLAN_VALIDITY_EDIT" />
-																	<div id="validity_help" class="form-text">Enter plan validity in Days.</div>
-																</div>
-																<div class="mb-3">
-																	<label class="form-label">Plan Amount</label>
-																	<input type="number" class="form-control" name="PLAN_AMOUNT_EDIT" id="PLAN_AMOUNT_EDIT" />
-																	<div id="amount_help" class="form-text">Enter plan amount in Pesos.</div>
-																</div>
+															<div class="mb-3">
+																<label class="form-label">Plan Description</label>
+																<input type="text" class="form-control" name="PLAN_DESCRIPTION_EDIT" id="PLAN_DESCRIPTION_EDIT" />
 															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-																<button type="button" onclick="submitEditForm()" class="btn btn-primary">Save changes</button>
+															<div class="mb-3">
+																<label class="form-label">Plan Validity</label>
+																<input type="number" class="form-control" name="PLAN_VALIDITY_EDIT" id="PLAN_VALIDITY_EDIT" />
+																<div id="validity_help" class="form-text">Enter plan validity in Days.</div>
 															</div>
+															<div class="mb-3">
+																<label class="form-label">Plan Amount</label>
+																<input type="number" class="form-control" name="PLAN_AMOUNT_EDIT" id="PLAN_AMOUNT_EDIT" />
+																<div id="amount_help" class="form-text">Enter plan amount in Pesos.</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+															<button type="button" onclick="submitEditForm()" class="btn btn-primary">Save changes</button>
 														</div>
 													</div>
 												</div>
+											</div>
 
 
-												<tr>
-													<td>
-														<p class="text-xs font-weight-bold mb-0">
-															Plan ID:
-														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_ID }}</h6>
-													</td>
-													<td>
-														<p class="text-xs font-weight-bold mb-0">
-															Plan Name:
-														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_NAME }}</h6>
-													</td>
-													<td>
-														<p class="text-xs font-weight-bold mb-0">
-															Plan Description:
-														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_DESCRIPTION }}</h6>
-													</td>
-													<td>
-														<p class="text-xs font-weight-bold mb-0">
-															Plan Validity:
-														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_VALIDITY }} Day/s</h6>
-													</td>
-													<td>
-														<p class="text-xs font-weight-bold mb-0">
-															Plan Amount:
-														</p>
-														<h6 class="text-sm mb-0">₱{{ $gym_plan->PLAN_AMOUNT }}</h6>
-													</td>
-													<td>
-														<p class="text-xs font-weight-bold mb-0">
-															Plan Status:
-														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_STATUS }}</h6>
-													</td>
+											<tr>
+												<td>
+													<p class="text-xs font-weight-bold mb-0">
+														Plan ID:
+													</p>
+													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_ID }}</h6>
+												</td>
+												<td>
+													<p class="text-xs font-weight-bold mb-0">
+														Plan Name:
+													</p>
+													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_NAME }}</h6>
+												</td>
+												<td>
+													<p class="text-xs font-weight-bold mb-0">
+														Plan Description:
+													</p>
+													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_DESCRIPTION }}</h6>
+												</td>
+												<td>
+													<p class="text-xs font-weight-bold mb-0">
+														Plan Validity:
+													</p>
+													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_VALIDITY }} Day/s</h6>
+												</td>
+												<td>
+													<p class="text-xs font-weight-bold mb-0">
+														Plan Amount:
+													</p>
+													<h6 class="text-sm mb-0">₱{{ $gym_plan->PLAN_AMOUNT }}</h6>
+												</td>
+												<td>
+													<p class="text-xs font-weight-bold mb-0">
+														Plan Status:
+													</p>
+													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_STATUS }}</h6>
+												</td>
 
-													<td>
+												<td>
 
-														<button type="button" class="btn btn-primary btn-sm mt-3" data-bs-toggle="modal"
-															data-bs-target="#exampleModal"
-															onclick="activateMember('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->PLAN_NAME }}',' {{ $gym_plan->PLAN_DESCRIPTION }}', '{{ $gym_plan->PLAN_VALIDITY }}','{{ $gym_plan->PLAN_AMOUNT }}')">
-															Edit
-														</button>
-													</td>
+													<button type="button" class="btn btn-primary btn-sm mt-3" data-bs-toggle="modal"
+														data-bs-target="#exampleModal"
+														onclick="activateMember('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->PLAN_NAME }}',' {{ $gym_plan->PLAN_DESCRIPTION }}', '{{ $gym_plan->PLAN_VALIDITY }}','{{ $gym_plan->PLAN_AMOUNT }}')">
+														Edit
+													</button>
+												</td>
 
-												</tr>
-											</form>
-										@endforeach
+											</tr>
+										</form>
+									@endforeach
 
 
-									</tbody>
-								</table>
-							</div>
-						@endif
+								</tbody>
+							</table>
+						</div>
+					@endif
 				</div>
 			</div>
 		</div>
