@@ -65,7 +65,7 @@
 									Plan: {{ $active_member_plan->PLAN_NAME }}
 								</div>
 								<div class="col text-end">
-									Start Date:
+									Start Date: {{ $active_member_plan->created_at }}
 								</div>
 							</div>
 							<div class="row">
@@ -73,7 +73,7 @@
 									Status: {{ $active_member_plan->MEMBER_STATUS }}
 								</div>
 								<div class="col text-end">
-									Expiry Date:
+									Expiry Date: {{ $active_member_plan->MEMBER_EXPIRY_DATE }}
 								</div>
 							</div>
 						</div>

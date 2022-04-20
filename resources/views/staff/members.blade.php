@@ -212,10 +212,9 @@
 
 							@if (!$pendingMembers->isEmpty())
 								<div class="table-responsive">
-									<form action="{{ route('activate-member') }}" name="activate-member-form" id="activate-member-form"
+									<form action="{{ route('staff.activate-member') }}" name="activate-member-form" id="activate-member-form"
 										method="post">
 										@csrf
-
 										<input type="hidden" name="member_payment_id" class="form-control" id="member_payment_id" value="">
 										<table class="table align-items-start ">
 											<tbody>
