@@ -7,6 +7,8 @@
 @section('styles')
 	<script src="https://kit.fontawesome.com/d3fbd9c521.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="{{ asset('css/member-custom.css') }}">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 @endsection
 
 @section('navbar')
@@ -113,11 +115,28 @@
 					</div>
 					<div class="mb-3">
 						<label for="MEMBER_GENDER">Gender</label>
-						<input type="text" name="MEMBER_GENDER" class="form-control" id="MEMBER_GENDER" required>
+						<select class="form-select" name="MEMBER_GENDER" id="MEMBER_GENDER" aria-label="Default select example"
+							required>
+							<option disabled selected>Gender</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select>
+						{{-- <input type="text" name="MEMBER_GENDER" class="form-control" id="MEMBER_GENDER" required> --}}
 					</div>
 					<div class="mb-3">
 						<label for="MEMBER_DATE_OF_BIRTH">Date of Birth</label>
-						<input type="text" name="MEMBER_DATE_OF_BIRTH" class="form-control" id="MEMBER_DATE_OF_BIRTH" required>
+
+						<div class="input-group date">
+							<input type="text" class="form-control" name="MEMBER_DATE_OF_BIRTH" id="datepicker" required>
+							<span class="input-group-append">
+								<span class="input-group-text bg-white d-block">
+									<i class="fa fa-calendar"></i>
+								</span>
+							</span>
+						</div>
+
+
+						{{-- <input type="text" name="MEMBER_DATE_OF_BIRTH" class="form-control" id="MEMBER_DATE_OF_BIRTH" required> --}}
 					</div>
 					<div class="mb-3">
 						<label for="MEMBER_PHONE_NUMBER">Phone Number</label>
@@ -222,6 +241,15 @@
 	 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 	 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<script>
+	 $(document).ready(function() {
+	  $('#datepicker').datepicker();
+	  $('#sidebarCollapse').on('click', function() {
+	   $('#sidebar').toggleClass('active');
+	  });
+	 });
+	</script>
 
 	<script src="{{ asset('js/enchanter.js') }}"></script>
 	<script>
