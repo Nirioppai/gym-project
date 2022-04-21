@@ -30,7 +30,7 @@
 									<span class="express-subtitle">For an easy and fast payment</span>
 								</div>
 								<div class="col">
-									<img class="mt-2" src="{{ asset('img/paymaya.png') }}" alt="paymaya">
+									<img class="mt-2 img-fluid" src="{{ asset('img/paymaya.png') }}" alt="paymaya">
 								</div>
 							</div>
 

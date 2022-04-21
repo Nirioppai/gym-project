@@ -146,8 +146,7 @@
 				<div class="tab-pane fade" id="step3">
 					<h4>Mode of Payment</h4>
 					<div class="mb-3">
-						<label for="MEMBER_PAYMENT">Phone Number</label>
-						<input type="text" name="MEMBER_PAYMENT" class="form-control" id="MEMBER_PAYMENT" required>
+						<input type="hidden" name="MEMBER_PAYMENT" class="form-control" id="MEMBER_PAYMENT" required>
 					</div>
 
 					<div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center">
