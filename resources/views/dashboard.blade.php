@@ -65,7 +65,9 @@
 									Plan: {{ $active_member_plan->PLAN_NAME }}
 								</div>
 								<div class="col text-end">
-									Start Date: {{ $active_member_plan->created_at }}
+									Start Date:
+
+									{{ \Carbon\Carbon::parse($active_member_plan->created_at)->format('d/m/Y')}}
 								</div>
 							</div>
 							<div class="row">
@@ -73,7 +75,7 @@
 									Status: {{ $active_member_plan->MEMBER_STATUS }}
 								</div>
 								<div class="col text-end">
-									Expiry Date: {{ $active_member_plan->MEMBER_EXPIRY_DATE }}
+									Expiry Date: {{ \Carbon\Carbon::parse($active_member_plan->MEMBER_EXPIRY_DATE)->format('d/m/Y')}}
 								</div>
 							</div>
 						</div>
