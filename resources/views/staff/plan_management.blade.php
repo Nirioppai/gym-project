@@ -85,201 +85,250 @@
 		</aside>
 	@endif
 	@endsection @section('content')
-	<div class="row">
-		<div class="col-lg">
-			<div class="card">
-				<div class="card-header pb-0 p-3">
-					<div class="d-flex justify-content-between">
-						<h6 class="mb-2">Plan Management</h6>
-					</div>
-				</div>
-				<div class="card-body">
-					@if ($gym_plans->isEmpty())
-						<div class="text-center justify-content-center">
-
-							<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
-							<h2 class="mt-4">Kruu Kruu~</h2>
-							<h6 class="mt-4 mb-3">There are no new plans for now. Start by creating one.</h6>
-							<div class="mb-7">
-								<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#addPlanModal">
-									Add Plan
-								</button>
-							</div>
+	@if ($staffGym)
+		<div class="row">
+			<div class="col-lg">
+				<div class="card">
+					<div class="card-header pb-0 p-3">
+						<div class="d-flex justify-content-between">
+							<h6 class="mb-2">Plan Management</h6>
 						</div>
-					@endif
-					@if (!$gym_plans->isEmpty())
-						<form>
-							<div class="row">
-								<div class="col-md">
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-											<input class="form-control" placeholder="Search" type="text" />
-										</div>
-									</div>
-								</div>
-								<div class="col-md d-flex justify-content-end">
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlanModal">
+					</div>
+					<div class="card-body">
+						@if ($gym_plans->isEmpty())
+							<div class="text-center justify-content-center">
+
+								<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
+								<h2 class="mt-4">Kruu Kruu~</h2>
+								<h6 class="mt-4 mb-3">There are no new plans for now. Start by creating one.</h6>
+								<div class="mb-7">
+									<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#addPlanModal">
 										Add Plan
 									</button>
 								</div>
 							</div>
-						</form>
+						@endif
+						@if (!$gym_plans->isEmpty())
+							<form>
+								<div class="row">
+									<div class="col-md">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+												<input class="form-control" placeholder="Search" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-md d-flex justify-content-end">
+										<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlanModal">
+											Add Plan
+										</button>
+									</div>
+								</div>
+							</form>
 
-						<div class="table-responsive">
-							<table class="table align-items-center">
-								<tbody>
+							<div class="table-responsive">
+								<table class="table align-items-center">
+									<tbody>
 
 
 
 
-									@foreach ($gym_plans as $gym_plan)
-										<form action="{{ route('staff.edit-plan') }}" name="edit-plan-form" id="edit-plan-form" method="post">
+										@foreach ($gym_plans as $gym_plan)
+											<form action="{{ route('staff.edit-plan') }}" name="edit-plan-form" id="edit-plan-form" method="post">
 
-											@csrf
-											<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="exampleModalLabel">Edit Plan</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body">
-															<input type="hidden" name="PLAN_ID_EDIT" id="PLAN_ID_EDIT">
-															<div class="mb-3">
-																<label class="form-label">Plan Name</label>
-																<input type="text" class="form-control" name="PLAN_NAME_EDIT" id="PLAN_NAME_EDIT" />
+												@csrf
+												<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+													aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="exampleModalLabel">Edit Plan</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 															</div>
-															<div class="mb-3">
-																<label class="form-label">Plan Description</label>
-																<input type="text" class="form-control" name="PLAN_DESCRIPTION_EDIT" id="PLAN_DESCRIPTION_EDIT" />
+															<div class="modal-body">
+																<input type="hidden" name="PLAN_ID_EDIT" id="PLAN_ID_EDIT">
+																<div class="mb-3">
+																	<label class="form-label">Plan Name</label>
+																	<input type="text" class="form-control" name="PLAN_NAME_EDIT" id="PLAN_NAME_EDIT" />
+																</div>
+																<div class="mb-3">
+																	<label class="form-label">Plan Description</label>
+																	<input type="text" class="form-control" name="PLAN_DESCRIPTION_EDIT" id="PLAN_DESCRIPTION_EDIT" />
+																</div>
+																<div class="mb-3">
+																	<label class="form-label">Plan Validity</label>
+																	<input type="number" class="form-control" name="PLAN_VALIDITY_EDIT" id="PLAN_VALIDITY_EDIT" />
+																	<div id="validity_help" class="form-text">Enter plan validity in Days.</div>
+																</div>
+																<div class="mb-3">
+																	<label class="form-label">Plan Amount</label>
+																	<input type="number" class="form-control" name="PLAN_AMOUNT_EDIT" id="PLAN_AMOUNT_EDIT" />
+																	<div id="amount_help" class="form-text">Enter plan amount in Pesos.</div>
+																</div>
 															</div>
-															<div class="mb-3">
-																<label class="form-label">Plan Validity</label>
-																<input type="number" class="form-control" name="PLAN_VALIDITY_EDIT" id="PLAN_VALIDITY_EDIT" />
-																<div id="validity_help" class="form-text">Enter plan validity in Days.</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																<button type="button" onclick="submitEditForm()" class="btn btn-primary">Save changes</button>
 															</div>
-															<div class="mb-3">
-																<label class="form-label">Plan Amount</label>
-																<input type="number" class="form-control" name="PLAN_AMOUNT_EDIT" id="PLAN_AMOUNT_EDIT" />
-																<div id="amount_help" class="form-text">Enter plan amount in Pesos.</div>
-															</div>
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-															<button type="button" onclick="submitEditForm()" class="btn btn-primary">Save changes</button>
 														</div>
 													</div>
 												</div>
-											</div>
 
 
-											<tr>
-												<td>
-													<p class="text-xs font-weight-bold mb-0">
-														Plan ID:
-													</p>
-													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_ID }}</h6>
-												</td>
-												<td>
-													<p class="text-xs font-weight-bold mb-0">
-														Plan Name:
-													</p>
-													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_NAME }}</h6>
-												</td>
-												<td>
-													<p class="text-xs font-weight-bold mb-0">
-														Plan Description:
-													</p>
-													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_DESCRIPTION }}</h6>
-												</td>
-												<td>
-													<p class="text-xs font-weight-bold mb-0">
-														Plan Validity:
-													</p>
-													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_VALIDITY }} Day/s</h6>
-												</td>
-												<td>
-													<p class="text-xs font-weight-bold mb-0">
-														Plan Amount:
-													</p>
-													<h6 class="text-sm mb-0">₱{{ $gym_plan->PLAN_AMOUNT }}</h6>
-												</td>
-												<td>
-													<p class="text-xs font-weight-bold mb-0">
-														Plan Status:
-													</p>
-													<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_STATUS }}</h6>
-												</td>
+												<tr>
+													<td>
+														<p class="text-xs font-weight-bold mb-0">
+															Plan ID:
+														</p>
+														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_ID }}</h6>
+													</td>
+													<td>
+														<p class="text-xs font-weight-bold mb-0">
+															Plan Name:
+														</p>
+														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_NAME }}</h6>
+													</td>
+													<td>
+														<p class="text-xs font-weight-bold mb-0">
+															Plan Description:
+														</p>
+														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_DESCRIPTION }}</h6>
+													</td>
+													<td>
+														<p class="text-xs font-weight-bold mb-0">
+															Plan Validity:
+														</p>
+														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_VALIDITY }} Day/s</h6>
+													</td>
+													<td>
+														<p class="text-xs font-weight-bold mb-0">
+															Plan Amount:
+														</p>
+														<h6 class="text-sm mb-0">₱{{ $gym_plan->PLAN_AMOUNT }}</h6>
+													</td>
+													<td>
+														<p class="text-xs font-weight-bold mb-0">
+															Plan Status:
+														</p>
+														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_STATUS }}</h6>
+													</td>
 
-												<td>
+													<td>
 
-													<button type="button" class="btn btn-primary btn-sm mt-3" data-bs-toggle="modal"
-														data-bs-target="#exampleModal"
-														onclick="activateMember('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->PLAN_NAME }}',' {{ $gym_plan->PLAN_DESCRIPTION }}', '{{ $gym_plan->PLAN_VALIDITY }}','{{ $gym_plan->PLAN_AMOUNT }}')">
-														Edit
-													</button>
-												</td>
+														<button type="button" class="btn btn-primary btn-sm mt-3" data-bs-toggle="modal"
+															data-bs-target="#exampleModal"
+															onclick="activateMember('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->PLAN_NAME }}',' {{ $gym_plan->PLAN_DESCRIPTION }}', '{{ $gym_plan->PLAN_VALIDITY }}','{{ $gym_plan->PLAN_AMOUNT }}')">
+															Edit
+														</button>
+													</td>
 
-											</tr>
-										</form>
-									@endforeach
+												</tr>
+											</form>
+										@endforeach
 
 
-								</tbody>
-							</table>
-						</div>
-					@endif
+									</tbody>
+								</table>
+							</div>
+						@endif
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="modal fade" id="addPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">
-						Create Gym Plan
-					</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<div class="modal fade" id="addPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							Create Gym Plan
+						</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<form method="POST" action="{{ route('staff.plan-create') }}">
+						@csrf
+
+						<div class="modal-body">
+							<div class="mb-3">
+								<label class="form-label">Plan Name</label>
+								<input type="text" class="form-control" name="PLAN_NAME" id="PLAN_NAME" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Plan Description</label>
+								<input type="text" class="form-control" name="PLAN_DESCRIPTION" id="PLAN_DESCRIPTION" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Plan Validity</label>
+								<input type="number" class="form-control" name="PLAN_VALIDITY" id="PLAN_VALIDITY" />
+								<div id="validity_help" class="form-text">Enter plan validity in Days.</div>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Plan Amount</label>
+								<input type="number" class="form-control" name="PLAN_AMOUNT" id="PLAN_AMOUNT" />
+								<div id="amount_help" class="form-text">Enter plan amount in Pesos.</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+								Close
+							</button>
+							<button type="submit" class="btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
 				</div>
-				<form method="POST" action="{{ route('staff.plan-create') }}">
-					@csrf
-
-					<div class="modal-body">
-						<div class="mb-3">
-							<label class="form-label">Plan Name</label>
-							<input type="text" class="form-control" name="PLAN_NAME" id="PLAN_NAME" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Plan Description</label>
-							<input type="text" class="form-control" name="PLAN_DESCRIPTION" id="PLAN_DESCRIPTION" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Plan Validity</label>
-							<input type="number" class="form-control" name="PLAN_VALIDITY" id="PLAN_VALIDITY" />
-							<div id="validity_help" class="form-text">Enter plan validity in Days.</div>
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Plan Amount</label>
-							<input type="number" class="form-control" name="PLAN_AMOUNT" id="PLAN_AMOUNT" />
-							<div id="amount_help" class="form-text">Enter plan amount in Pesos.</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-							Close
-						</button>
-						<button type="submit" class="btn btn-primary">
-							Submit
-						</button>
-					</div>
-				</form>
 			</div>
 		</div>
-	</div>
+	@endif
+
+	@if (!$staffGym)
+		<div class="row">
+			<div class="col-xl col-sm-6 mb-xl-0 mb-4">
+				<div class="card">
+					<div class="card-body p-3">
+						<div class="row">
+							<div class="col">
+								<div class="numbers">
+									<h5 class="font-weight-bolder mb-4">
+										You don't have a Gym yet. Create one now.
+									</h5>
+
+									<form method="POST" action="{{ route('staff.gym-create') }}" enctype="multipart/form-data" action="">
+										@csrf
+										<div class="mb-3">
+											<label class="form-label">Gym Name</label>
+											<input type="text" class="form-control" name="GYM_NAME" id="GYM_NAME" />
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Gym Location</label>
+											<textarea class="form-control" name="GYM_LOCATION" id="GYM_LOCATION" rows="3"></textarea>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Gym Details</label>
+											<textarea class="form-control" name="GYM_DETAILS" id="GYM_DETAILS" rows="3"></textarea>
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label">Gym Image</label>
+											<input class="form-control" type="file" name="GYM_IMAGE" id="GYM_IMAGE" />
+										</div>
+
+										<div class="text-end">
+											<button type="submit" class="btn btn-primary">
+												Submit
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	@endif
 @endsection
 
 @section('bodyscript')

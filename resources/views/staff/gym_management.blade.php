@@ -92,29 +92,112 @@
 
 
 @section('content')
-	<div class="row">
-		<div class="col-lg">
-			<div class="card ">
-				<div class="card-header pb-0 p-3">
-					<div class="d-flex justify-content-between">
-						<h6 class="mb-2">Gym Management</h6>
+	@if ($staffGym)
+		<div class="row">
+			<div class="col-lg">
+				<div class="card ">
+					<div class="card-header pb-0 p-3">
+						<div class="d-flex justify-content-between">
+							<h6 class="mb-2">Gym Management</h6>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col">
+								<div class="numbers">
+									<form method="POST" action="{{ route('staff.gym-update') }}" enctype="multipart/form-data" action="">
+										@csrf
+										<input type="hidden" name="GYM_ID" value="{{ $staffGym->GYM_ID }}">
+										<div class="mb-3">
+											<label class="form-label">Gym Name</label>
+											<input type="text" value="{{ $staffGym->GYM_NAME }}" class="form-control" name="GYM_NAME"
+												id="GYM_NAME_EDIT" />
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Gym Location</label>
+											<textarea class="form-control" name="GYM_LOCATION" id="GYM_LOCATION_EDIT" rows="3"></textarea>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Gym Details</label>
+											<textarea class="form-control" name="GYM_DETAILS" id="GYM_DETAILS_EDIT" rows="3"></textarea>
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label">Gym Image</label>
+											<input class="form-control" type="file" name="GYM_IMAGE" id="GYM_IMAGE_EDIT" />
+										</div>
+
+										<div class="text-end">
+											<button type="submit" class="btn btn-primary">
+												Submit
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="card-body">
-					Gym image
-					<br />
-					Gym Name
-					<br />
-					Gym Location
+			</div>
 
-					<br>
-					gym details
+		</div>
+	@endif
+	@if (!$staffGym)
+		<div class="row">
+			<div class="col-xl col-sm-6 mb-xl-0 mb-4">
+				<div class="card">
+					<div class="card-body p-3">
+						<div class="row">
+							<div class="col">
+								<div class="numbers">
+									<h5 class="font-weight-bolder mb-4">
+										You don't have a Gym yet. Create one now.
+									</h5>
+
+									<form method="POST" action="{{ route('staff.gym-create') }}" enctype="multipart/form-data" action="">
+										@csrf
+										<div class="mb-3">
+											<label class="form-label">Gym Name</label>
+											<input type="text" class="form-control" name="GYM_NAME" id="GYM_NAME" />
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Gym Location</label>
+											<textarea class="form-control" name="GYM_LOCATION" id="GYM_LOCATION" rows="3"></textarea>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Gym Details</label>
+											<textarea class="form-control" name="GYM_DETAILS" id="GYM_DETAILS" rows="3"></textarea>
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label">Gym Image</label>
+											<input class="form-control" type="file" name="GYM_IMAGE" id="GYM_IMAGE" />
+										</div>
+
+										<div class="text-end">
+											<button type="submit" class="btn btn-primary">
+												Submit
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-
-
-
 			</div>
 		</div>
+	@endif
+@endsection
 
-	</div>
+<?php
+$gymLocation = $staffGym->GYM_LOCATION;
+$gymDetails = $staffGym->GYM_DETAILS;
+?>
+
+@section('bodyscript')
+	<script>
+	 document.getElementById("GYM_LOCATION_EDIT").value = "<?php echo $gymLocation; ?>";
+	 document.getElementById("GYM_DETAILS_EDIT").value = "<?php echo $gymDetails; ?>";
+	</script>
 @endsection

@@ -187,6 +187,54 @@ class StaffController extends Controller
 
     }
 
+    public function gym_update(GymCreateRequest $request)
+    {
+        // $image = $request->file('GYM_IMAGE')->store('public/gym_images');
+        // $staffID = auth()->guard('staff')->user()->MEMBER_ID;
+
+        // $config=['table'=>'gym_lists','length'=>10,'prefix'=>'GYM-', 'field' => 'GYM_ID'];
+        // $id = IdGenerator::generate($config);
+
+        // DB::table('gym_lists')->insert(
+        //     ['GYM_ID' => $id, 
+        //      'GYM_NAME' => $request->GYM_NAME,
+        //      'GYM_OWNER' => $staffID,
+        //      'GYM_LOCATION' => $request->GYM_LOCATION, 
+        //      'GYM_IMAGE' => $request->GYM_IMAGE->hashName(), 
+        //      'GYM_DETAILS' => $request->GYM_DETAILS, 
+        //      'created_at' => now(), 
+        //      'updated_at' => now()]
+        // );
+
+        // return redirect('staff/dashboard');
+
+
+
+        if ($request->hasFile('GYM_IMAGE')) {
+            $image = $request->file('GYM_IMAGE')->store('public/gym_images');
+            $affected = DB::table('gym_lists')
+        ->where('GYM_ID', $request->GYM_ID)
+        ->update([
+        'GYM_NAME' =>  $request->GYM_NAME, 
+        'GYM_LOCATION' =>  $request->GYM_LOCATION,
+        'GYM_IMAGE' => $request->GYM_IMAGE->hashName(), 
+        'GYM_DETAILS' =>  $request->GYM_DETAILS]);
+        }
+
+        if (!$request->hasFile('GYM_IMAGE')) {
+            $affected = DB::table('gym_lists')
+            ->where('GYM_ID', $request->GYM_ID)
+            ->update([
+            'GYM_NAME' =>  $request->GYM_NAME, 
+            'GYM_LOCATION' =>  $request->GYM_LOCATION,
+            'GYM_DETAILS' =>  $request->GYM_DETAILS]);
+        }
+  
+
+        return redirect('/staff/gym-management');
+
+    }
+
     public function plan_create(PlanCreateRequest $request)
     {
 
@@ -206,9 +254,6 @@ class StaffController extends Controller
              'created_at' => now(), 
              'updated_at' => now()]
         );
-
-
-
         return redirect('/staff/plan-management');
     }
 }

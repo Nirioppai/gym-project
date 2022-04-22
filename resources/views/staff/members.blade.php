@@ -92,157 +92,65 @@
 
 
 @section('content')
-	<div class="row">
-		<div class="col-lg">
-			<div class="card ">
-				<div class="card-header pb-0 p-3">
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
-						<li class="nav-item" role="presentation">
-							<button class="nav-link active" id="member-list-tab" data-bs-toggle="tab" data-bs-target="#member-list"
-								type="button" role="tab" aria-controls="member-list" aria-selected="true">Member List</button>
-						</li>
-						<li class="nav-item" role="presentation">
-							<button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#approval" type="button"
-								role="tab" aria-controls="approval" aria-selected="false">Member
-								Approvals</button>
-						</li>
+	@if ($staffGym)
+		<div class="row">
+			<div class="col-lg">
+				<div class="card ">
+					<div class="card-header pb-0 p-3">
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link active" id="member-list-tab" data-bs-toggle="tab" data-bs-target="#member-list"
+									type="button" role="tab" aria-controls="member-list" aria-selected="true">Member List</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#approval" type="button"
+									role="tab" aria-controls="approval" aria-selected="false">Member
+									Approvals</button>
+							</li>
 
-					</ul>
+						</ul>
 
-				</div>
-				<div class="card-body">
-					<div class="tab-content" id="myTabContent">
-						<div class="tab-pane fade show active" id="member-list" role="tabpanel" aria-labelledby="member-list-tab">
+					</div>
+					<div class="card-body">
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade show active" id="member-list" role="tabpanel" aria-labelledby="member-list-tab">
 
-							@if ($activeMembers->isEmpty())
-								<div class="text-center justify-content-center">
+								@if ($activeMembers->isEmpty())
+									<div class="text-center justify-content-center">
 
-									<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
-									<h2 class="mt-4">Kruu Kruu~</h2>
+										<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
+										<h2 class="mt-4">Kruu Kruu~</h2>
 
-									<h6 class="mt-4 mb-3">There are no members for now. You can create one, or approve some on the next tab.
-									</h6>
-									<div class="mb-7">
-										<button type="button" class="btn btn-primary btn-sm">Add Member</button>
-									</div>
-
-								</div>
-							@endif
-
-							@if (!$activeMembers->isEmpty())
-								<form>
-									<div class="row">
-										<div class="col-md">
-											<div class="form-group">
-												<div class="input-group ">
-													<span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-													<input class="form-control" placeholder="Search" type="text">
-												</div>
-											</div>
-										</div>
-										<div class="col-md d-flex justify-content-end">
+										<h6 class="mt-4 mb-3">There are no members for now. You can create one, or approve some on the next tab.
+										</h6>
+										<div class="mb-7">
 											<button type="button" class="btn btn-primary btn-sm">Add Member</button>
 										</div>
+
 									</div>
-								</form>
-								<div class="table-responsive">
+								@endif
 
-									<table class="table align-items-start ">
-										<tbody>
-											@foreach ($activeMembers as $activeMember)
-												<tr>
-													<td class="w-30">
-														<div class="d-flex px-2 py-1 align-items-start">
+								@if (!$activeMembers->isEmpty())
+									<form>
+										<div class="row">
+											<div class="col-md">
+												<div class="form-group">
+													<div class="input-group ">
+														<span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+														<input class="form-control" placeholder="Search" type="text">
+													</div>
+												</div>
+											</div>
+											<div class="col-md d-flex justify-content-end">
+												<button type="button" class="btn btn-primary btn-sm">Add Member</button>
+											</div>
+										</div>
+									</form>
+									<div class="table-responsive">
 
-															<div class="ms-4">
-																<p class="text-xs font-weight-bold mb-0">Name:</p>
-																<h6 class="text-sm mb-0">{{ $activeMember->name }}</h6>
-															</div>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Member ID:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_ID }}</h6>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Plan Name:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->PLAN_NAME }}</h6>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Registration Date:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->created_at }}</h6>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Registration Expiry:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_EXPIRY_DATE }}</h6>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Payment Method:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_PAYMENT }}</h6>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Gender:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_GENDER }}</h6>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Contact Number:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_PHONE_NUMBER }}</h6>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Date of Birth:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_DATE_OF_BIRTH }}</h6>
-														</div>
-													</td>
-													<td>
-														<div class="text-start">
-															<p class="text-xs font-weight-bold mb-0">Membership Status:</p>
-															<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_STATUS }}</h6>
-														</div>
-													</td>
-												</tr>
-											@endforeach
-										</tbody>
-									</table>
-								</div>
-							@endif
-
-
-						</div>
-						<div class="tab-pane fade" id="approval" role="tabpanel" aria-labelledby="approval-tab">
-
-							@if ($pendingMembers->isEmpty())
-								<div class="text-center justify-content-center">
-
-									<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
-									<h2 class="mt-4">Kruu Kruu~</h2>
-									<h6 class="mt-4 mb-9">There are no new members for now.</h6>
-								</div>
-							@endif
-
-							@if (!$pendingMembers->isEmpty())
-								<div class="table-responsive">
-									<form action="{{ route('staff.activate-member') }}" name="activate-member-form" id="activate-member-form"
-										method="post">
-										@csrf
-										<input type="hidden" name="member_payment_id" class="form-control" id="member_payment_id" value="">
 										<table class="table align-items-start ">
 											<tbody>
-												@foreach ($pendingMembers as $pendingMember)
+												@foreach ($activeMembers as $activeMember)
 													<tr>
 														<td class="w-30">
 															<div class="d-flex px-2 py-1 align-items-start">
@@ -307,41 +215,182 @@
 																<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_STATUS }}</h6>
 															</div>
 														</td>
-
-
-
-														<td>
-															<div class="text-start">
-																<p class="text-xs font-weight-bold mb-0">Activate Member</p>
-																<div class="form-check form-switch">
-																	<input class="form-check-input" type="checkbox"
-																		onclick="activateMember('{{ $pendingMember->PAYMENT_ID }}')">
-																</div>
-
-
-
-
-
-															</div>
-														</td>
-
 													</tr>
 												@endforeach
 											</tbody>
 										</table>
-									</form>
-								</div>
-							@endif
+									</div>
+								@endif
 
+
+							</div>
+							<div class="tab-pane fade" id="approval" role="tabpanel" aria-labelledby="approval-tab">
+
+								@if ($pendingMembers->isEmpty())
+									<div class="text-center justify-content-center">
+
+										<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
+										<h2 class="mt-4">Kruu Kruu~</h2>
+										<h6 class="mt-4 mb-9">There are no new members for now.</h6>
+									</div>
+								@endif
+
+								@if (!$pendingMembers->isEmpty())
+									<div class="table-responsive">
+										<form action="{{ route('staff.activate-member') }}" name="activate-member-form" id="activate-member-form"
+											method="post">
+											@csrf
+											<input type="hidden" name="member_payment_id" class="form-control" id="member_payment_id" value="">
+											<table class="table align-items-start ">
+												<tbody>
+													@foreach ($pendingMembers as $pendingMember)
+														<tr>
+															<td class="w-30">
+																<div class="d-flex px-2 py-1 align-items-start">
+
+																	<div class="ms-4">
+																		<p class="text-xs font-weight-bold mb-0">Name:</p>
+																		<h6 class="text-sm mb-0">{{ $activeMember->name }}</h6>
+																	</div>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Member ID:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_ID }}</h6>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Plan Name:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->PLAN_NAME }}</h6>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Registration Date:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->created_at }}</h6>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Registration Expiry:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_EXPIRY_DATE }}</h6>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Payment Method:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_PAYMENT }}</h6>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Gender:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_GENDER }}</h6>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Contact Number:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_PHONE_NUMBER }}</h6>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Date of Birth:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_DATE_OF_BIRTH }}</h6>
+																</div>
+															</td>
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Membership Status:</p>
+																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_STATUS }}</h6>
+																</div>
+															</td>
+
+
+
+															<td>
+																<div class="text-start">
+																	<p class="text-xs font-weight-bold mb-0">Activate Member</p>
+																	<div class="form-check form-switch">
+																		<input class="form-check-input" type="checkbox"
+																			onclick="activateMember('{{ $pendingMember->PAYMENT_ID }}')">
+																	</div>
+
+
+
+
+
+																</div>
+															</td>
+
+														</tr>
+													@endforeach
+												</tbody>
+											</table>
+										</form>
+									</div>
+								@endif
+
+
+							</div>
 
 						</div>
+					</div>
+				</div>
+			</div>
 
+		</div>
+	@endif
+
+	@if (!$staffGym)
+		<div class="row">
+			<div class="col-xl col-sm-6 mb-xl-0 mb-4">
+				<div class="card">
+					<div class="card-body p-3">
+						<div class="row">
+							<div class="col">
+								<div class="numbers">
+									<h5 class="font-weight-bolder mb-4">
+										You don't have a Gym yet. Create one now.
+									</h5>
+
+									<form method="POST" action="{{ route('staff.gym-create') }}" enctype="multipart/form-data" action="">
+										@csrf
+										<div class="mb-3">
+											<label class="form-label">Gym Name</label>
+											<input type="text" class="form-control" name="GYM_NAME" id="GYM_NAME" />
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Gym Location</label>
+											<textarea class="form-control" name="GYM_LOCATION" id="GYM_LOCATION" rows="3"></textarea>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Gym Details</label>
+											<textarea class="form-control" name="GYM_DETAILS" id="GYM_DETAILS" rows="3"></textarea>
+										</div>
+
+										<div class="mb-3">
+											<label class="form-label">Gym Image</label>
+											<input class="form-control" type="file" name="GYM_IMAGE" id="GYM_IMAGE" />
+										</div>
+
+										<div class="text-end">
+											<button type="submit" class="btn btn-primary">
+												Submit
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-	</div>
+	@endif
 @endsection
 
 @section('bodyscript')

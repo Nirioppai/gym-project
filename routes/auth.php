@@ -95,6 +95,7 @@ Route::prefix('/staff')->name('staff.')->group(function(){
         
 
         Route::post('/gym-create', [StaffController::class,'gym_create'])->name('gym-create');
+        Route::post('/gym-update', [StaffController::class,'gym_update'])->name('gym-update');
         Route::post('/plan-create', [StaffController::class,'plan_create'])->name('plan-create');
 
         Route::post('/plan/edit', [GymController::class, 'edit_plan'])
