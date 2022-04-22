@@ -1,0 +1,35 @@
+.mini-php {
+    font-size: 19.2px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    color: #292b30;
+}
+
+.large-30 {
+    font-size: 30px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    color: #292b30;
+}
+
+.tab-gray {
+    font-family: "Karla", sans-serif;
+    font-size: 17.28px;
+    font-weight: 600;
+    color: #9e9e9e;
+}
+
+.title-h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 19.2px;
+    font-weight: 600;
+    color: #0033b8;
+}
+
+.btn-gcash {
+    background-color: #0057e4;
+}
+
+body {
+    background-color: #ebecf0 !important;
+}

@@ -10283,6 +10283,10 @@ fieldset:disabled .btn {
     --bs-text-opacity: 1;
 }
 
+.bg-gcash{
+    background-color: #0057E4 !important;
+}
+
 .bg-primary {
     background-color: #5e72e4 !important;
 }
@@ -10762,6 +10766,10 @@ fieldset:disabled .btn {
 
 .min-height-250 {
     min-height: 250px !important;
+}
+
+.min-height-270 {
+    min-height: 270px !important;
 }
 
 .min-height-300 {

@@ -160,7 +160,7 @@
 
 									<img class="mb-3" src="{{ asset('img/gcash.png') }}" alt="gcash">
 
-									<button type="button" onclick="payment_select('gcash')" class="w-100 btn btn-outline-primary">Select</button>
+									<button type="button" onclick="payment_select('Gcash')" class="w-100 btn btn-outline-primary">Select</button>
 								</div>
 							</div>
 						</div>
@@ -174,7 +174,7 @@
 
 									<img class="mb-3" src="{{ asset('img/paymaya.png') }}" alt="paymaya">
 
-									<button type="button" onclick="payment_select('paymaya')" class="w-100 btn btn-outline-primary">Select</button>
+									<button type="button" onclick="payment_select('Paymaya')" class="w-100 btn btn-outline-primary">Select</button>
 								</div>
 							</div>
 						</div>
