@@ -31,7 +31,7 @@
 
 	<main>
 		<div class="container">
-			<div class="d-flex align-items-center justify-content-center" style="height: 887px;">
+			<div class="d-flex align-items-center justify-content-center load-height">
 				<div class="row">
 					<div class="col">
 						<img src="{{ asset('img/svg/auth.svg') }}" class="img-fluid" alt="svg1">
@@ -39,7 +39,7 @@
 					<div class="col-4">
 						<div class="card shadow rounded-2 mt-4">
 							<div class="card-body">
-								<h3 class=" get-started">Login</h3>
+								<h3 class=" get-started">Member Login</h3>
 								<p class="card-text already-have">Don't have an account? <a class="register" href="/register">Get
 										Started</a></p>
 

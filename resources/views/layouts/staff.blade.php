@@ -32,7 +32,8 @@
 	<link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
 	<!-- Font Awesome Icons -->
 
-	<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/d3fbd9c521.js" crossorigin="anonymous"></script>
+
 	<link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
 	<!-- CSS Files -->
 	<link id="pagestyle" href="{{ asset('css/argon-dashboard.css?v=2.0.2') }}" rel="stylesheet" />
@@ -77,8 +78,10 @@
 									<a class="dropdown-item border-radius-md" href="javascript:;">
 										<div class="d-flex py-1">
 											<div class="my-auto">
-												<img src="{{ asset('img/team-2.jpg') }}" class="avatar avatar-sm  me-3 ">
+												<i class="fa-solid fa-id-card-clip"></i>
 											</div>
+											&nbsp;
+											&nbsp;
 											<div class="d-flex flex-column justify-content-center">
 												<h6 class="text-sm font-weight-normal mb-1">
 													<span class="font-weight-bold">Your
@@ -92,9 +95,10 @@
 									<a class="dropdown-item border-radius-md" href="{{ route('staff.logout') }}">
 										<div class="d-flex py-1">
 											<div class="my-auto">
-												<img src="{{ asset('img/small-logos/logo-spotify.svg') }}"
-													class="avatar avatar-sm bg-gradient-dark  me-3 ">
+												<i class="fa-solid fa-arrow-right-from-bracket"></i>
 											</div>
+											&nbsp;
+											&nbsp;
 											<div class="d-flex flex-column justify-content-center">
 												<h6 class="text-sm font-weight-normal mb-1">
 													<span class="font-weight-bold">Logout</span>

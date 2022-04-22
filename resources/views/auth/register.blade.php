@@ -31,16 +31,27 @@
 
 	<main>
 		<div class="container">
-			<div class="d-flex align-items-center justify-content-center" style="height: 887px;">
+			<div class="d-flex align-items-center justify-content-center load-height">
 				<div class="row">
 					<div class="col">
-						<img width="100%" src="{{ asset('img/svg/auth.svg') }}" class="img-fluid" alt="svg1">
+						<img src="{{ asset('img/svg/auth.svg') }}" class="img-fluid" alt="svg1">
 					</div>
 					<div class="col-4">
 						<div class="card shadow rounded-2 mt-4">
 							<div class="card-body">
-								<h3 class=" get-started">Get Started</h3>
+								<h3 class=" get-started">Get Started as a User</h3>
 								<p class="card-text already-have">Already have an account? <a class="login" href="/login">Login</a></p>
+
+
+								@if (!$errors->isEmpty())
+									<div class="alert alert-danger" role="alert">
+										<!-- Validation Errors -->
+										<x-auth-validation-errors class="mb-4 text-red-600" :errors="$errors" />
+									</div>
+								@endif
+
+
+
 
 								<form method="POST" action="{{ route('register') }}">
 									@csrf
@@ -50,7 +61,7 @@
 									<div class="mb-3">
 										<label for="nameInput" class="form-label">Name</label>
 										<input type="text" class="form-control" id="name" type="text" name="name" required="required"
-											autofocus="autofocus" id="nameInput">
+											autofocus="autofocus" id="nameInput" :value="old('name')">
 									</div>
 
 
@@ -59,7 +70,7 @@
 									<div class="mb-3">
 										<label for="emailInput" class="form-label">Email address</label>
 										<input type="email" class="form-control" id="emailInput" id="email" type="email" name="email"
-											required="required">
+											required="required" :value="old('email')">
 
 									</div>
 
