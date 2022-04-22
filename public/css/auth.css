@@ -1,0 +1,83 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.get-started {
+    font-family: "Barlow", sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+.already-have {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 26px;
+}
+
+.login {
+    font-weight: 600;
+}
+
+a {
+    color: #ed501d;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ef4f1c;
+    text-decoration: none;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    border-color: rgba(237, 80, 29, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+        0 0 8px rgba(237, 80, 29, 0.6);
+    outline: 0 none;
+}
+
+.btn-orange {
+    color: #fff;
+    background-color: #ed501d;
+    border-color: #ed501d;
+}
+
+.btn-orange:hover {
+    color: #fff;
+    background-color: #f36130;
+    border-color: #f77043;
+}
+
+.btn-check:focus + .btn-orange,
+.btn-orange:focus {
+    color: #fff;
+    background-color: #f36130;
+    border-color: #f77043;
+    box-shadow: 0 0 0 0.2rem rgba(237, 80, 29, 0.5);
+}
+
+.btn-check:checked + .btn-orange,
+.btn-check:active + .btn-orange,
+.btn-orange:active,
+.btn-orange.active,
+.show > .btn-orange.dropdown-toggle {
+    color: #fff;
+    background-color: #f36130;
+    border-color: #f77043;
+}

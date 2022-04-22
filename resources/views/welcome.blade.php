@@ -20,7 +20,7 @@
 		<ul class="navbar-nav">
 
 			<li class="nav-item">
-				<a id="navtext4" class="nav-link text-light" href="#">Join us</a>
+				<a id="navtext4" class="nav-link text-light" href="{{ route('register') }}">Join us</a>
 			</li>
 
 			<li class="nav-item dropdown">
@@ -31,7 +31,6 @@
 				<ul id="navdrop" class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
 
 					<li><a class="dropdown-item" href="{{ route('login') }}">Login as Gym User</a></li>
-					<li><a class="dropdown-item" href="{{ route('register') }}">Register as Gym User</a></li>
 					<li><a class="dropdown-item" href="{{ route('staff.login') }}">Login as Gym Admin</a>
 					</li>
 				</ul>
