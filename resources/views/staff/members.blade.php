@@ -250,62 +250,62 @@
 
 																	<div class="ms-4">
 																		<p class="text-xs font-weight-bold mb-0">Name:</p>
-																		<h6 class="text-sm mb-0">{{ $activeMember->name }}</h6>
+																		<h6 class="text-sm mb-0">{{ $pendingMember->name }}</h6>
 																	</div>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Member ID:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_ID }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->MEMBER_ID }}</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Plan Name:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->PLAN_NAME }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->PLAN_NAME }}</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Registration Date:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->created_at }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->created_at }}</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Registration Expiry:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_EXPIRY_DATE }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->MEMBER_EXPIRY_DATE }}</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Payment Method:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_PAYMENT }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->MEMBER_PAYMENT }}</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Gender:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_GENDER }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->MEMBER_GENDER }}</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Contact Number:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_PHONE_NUMBER }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->MEMBER_PHONE_NUMBER }}</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Date of Birth:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_DATE_OF_BIRTH }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->MEMBER_DATE_OF_BIRTH }}</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Membership Status:</p>
-																	<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_STATUS }}</h6>
+																	<h6 class="text-sm mb-0">{{ $pendingMember->MEMBER_STATUS }}</h6>
 																</div>
 															</td>
 

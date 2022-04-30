@@ -44,14 +44,37 @@ class GymController extends Controller
         $gym_plan = DB::table('plans')
         ->where('PLAN_ID',  $previous_request['PLAN_ID'])
         ->first();
-    
 
-        if($request->MEMBER_PAYMENT =='gcash')
+    
+        $plan_id = $previous_request['PLAN_ID'];
+        $member_adddress = $previous_request['MEMBER_ADDRESS'];
+        $member_date_of_birth = $previous_request['MEMBER_DATE_OF_BIRTH'];
+        $member_payment = $previous_request['MEMBER_PAYMENT'];
+
+        if($plan_id == null)
+        {
+            return view('register-gym')->with('error', 'Please select a plan');
+        }
+
+        if($member_adddress == null)
+        {
+            return view('register-gym')->with('error', 'Please enter your address');
+        }
+        if($member_date_of_birth == null)
+        {
+            return view('register-gym')->with('error', 'Please enter your date of birth');
+        }
+        if($member_payment == null)
+        {
+            return view('register-gym')->with('error', 'Please enter Payment Method');
+        }
+
+        if($request->MEMBER_PAYMENT =='Gcash')
         {
             return view('payment-gcash', ['previous_request' => $previous_request], ['gym_plan' => $gym_plan]);
         }
 
-        if($request->MEMBER_PAYMENT =='paymaya')
+        if($request->MEMBER_PAYMENT =='Paymaya')
         {
             return view('payment-paymaya', ['previous_request' => $previous_request], ['gym_plan' => $gym_plan]);
         }

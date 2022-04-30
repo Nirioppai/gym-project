@@ -15,7 +15,7 @@
 
 	<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 
-	<title>VS Gym - Register</title>
+	<title>VS Gym - Login</title>
 </head>
 
 <body>
@@ -42,6 +42,13 @@
 								<h3 class=" get-started">Member Login</h3>
 								<p class="card-text already-have">Don't have an account? <a class="register" href="/register">Get
 										Started</a></p>
+
+								@if (!$errors->isEmpty())
+									<div class="alert alert-danger" role="alert">
+										<!-- Validation Errors -->
+										<x-auth-validation-errors class="mb-4 text-red-600" :errors="$errors" />
+									</div>
+								@endif
 
 								<form method="POST" action="{{ route('login') }}">
 									@csrf
