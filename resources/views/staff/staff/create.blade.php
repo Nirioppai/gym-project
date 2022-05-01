@@ -30,6 +30,29 @@
 	</nav>
 
 	<main>
+
+		<!-- Modal -->
+
+		<div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">Enter Password</h5>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label for="securityCheck" class="form-label">Password</label>
+							<input type="password" class="form-control" id="securityCheck">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" onclick="checkPassword()" class="btn btn-orange">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="d-flex align-items-center justify-content-center load-height">
 				<div class="row">
@@ -108,6 +131,28 @@
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
 	 integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+	 $(document).ready(function() {
+	  $("#registerModal").modal('show');
+	 });
+
+	 function checkPassword() {
+	  var registerModalEl = document.getElementById('registerModal');
+	  var modal = bootstrap.Modal.getInstance(registerModalEl)
+
+	  var inputVal = document.getElementById("securityCheck").value;
+
+	  if (inputVal == "vsgym") {
+	   modal.hide();
+	  } else {
+	   console.log("Wrong Password.");
+	  }
+
+	 }
 	</script>
 </body>
 
