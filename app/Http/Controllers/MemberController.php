@@ -16,7 +16,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $gyms = DB::table('gym_lists')->get();
+        $gyms = DB::table('gym_lists')->take(5)->get();
 
         $active_member_plans = DB::table('view_plan_list')
         ->where('MEMBER_ID', Auth::user()->MEMBER_ID)

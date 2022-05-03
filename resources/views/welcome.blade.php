@@ -114,6 +114,12 @@
 @section('mainContent')
 	<div class="p-5 border">
 		<p>
+			Featured Gyms
+		</p>
+	</div>
+
+	<div class="p-5 border">
+		<p>
 			FOR POTENTIAL MEMBERS
 			<br />
 
@@ -127,14 +133,7 @@
 	</div>
 
 
-	<div class="p-5 border">
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit.
-			Necessitatibus veniam ipsa earum quibusdam, atque ipsum error maiores
-			natus iusto fugit id saepe neque rerum magni laudantium accusantium
-			dolorem numquam quasi.
-		</p>
-	</div>
+
 	<div class="p-5 border">
 		<p>
 			Lorem ipsum dolor sit amet consectetur adipisicing elit.

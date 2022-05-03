@@ -80,6 +80,14 @@ class GymController extends Controller
         }
     }
 
+    public function gyms()
+    {
+
+        $gyms = DB::table('gym_lists')->get();
+        
+        return view('gyms')->with('gyms',  $gyms);
+    }
+
     public function store_member_details(Request $request)
     {
         $config=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'PAYMENT_ID'];
