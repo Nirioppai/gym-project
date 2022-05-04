@@ -135,6 +135,20 @@
 		</div>
 
 		<div class="row mt-4">
+			<div class="col">
+
+				<div class="card">
+
+					<div class="card-body">
+						<div id="dashboard-chart" style="height: 300px;"></div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+		<div class="row mt-4">
 			<div class="col-lg-7 mb-lg-0 mb-4">
 				<div class="card">
 					<div class="card-header pb-0 p-3">
@@ -443,3 +457,23 @@
 @endsection {{-- <h1>Staff Dashboard: {{ auth()->guard('staff')->user()->name }}</h1>
 <a href="{{ route('staff.create') }}">Create new Staff</a>
 <a href="{{ route('staff.logout') }}">Logout</a> --}}
+
+@section('bodyscript')
+	<script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
+	<!-- Chartisan -->
+	<script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
+
+	<script>
+	 const chart = new Chartisan({
+	  el: '#dashboard-chart',
+	  url: "@chart('dashboard_chart')",
+	  hooks: new ChartisanHooks()
+	   .colors()
+	  //    .datasets([{
+	  //     type: 'line',
+	  //     fill: false,
+	  //     color: 'blue'
+	  //    }, 'bar'])
+	 });
+	</script>
+@endsection
