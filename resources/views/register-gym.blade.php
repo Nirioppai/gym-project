@@ -186,8 +186,8 @@
 				<div class="col-auto"><button type="button" class="btn btn-secondary"
 						data-enchanter="previous">Previous</button></div>
 				<div class="col-auto">
-					<button type="button" class="btn btn-primary" data-enchanter="next">Next</button>
-					<button type="submit" class="btn btn-primary" data-enchanter="finish">Finish</button>
+					<button type="button" class="btn btn-orange" data-enchanter="next">Next</button>
+					<button type="submit" class="btn btn-orange" data-enchanter="finish">Finish</button>
 				</div>
 			</div>
 		</form>

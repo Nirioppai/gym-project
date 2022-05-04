@@ -81,6 +81,7 @@ a:hover {
 
 textarea:focus,
 input[type="text"]:focus,
+select:focus,
 input[type="password"]:focus,
 input[type="datetime"]:focus,
 input[type="datetime-local"]:focus,

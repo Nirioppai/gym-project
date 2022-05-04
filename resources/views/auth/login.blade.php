@@ -56,7 +56,7 @@
 									<!-- Name -->
 
 									<div class="mb-3">
-										<label for="nameInput" class="form-label">Name</label>
+										<label for="nameInput" class="form-label">Email</label>
 										<input type="email" class="form-control" id="email" type="email" name="email" required="required"
 											autofocus="autofocus">
 									</div>
