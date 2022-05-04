@@ -176,13 +176,17 @@
 														<td>
 															<div class="text-start">
 																<p class="text-xs font-weight-bold mb-0">Registration Date:</p>
-																<h6 class="text-sm mb-0">{{ $activeMember->created_at }}</h6>
+																<h6 class="text-sm mb-0">{{ \Carbon\Carbon::parse($activeMember->created_at)->format('jS F y') }}
+
+																</h6>
 															</div>
 														</td>
 														<td>
 															<div class="text-start">
 																<p class="text-xs font-weight-bold mb-0">Registration Expiry:</p>
-																<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_EXPIRY_DATE }}</h6>
+																<h6 class="text-sm mb-0">
+																	{{ \Carbon\Carbon::parse($activeMember->MEMBER_EXPIRY_DATE)->format('jS F y') }}
+																</h6>
 															</div>
 														</td>
 														<td>
@@ -269,13 +273,18 @@
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Registration Date:</p>
-																	<h6 class="text-sm mb-0">{{ $pendingMember->created_at }}</h6>
+																	<h6 class="text-sm mb-0">{{ \Carbon\Carbon::parse($pendingMember->created_at)->format('jS F y') }}
+
+																	</h6>
 																</div>
 															</td>
 															<td>
 																<div class="text-start">
 																	<p class="text-xs font-weight-bold mb-0">Registration Expiry:</p>
-																	<h6 class="text-sm mb-0">{{ $pendingMember->MEMBER_EXPIRY_DATE }}</h6>
+																	<h6 class="text-sm mb-0">
+																		{{ \Carbon\Carbon::parse($pendingMember->MEMBER_EXPIRY_DATE)->format('jS F y') }}
+
+																	</h6>
 																</div>
 															</td>
 															<td>

@@ -86,7 +86,6 @@
 						<span class="product-type">{{ $gym->GYM_LOCATION }}</span>
 						<a href="/gym/{{ $gym->GYM_ID }}"
 							class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
-						<span class="product-price">$ 100.50</span>
 
 					</div>
 				</div>

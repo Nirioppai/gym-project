@@ -67,7 +67,7 @@
 								<div class="col text-end">
 									Start Date:
 
-									{{ \Carbon\Carbon::parse($active_member_plan->created_at)->format('d/m/Y') }}
+									{{ \Carbon\Carbon::parse($active_member_plan->created_at)->format('jS F y') }}
 								</div>
 							</div>
 							<div class="row">
@@ -75,7 +75,7 @@
 									Status: {{ $active_member_plan->MEMBER_STATUS }}
 								</div>
 								<div class="col text-end">
-									Expiry Date: {{ \Carbon\Carbon::parse($active_member_plan->MEMBER_EXPIRY_DATE)->format('d/m/Y') }}
+									Expiry Date: {{ \Carbon\Carbon::parse($active_member_plan->MEMBER_EXPIRY_DATE)->format('jS F y') }}
 								</div>
 							</div>
 						</div>
@@ -104,8 +104,9 @@
 								<tr>
 									<th scope="row">{{ $other_plan->PLAN_NAME }}</th>
 									<td>{{ $other_plan->MEMBER_STATUS }}</td>
-									<td>{{ $other_plan->created_at }}</td>
-									<td>{{ $other_plan->MEMBER_EXPIRY_DATE }}</td>
+									<td>{{ \Carbon\Carbon::parse($other_plan->created_at)->format('jS F y') }}</td>
+									<td>{{ \Carbon\Carbon::parse($other_plan->MEMBER_EXPIRY_DATE)->format('jS F y') }}
+									</td>
 								</tr>
 							@endforeach
 						</tbody>
@@ -150,7 +151,6 @@
 						<span class="product-type">{{ $gym->GYM_LOCATION }}</span>
 						<a href="/gym/{{ $gym->GYM_ID }}"
 							class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
-						<span class="product-price">$ 100.50</span>
 
 					</div>
 				</div>
