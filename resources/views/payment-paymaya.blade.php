@@ -87,6 +87,8 @@
 		<input type="hidden" name="MEMBER_PHONE_NUMBER" class="form-control" id="MEMBER_PHONE_NUMBER"
 			value="{{ $previous_request['MEMBER_PHONE_NUMBER'] }}">
 		<input type="hidden" name="GYM_ID" class="form-control" id="GYM_ID" value="{{ $previous_request['GYM_ID'] }}">
+		<input type="hidden" name="PLAN_AMOUNT" class="form-control" id="PLAN_AMOUNT"
+			value="{{ $previous_request['PLAN_AMOUNT'] }}">
 
 		<input type="hidden" name="PLAN_VALIDITY" id="PLAN_VALIDITY" value="{{ $gym_plan->PLAN_VALIDITY }}">
 		<input type="hidden" name="PLAN_ID" id="PLAN_ID" value="{{ $gym_plan->PLAN_ID }}">

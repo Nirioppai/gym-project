@@ -9,7 +9,7 @@ use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
 use App\Models\Staff;
 
-class DashboardChart extends BaseChart
+class IncomeChart extends BaseChart
 {
     /**
      * Handles the HTTP request for the given chart.
@@ -18,8 +18,7 @@ class DashboardChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-
-        $data = Staff::getMemberData();
+        $data = Staff::getIncomeData();
 
         return Chartisan::build()
             ->labels(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])

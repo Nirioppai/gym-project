@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Haruncpi\LaravelIdGenerator\IdGenerator as IdGenerator;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
 
 class GymController extends Controller
 {
@@ -31,6 +33,17 @@ class GymController extends Controller
         //
     }
 
+
+
+    public function getPlan($plan_id){
+
+        $gym_plan = DB::table('plans')
+            ->where('PLAN_ID', $plan_id)
+            ->first();
+
+        return $gym_plan;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -45,7 +58,6 @@ class GymController extends Controller
         ->where('PLAN_ID',  $previous_request['PLAN_ID'])
         ->first();
 
-    
         $plan_id = $previous_request['PLAN_ID'];
         $member_adddress = $previous_request['MEMBER_ADDRESS'];
         $member_date_of_birth = $previous_request['MEMBER_DATE_OF_BIRTH'];
@@ -104,6 +116,7 @@ class GymController extends Controller
              'MEMBER_STATUS' => 'Pending', 
              'GYM_ID' => $request->GYM_ID, 
              'MEMBER_PAYMENT' => $request->MEMBER_PAYMENT, 
+             'PLAN_AMOUNT' => $request->PLAN_AMOUNT,
              'PLAN_ID' => $request->PLAN_ID, 
              'PAYMENT_ID' => $id,
              'created_at' => now(), 
@@ -111,6 +124,49 @@ class GymController extends Controller
         );
 
         return redirect('/dashboard');
+    }
+
+    public function create_member(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+
+        $config=['table'=>'users','length'=>10,'prefix'=>'GM-', 'field' => 'MEMBER_ID'];
+        $id = IdGenerator::generate($config);
+        $gym_plan = $this->getPlan($request->PLAN_ID);
+
+        DB::table('users')->insert(
+            ['MEMBER_ID' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make('password'),'created_at' => now(), 'updated_at' => now()]
+        );
+
+        $config2=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'PAYMENT_ID'];
+        $id2 = IdGenerator::generate($config2);
+        $newDateTime = Carbon::now()->addDays($gym_plan->PLAN_VALIDITY);
+
+        
+
+        DB::table('member_details')->insert(
+            ['MEMBER_ID' =>$id, 
+             'MEMBER_EXPIRY_DATE' => $newDateTime, // remove this 
+             'MEMBER_ADDRESS' => $request->MEMBER_ADDRESS, 
+             'MEMBER_GENDER' => $request->MEMBER_GENDER, 
+             'MEMBER_DATE_OF_BIRTH' => $request->MEMBER_DATE_OF_BIRTH, 
+             'MEMBER_PHONE_NUMBER' => $request->MEMBER_PHONE_NUMBER, 
+             'MEMBER_STATUS' => 'Active', 
+             'GYM_ID' =>$gym_plan->GYM_ID, 
+             'MEMBER_PAYMENT' => 'Cash', 
+             'PLAN_AMOUNT' =>$gym_plan->PLAN_AMOUNT,
+             'PLAN_ID' => $request->PLAN_ID, 
+             'PAYMENT_ID' => $id2,
+             'created_at' => now(), 
+             'updated_at' => now()]
+        );
+
+
+
+        return redirect('/staff/members');
     }
 
     public function activate_member(Request $request)

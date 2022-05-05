@@ -34,6 +34,7 @@
 
 	<script src="https://kit.fontawesome.com/d3fbd9c521.js" crossorigin="anonymous"></script>
 
+	@yield('styles')
 	<link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
 	<!-- CSS Files -->
 	<link id="pagestyle" href="{{ asset('css/argon-dashboard.css?v=2.0.2') }}" rel="stylesheet" />
@@ -75,7 +76,7 @@
 							</a>
 							<ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
 								<li class="mb-2">
-									<a class="dropdown-item border-radius-md" href="javascript:;">
+									<a class="dropdown-item border-radius-m text-blackd" href="javascript:;">
 										<div class="d-flex py-1">
 											<div class="my-auto">
 												<i class="fa-solid fa-id-card-clip"></i>
@@ -83,7 +84,7 @@
 											&nbsp;
 											&nbsp;
 											<div class="d-flex flex-column justify-content-center">
-												<h6 class="text-sm font-weight-normal mb-1">
+												<h6 class="text-sm text-black font-weight-normal mb-1">
 													<span class="font-weight-bold">Your
 														profile: </span>{{ auth()->guard('staff')->user()->name }}
 												</h6>
@@ -92,7 +93,7 @@
 									</a>
 								</li>
 								<li class="mb-2">
-									<a class="dropdown-item border-radius-md" href="{{ route('staff.logout') }}">
+									<a class="dropdown-item border-radius-md text-black" href="{{ route('staff.logout') }}">
 										<div class="d-flex py-1">
 											<div class="my-auto">
 												<i class="fa-solid fa-arrow-right-from-bracket"></i>

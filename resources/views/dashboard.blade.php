@@ -115,53 +115,46 @@
 			</div>
 		@endif
 
-		<div class="row my-5">
-			<h1 class="text-start">Featured <span class="color-orange">Gyms</span></h1>
-			<p class="fw-light mx-auto text-start">
-				Get in touch with one of our reputable and lets help you plan your perfect routine towards fitness!
-			</p>
-			<div class="text-start">
+		@if ($gyms->isEmpty())
+			No Available Gyms
+		@endif
 
-				<a class="btn btn-orange" href="/gyms" role="button">View all Gyms <i class="fa-solid fa-arrow-right-long"></i></a>
+		@if (!$gyms->isEmpty())
+			<div class="row my-5">
+				<h1 class="text-start">Featured <span class="color-orange">Gyms</span></h1>
+				<p class="fw-light mx-auto text-start">
+					Get in touch with one of our reputable and lets help you plan your perfect routine towards fitness!
+				</p>
+				<div class="text-start">
+
+					<a class="btn btn-orange" href="/gyms" role="button">View all Gyms <i class="fa-solid fa-arrow-right-long"></i></a>
 
 
 
+				</div>
 			</div>
-		</div>
 
-		<div class="row g-4 my-5 mx-auto owl-carousel owl-theme">
+			<div class="row g-4 my-5 mx-auto owl-carousel owl-theme">
 
-			@foreach ($gyms as $gym)
-				<div class="col product-item mx-auto">
-					<div class="product-img">
-						<img src="{{ asset('storage/gym_images/' . $gym->GYM_IMAGE) }}" alt="" class="img-fluid d-block mx-auto" />
+				@foreach ($gyms as $gym)
+					<div class="col product-item mx-auto">
+						<div class="product-img">
+							<img src="{{ asset('storage/gym_images/' . $gym->GYM_IMAGE) }}" alt="" class="img-fluid d-block mx-auto" />
+							<div class="row btns w-100 mx-auto text-center">
+								<button type="button" onclick="window.location.href='/gym/{{ $gym->GYM_ID }}'">
+									<i class="fa-solid fa-badge-check"></i> Register as Member</button>
+							</div>
+						</div>
 
-						<div class="row btns w-100 mx-auto text-center">
-
-							<button type="button" onclick="window.location.href='/gym/{{ $gym->GYM_ID }}'">
-
-
-								<i class="fa-solid fa-badge-check"></i> Register as Member</button>
-
-
+						<div class="product-info p-3">
+							<span class="product-type">{{ $gym->GYM_LOCATION }}</span>
+							<a href="/gym/{{ $gym->GYM_ID }}"
+								class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
 						</div>
 					</div>
-
-					<div class="product-info p-3">
-						<span class="product-type">{{ $gym->GYM_LOCATION }}</span>
-						<a href="/gym/{{ $gym->GYM_ID }}"
-							class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
-
-					</div>
-				</div>
-			@endforeach
-
-
-
-
-
-
-		</div>
+				@endforeach
+			</div>
+		@endif
 	</div>
 
 	{{-- <div class="p-5 border">

@@ -107,6 +107,9 @@ Route::prefix('/staff')->name('staff.')->group(function(){
         Route::post('/member/activate', [GymController::class, 'activate_member'])
                 ->name('activate-member');
 
+        Route::post('/member/create', [GymController::class, 'create_member'])
+                ->name('create-member');
+
     });
 
 // Usage of Protected routes

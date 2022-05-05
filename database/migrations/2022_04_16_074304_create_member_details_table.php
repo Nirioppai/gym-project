@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('PAYMENT_ID');
             $table->string('MEMBER_PAYMENT');
             $table->string('PLAN_ID');
+            $table->string('PLAN_AMOUNT');
             $table->timestamps();
         });
     }

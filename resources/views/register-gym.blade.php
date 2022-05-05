@@ -70,6 +70,7 @@
 					<div class="mb-3">
 						<input type="hidden" name="PLAN_ID" class="form-control" id="PLAN_ID">
 						<input type="hidden" name="GYM_ID" class="form-control" id="GYM_ID">
+						<input type="hidden" name="PLAN_AMOUNT" class="form-control" id="PLAN_AMOUNT">
 
 						<div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center">
 
@@ -95,7 +96,8 @@
 												<li>{{ $gym_plan->PLAN_DESCRIPTION }}</li>
 
 											</ul>
-											<button type="button" onclick="plan_select('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->GYM_ID }}')"
+											<button type="button"
+												onclick="plan_select('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->GYM_ID }}','{{ $gym_plan->PLAN_AMOUNT }}')"
 												class="w-100 btn btn-lg btn-outline-primary">Choose {{ $gym_plan->PLAN_NAME }}</button>
 										</div>
 									</div>
@@ -197,11 +199,13 @@
 
 @section('bodyScript')
 	<script>
-	 function plan_select(id1, id2) {
+	 function plan_select(id1, id2, amount) {
 	  var plan_id = id1;
 	  var gym_id = id2;
+	  var plan_amount = amount;
 	  document.getElementById("PLAN_ID").value = plan_id;
 	  document.getElementById("GYM_ID").value = gym_id;
+	  document.getElementById("PLAN_AMOUNT").value = plan_amount;
 	 }
 
 	 function payment_select(id) {

@@ -4,6 +4,11 @@
 	VSGym - Members
 @endsection
 
+@section('styles')
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+@endsection
+
 @section('breadcrumb')
 	@if ($staffGym)
 		<nav aria-label="breadcrumb">
@@ -115,6 +120,91 @@
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="member-list" role="tabpanel" aria-labelledby="member-list-tab">
 
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<form action="{{ route('staff.create-member') }}" name="create-member-form" id="create-member-form"
+												method="post">
+												@csrf
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Add Member</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+
+													<div class="mb-3">
+														<label for="name">Name</label>
+														<input type="text" class="form-control" name="name" id="name" required>
+
+
+													</div>
+
+													<div class="mb-3">
+														<label for="email">Email</label>
+														<input type="email" class="form-control" name="email" id="email" required>
+
+
+													</div>
+													<div class="mb-3">
+														<label for="MEMBER_ADDRESS">Address</label>
+														<textarea name="MEMBER_ADDRESS" rows="5" class="form-control" id="MEMBER_ADDRESS" required></textarea>
+													</div>
+													<div class="mb-3">
+														<label for="MEMBER_GENDER">Gender</label>
+														<select class="form-select" name="MEMBER_GENDER" id="MEMBER_GENDER" aria-label="Default select example"
+															required>
+															<option disabled selected>Gender</option>
+															<option value="Male">Male</option>
+															<option value="Female">Female</option>
+														</select>
+														{{-- <input type="text" name="MEMBER_GENDER" class="form-control" id="MEMBER_GENDER" required> --}}
+													</div>
+													<div class="mb-3">
+														<label for="MEMBER_DATE_OF_BIRTH">Date of Birth</label>
+
+														<div class="input-group date">
+															<input type="text" class="form-control" name="MEMBER_DATE_OF_BIRTH" id="datepicker" required>
+															<span class="input-group-append">
+																<span class="input-group-text bg-white d-block">
+																	<i class="fa fa-calendar"></i>
+																</span>
+															</span>
+														</div>
+
+
+														{{-- <input type="text" name="MEMBER_DATE_OF_BIRTH" class="form-control" id="MEMBER_DATE_OF_BIRTH" required> --}}
+													</div>
+													<div class="mb-3">
+														<label for="MEMBER_PHONE_NUMBER">Phone Number</label>
+														<input type="text" name="MEMBER_PHONE_NUMBER" class="form-control" id="MEMBER_PHONE_NUMBER" required>
+													</div>
+													<div class="mb-3">
+														<label for="PLAN_ID">Gym Plan</label>
+														<select class="form-select" name="PLAN_ID" id="PLAN_ID" aria-label="Default select example" required>
+															<option disabled selected>Select Gym Plan</option>
+
+															@foreach ($gym_plans as $gym_plan)
+																<option value="{{ $gym_plan->PLAN_ID }}">{{ $gym_plan->PLAN_NAME }}</option>
+															@endforeach
+
+
+														</select>
+
+													</div>
+
+
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+													<button type="submit" class="btn btn-primary">Save changes</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+
 								@if ($activeMembers->isEmpty())
 									<div class="text-center justify-content-center">
 
@@ -124,7 +214,9 @@
 										<h6 class="mt-4 mb-3">There are no members for now. You can create one, or approve some on the next tab.
 										</h6>
 										<div class="mb-7">
-											<button type="button" class="btn btn-primary btn-sm">Add Member</button>
+											<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+												Add Member
+											</button>
 										</div>
 
 									</div>
@@ -142,7 +234,11 @@
 												</div>
 											</div>
 											<div class="col-md d-flex justify-content-end">
-												<button type="button" class="btn btn-primary btn-sm">Add Member</button>
+												<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+													Add Member
+												</button>
+
+
 											</div>
 										</div>
 									</form>
@@ -403,6 +499,21 @@
 @endsection
 
 @section('bodyscript')
+	<!-- jquery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<script>
+	 $(document).ready(function() {
+	  $('#datepicker').datepicker();
+	  $('#sidebarCollapse').on('click', function() {
+	   $('#sidebar').toggleClass('active');
+	  });
+	 });
+	</script>
+
 	<script>
 	 function activateMember(id) {
 	  console.log(id);
