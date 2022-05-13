@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('MEMBER_DATE_OF_BIRTH');
             $table->string('MEMBER_PHONE_NUMBER');
             $table->string('MEMBER_STATUS');
+            $table->string('HEALTH_HEIGHT')->default('');
+            $table->string('HEALTH_WEIGHT')->default('');
+            $table->string('HEALTH_WAIST')->default('');
+            $table->string('HEALTH_REMARKS')->default('');
             $table->string('GYM_ID');
             $table->string('PAYMENT_ID');
             $table->string('MEMBER_PAYMENT');

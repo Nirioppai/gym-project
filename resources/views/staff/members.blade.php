@@ -136,36 +136,35 @@
 
 													<div class="mb-3">
 														<label for="name">Name</label>
-														<input type="text" class="form-control" name="name" id="name" required>
+														<input type="text" class="form-control" name="name" id="name">
 
 
 													</div>
 
 													<div class="mb-3">
 														<label for="email">Email</label>
-														<input type="email" class="form-control" name="email" id="email" required>
+														<input type="email" class="form-control" name="email" id="email">
 
 
 													</div>
 													<div class="mb-3">
 														<label for="MEMBER_ADDRESS">Address</label>
-														<textarea name="MEMBER_ADDRESS" rows="5" class="form-control" id="MEMBER_ADDRESS" required></textarea>
+														<textarea name="MEMBER_ADDRESS" rows="5" class="form-control" id="MEMBER_ADDRESS"></textarea>
 													</div>
 													<div class="mb-3">
 														<label for="MEMBER_GENDER">Gender</label>
-														<select class="form-select" name="MEMBER_GENDER" id="MEMBER_GENDER" aria-label="Default select example"
-															required>
+														<select class="form-select" name="MEMBER_GENDER" id="MEMBER_GENDER" aria-label="Default select example">
 															<option disabled selected>Gender</option>
 															<option value="Male">Male</option>
 															<option value="Female">Female</option>
 														</select>
-														{{-- <input type="text" name="MEMBER_GENDER" class="form-control" id="MEMBER_GENDER" required> --}}
+														{{-- <input type="text" name="MEMBER_GENDER" class="form-control" id="MEMBER_GENDER" > --}}
 													</div>
 													<div class="mb-3">
 														<label for="MEMBER_DATE_OF_BIRTH">Date of Birth</label>
 
 														<div class="input-group date">
-															<input type="text" class="form-control" name="MEMBER_DATE_OF_BIRTH" id="datepicker" required>
+															<input type="text" class="form-control" name="MEMBER_DATE_OF_BIRTH" id="datepicker">
 															<span class="input-group-append">
 																<span class="input-group-text bg-white d-block">
 																	<i class="fa fa-calendar"></i>
@@ -174,15 +173,15 @@
 														</div>
 
 
-														{{-- <input type="text" name="MEMBER_DATE_OF_BIRTH" class="form-control" id="MEMBER_DATE_OF_BIRTH" required> --}}
+														{{-- <input type="text" name="MEMBER_DATE_OF_BIRTH" class="form-control" id="MEMBER_DATE_OF_BIRTH" > --}}
 													</div>
 													<div class="mb-3">
 														<label for="MEMBER_PHONE_NUMBER">Phone Number</label>
-														<input type="text" name="MEMBER_PHONE_NUMBER" class="form-control" id="MEMBER_PHONE_NUMBER" required>
+														<input type="text" name="MEMBER_PHONE_NUMBER" class="form-control" id="MEMBER_PHONE_NUMBER">
 													</div>
 													<div class="mb-3">
 														<label for="PLAN_ID">Gym Plan</label>
-														<select class="form-select" name="PLAN_ID" id="PLAN_ID" aria-label="Default select example" required>
+														<select class="form-select" name="PLAN_ID" id="PLAN_ID" aria-label="Default select example">
 															<option disabled selected>Select Gym Plan</option>
 
 															@foreach ($gym_plans as $gym_plan)
@@ -204,6 +203,11 @@
 										</div>
 									</div>
 								</div>
+
+
+
+
+
 
 								@if ($activeMembers->isEmpty())
 									<div class="text-center justify-content-center">
@@ -247,6 +251,106 @@
 										<table class="table align-items-start ">
 											<tbody>
 												@foreach ($activeMembers as $activeMember)
+													<!-- Modal -->
+													<form action="{{ route('staff.edit-member') }}" method="post">
+														@csrf
+														<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
+															aria-hidden="true">
+															<div class="modal-dialog modal-fullscreen">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="editModalLabel">Edit {{ $activeMember->name }}'s Details</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+																	<div class="modal-body">
+
+
+																		<ul class="nav nav-tabs" id="myTab" role="tablist">
+																			<li class="nav-item" role="presentation">
+																				<button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details"
+																					type="button" role="tab" aria-controls="details" aria-selected="true">Member Details</button>
+																			</li>
+																			<li class="nav-item" role="presentation">
+																				<button class="nav-link" id="health-tab" data-bs-toggle="tab" data-bs-target="#health"
+																					type="button" role="tab" aria-controls="health" aria-selected="false">Member Health</button>
+																			</li>
+
+																		</ul>
+
+																		<input type="hidden" name="MEMBER_ID" value="{{ $activeMember->MEMBER_ID }}">
+																		<div class="tab-content" id="myTabContent">
+																			<div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+																				<div class="mb-3">
+																					<label for="MEMBER_ADDRESS">Address</label>
+																					<textarea name="MEMBER_ADDRESS" rows="5" class="form-control"
+                      id="MEMBER_ADDRESS">{{ $activeMember->MEMBER_ADDRESS }}</textarea>
+																				</div>
+																				<div class="mb-3">
+																					<label for="MEMBER_GENDER">Gender</label>
+																					<select class="form-select" name="MEMBER_GENDER" id="MEMBER_GENDER"
+																						aria-label="Default select example">
+																						<option value="{{ $activeMember->MEMBER_GENDER }}" selected>
+																							{{ $activeMember->MEMBER_GENDER }}</option>
+																						<option value="Male">Male</option>
+																						<option value="Female">Female</option>
+																					</select>
+																					{{-- <input type="text" name="MEMBER_GENDER" class="form-control" id="MEMBER_GENDER" > --}}
+																				</div>
+																				<div class="mb-3">
+																					<label for="MEMBER_DATE_OF_BIRTH">Date of Birth</label>
+
+																					<div class="input-group date">
+																						<input type="text" class="form-control" value="{{ $activeMember->MEMBER_DATE_OF_BIRTH }}"
+																							name="MEMBER_DATE_OF_BIRTH" id="datepicker">
+																						<span class="input-group-append">
+																							<span class="input-group-text bg-white d-block">
+																								<i class="fa fa-calendar"></i>
+																							</span>
+																						</span>
+																					</div>
+																				</div>
+																				<div class="mb-3">
+																					<label for="MEMBER_PHONE_NUMBER">Phone Number</label>
+																					<input type="text" value="{{ $activeMember->MEMBER_PHONE_NUMBER }}" name="MEMBER_PHONE_NUMBER"
+																						class="form-control" id="MEMBER_PHONE_NUMBER">
+																				</div>
+																			</div>
+																			<div class="tab-pane fade" id="health" role="tabpanel" aria-labelledby="health-tab">
+																				<div class="mb-3 mt-3">
+																					<label for="HEALTH_HEIGHT">Member Height</label>
+																					<input type="text" class="form-control" value="{{ $activeMember->HEALTH_HEIGHT }}"
+																						name="HEALTH_HEIGHT" id="HEALTH_HEIGHT">
+																				</div>
+																				<div class="mb-3">
+																					<label for="HEALTH_WEIGHT">Member Weight</label>
+																					<input type="text" class="form-control" value="{{ $activeMember->HEALTH_WEIGHT }}"
+																						name="HEALTH_WEIGHT" id="HEALTH_WEIGHT">
+																				</div>
+																				<div class="mb-3">
+																					<label for="HEALTH_WAIST">Member Waistline</label>
+																					<input type="text" class="form-control" value="{{ $activeMember->HEALTH_WAIST }}"
+																						name="HEALTH_WAIST" id="HEALTH_WAIST">
+																				</div>
+																				<div class="mb-3">
+																					<label for="HEALTH_REMARKS">Member Remarks</label>
+																					<textarea class="form-control" name="HEALTH_REMARKS" id="HEALTH_REMARKS"
+                      rows="3">{{ $activeMember->HEALTH_REMARKS }}</textarea>
+																				</div>
+																			</div>
+
+																		</div>
+
+
+
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save changes</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</form>
 													<tr>
 														<td class="w-30">
 															<div class="d-flex px-2 py-1 align-items-start">
@@ -315,6 +419,19 @@
 																<h6 class="text-sm mb-0">{{ $activeMember->MEMBER_STATUS }}</h6>
 															</div>
 														</td>
+
+														<td>
+															<div class="text-start">
+																<!-- Button trigger modal -->
+																<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
+																	Edit
+																</button>
+															</div>
+														</td>
+
+
+
+
 													</tr>
 												@endforeach
 											</tbody>

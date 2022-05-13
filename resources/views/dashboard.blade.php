@@ -155,6 +155,56 @@
 				@endforeach
 			</div>
 		@endif
+
+
+		{{-- <div class="row my-5">
+
+			<div class="text-start">
+
+				@if (!$active_member_plans->isEmpty())
+					<div class="row my-5">
+						<h1 class="text-start">Member <span class="color-orange">Health</span></h1>
+						<p class="fw-light mx-auto text-start">
+							Monitor your health here from your gym memberships!
+						</p>
+
+						@foreach ($active_member_plans as $active_member_plan)
+							<div class="alert alert-warning" role="alert">
+								<div class="container">
+									<div class="row">
+										<div class="col text-start">
+											Member Height: {{ $active_member_plan->HEALTH_HEIGHT }}
+										</div>
+
+									</div>
+									<div class="row">
+										<div class="col text-start">
+											Member Weight: {{ $active_member_plan->HEALTH_WEIGHT }}
+										</div>
+
+									</div>
+									<div class="row">
+										<div class="col text-start">
+											Member Waistline: {{ $active_member_plan->HEALTH_WAIST }}
+										</div>
+
+									</div>
+									<div class="row">
+										<div class="col text-start">
+											Health Remarks: {{ $active_member_plan->HEALTH_REMARKS }}
+										</div>
+
+									</div>
+								</div>
+							</div>
+						@endforeach
+					</div>
+				@endif
+
+
+
+			</div>
+		</div> --}}
 	</div>
 
 	{{-- <div class="p-5 border">

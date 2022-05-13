@@ -126,6 +126,25 @@ class GymController extends Controller
         return redirect('/dashboard');
     }
 
+    public function edit_member(Request $request)
+    {
+        $affected = DB::table('member_details')
+              ->where('MEMBER_ID', $request->MEMBER_ID)
+              ->update([
+              'MEMBER_ADDRESS' =>  $request->MEMBER_ADDRESS, 
+              'MEMBER_GENDER' =>  $request->MEMBER_GENDER,
+              'MEMBER_DATE_OF_BIRTH' =>  $request->MEMBER_DATE_OF_BIRTH,
+              'MEMBER_PHONE_NUMBER' =>  $request->MEMBER_PHONE_NUMBER,
+              'HEALTH_HEIGHT' =>  $request->HEALTH_HEIGHT,
+              'HEALTH_WEIGHT' =>  $request->HEALTH_WEIGHT,
+              'HEALTH_WAIST' =>  $request->HEALTH_WAIST,
+              'HEALTH_REMARKS' =>  $request->HEALTH_REMARKS]);
+
+            return redirect('/staff/members');
+        
+    }
+        
+
     public function create_member(Request $request)
     {
         $request->validate([

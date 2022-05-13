@@ -27,7 +27,12 @@ Select
     vs_gym.member_details.MEMBER_PHONE_NUMBER,
     vs_gym.member_details.PAYMENT_ID,
     vs_gym.member_details.MEMBER_PAYMENT,
+    vs_gym.member_details.HEALTH_HEIGHT,
+    vs_gym.member_details.HEALTH_WEIGHT,
+    vs_gym.member_details.HEALTH_WAIST,
+    vs_gym.member_details.HEALTH_REMARKS,
     vs_gym.member_details.GYM_ID,
+
     vs_gym.users.name
 From
     vs_gym.users Inner Join

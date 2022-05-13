@@ -112,7 +112,7 @@
 @endsection
 
 @section('mainContent')
-	<div class="p-5 border">
+	{{-- <div class="p-5 border">
 		<p>
 			Featured Gyms
 		</p>
@@ -141,7 +141,7 @@
 			natus iusto fugit id saepe neque rerum magni laudantium accusantium
 			dolorem numquam quasi. df
 		</p>
-	</div>
+	</div> --}}
 @endsection
 
 @section('bodyScript')
