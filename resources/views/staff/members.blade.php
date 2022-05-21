@@ -254,8 +254,8 @@
 													<!-- Modal -->
 													<form action="{{ route('staff.edit-member') }}" method="post">
 														@csrf
-														<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
-															aria-hidden="true">
+														<div class="modal fade" id="editModal{{ $activeMember->MEMBER_ID }}" tabindex="-1"
+															aria-labelledby="editModalLabel" aria-hidden="true">
 															<div class="modal-dialog modal-fullscreen">
 																<div class="modal-content">
 																	<div class="modal-header">
@@ -267,19 +267,22 @@
 
 																		<ul class="nav nav-tabs" id="myTab" role="tablist">
 																			<li class="nav-item" role="presentation">
-																				<button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details"
-																					type="button" role="tab" aria-controls="details" aria-selected="true">Member Details</button>
+																				<button class="nav-link active" id="details-tab" data-bs-toggle="tab"
+																					data-bs-target="#details{{ $activeMember->MEMBER_ID }}" type="button" role="tab"
+																					aria-controls="details" aria-selected="true">Member Details</button>
 																			</li>
 																			<li class="nav-item" role="presentation">
-																				<button class="nav-link" id="health-tab" data-bs-toggle="tab" data-bs-target="#health"
-																					type="button" role="tab" aria-controls="health" aria-selected="false">Member Health</button>
+																				<button class="nav-link" id="health-tab" data-bs-toggle="tab"
+																					data-bs-target="#health{{ $activeMember->MEMBER_ID }}" type="button" role="tab"
+																					aria-controls="health" aria-selected="false">Member Health</button>
 																			</li>
 
 																		</ul>
 
 																		<input type="hidden" name="MEMBER_ID" value="{{ $activeMember->MEMBER_ID }}">
 																		<div class="tab-content" id="myTabContent">
-																			<div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+																			<div class="tab-pane fade show active" id="details{{ $activeMember->MEMBER_ID }}" role="tabpanel"
+																				aria-labelledby="details-tab">
 																				<div class="mb-3">
 																					<label for="MEMBER_ADDRESS">Address</label>
 																					<textarea name="MEMBER_ADDRESS" rows="5" class="form-control"
@@ -315,7 +318,8 @@
 																						class="form-control" id="MEMBER_PHONE_NUMBER">
 																				</div>
 																			</div>
-																			<div class="tab-pane fade" id="health" role="tabpanel" aria-labelledby="health-tab">
+																			<div class="tab-pane fade" id="health{{ $activeMember->MEMBER_ID }}" role="tabpanel"
+																				aria-labelledby="health-tab">
 																				<div class="mb-3 mt-3">
 																					<label for="HEALTH_HEIGHT">Member Height</label>
 																					<input type="text" class="form-control" value="{{ $activeMember->HEALTH_HEIGHT }}"
@@ -423,7 +427,8 @@
 														<td>
 															<div class="text-start">
 																<!-- Button trigger modal -->
-																<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
+																<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+																	data-bs-target="#editModal{{ $activeMember->MEMBER_ID }}">
 																	Edit
 																</button>
 															</div>
@@ -540,11 +545,6 @@
 																		<input class="form-check-input" type="checkbox"
 																			onclick="activateMember('{{ $pendingMember->PAYMENT_ID }}')">
 																	</div>
-
-
-
-
-
 																</div>
 															</td>
 

@@ -135,6 +135,11 @@ class StaffController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:staff'],
+        ]);
+
         $config=['table'=>'staff','length'=>10,'prefix'=>'GO-', 'field' => 'MEMBER_ID'];
         $id = IdGenerator::generate($config);
 

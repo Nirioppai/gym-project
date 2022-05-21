@@ -156,34 +156,36 @@ class GymController extends Controller
         $id = IdGenerator::generate($config);
         $gym_plan = $this->getPlan($request->PLAN_ID);
 
-        DB::table('users')->insert(
-            ['MEMBER_ID' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make('password'),'created_at' => now(), 'updated_at' => now()]
-        );
+        if($gym_plan)
+        {
+            DB::table('users')->insert(
+                ['MEMBER_ID' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make('password'),'created_at' => now(), 'updated_at' => now()]
+            );
+    
+            $config2=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'PAYMENT_ID'];
+            $id2 = IdGenerator::generate($config2);
+            $newDateTime = Carbon::now()->addDays($gym_plan->PLAN_VALIDITY);
+    
+            
+    
+            DB::table('member_details')->insert(
+                ['MEMBER_ID' =>$id, 
+                 'MEMBER_EXPIRY_DATE' => $newDateTime, // remove this 
+                 'MEMBER_ADDRESS' => $request->MEMBER_ADDRESS, 
+                 'MEMBER_GENDER' => $request->MEMBER_GENDER, 
+                 'MEMBER_DATE_OF_BIRTH' => $request->MEMBER_DATE_OF_BIRTH, 
+                 'MEMBER_PHONE_NUMBER' => $request->MEMBER_PHONE_NUMBER, 
+                 'MEMBER_STATUS' => 'Active', 
+                 'GYM_ID' =>$gym_plan->GYM_ID, 
+                 'MEMBER_PAYMENT' => 'Cash', 
+                 'PLAN_AMOUNT' =>$gym_plan->PLAN_AMOUNT,
+                 'PLAN_ID' => $request->PLAN_ID, 
+                 'PAYMENT_ID' => $id2,
+                 'created_at' => now(), 
+                 'updated_at' => now()]
+            );
 
-        $config2=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'PAYMENT_ID'];
-        $id2 = IdGenerator::generate($config2);
-        $newDateTime = Carbon::now()->addDays($gym_plan->PLAN_VALIDITY);
-
-        
-
-        DB::table('member_details')->insert(
-            ['MEMBER_ID' =>$id, 
-             'MEMBER_EXPIRY_DATE' => $newDateTime, // remove this 
-             'MEMBER_ADDRESS' => $request->MEMBER_ADDRESS, 
-             'MEMBER_GENDER' => $request->MEMBER_GENDER, 
-             'MEMBER_DATE_OF_BIRTH' => $request->MEMBER_DATE_OF_BIRTH, 
-             'MEMBER_PHONE_NUMBER' => $request->MEMBER_PHONE_NUMBER, 
-             'MEMBER_STATUS' => 'Active', 
-             'GYM_ID' =>$gym_plan->GYM_ID, 
-             'MEMBER_PAYMENT' => 'Cash', 
-             'PLAN_AMOUNT' =>$gym_plan->PLAN_AMOUNT,
-             'PLAN_ID' => $request->PLAN_ID, 
-             'PAYMENT_ID' => $id2,
-             'created_at' => now(), 
-             'updated_at' => now()]
-        );
-
-
+        }     
 
         return redirect('/staff/members');
     }

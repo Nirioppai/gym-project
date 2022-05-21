@@ -12,6 +12,7 @@
 		}
 
 	</style>
+	<script src="https://kit.fontawesome.com/d3fbd9c521.js" crossorigin="anonymous"></script>
 @endsection
 
 @section('navbar')
@@ -111,37 +112,75 @@
 	</div>
 @endsection
 
+@section('beforeMainContent')
+	<div class="masthead" style="background-image: url('{{ asset('img/banner-half-img-white.jpg') }}');">
+		<div class="color-overlay d-flex flex-column justify-content-center text-left ">
+			<div class="container ">
+				<h1 class="barlow banner-header text-dark">Explore a different way to get the most out of your <span
+						class="color-orange">Fitness Journey</span>.</h1>
+
+				<span class="poppins text-dark subcaption">Different gyms provides different plans that suit your needs.</span>
+			</div>
+
+
+		</div>
+
+	</div>
+@endsection
+
 @section('mainContent')
-	{{-- <div class="p-5 border">
-		<p>
-			Featured Gyms
-		</p>
+	<div class="p-5">
+
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<i class="fa fa-solid fa-user-tie big-icon text-orange"></i>
+					<br />
+					<br />
+					<h5 class="barlow">Professional Gyms</h5>
+				</div>
+				<div class="col text-center">
+					<i class="fa-solid fa-thumbs-up big-icon text-orange"></i>
+					<br />
+					<br />
+					<h5 class="barlow">Customer Satisfaction</h5>
+				</div>
+				<div class="col text-center">
+					<i class="fa fa-solid fa-shield-cat big-icon text-orange"></i>
+					<br />
+					<br />
+					<h5 class="barlow">Secure Payment</h5>
+				</div>
+			</div>
+		</div>
+
 	</div>
+@endsection
 
-	<div class="p-5 border">
-		<p>
-			FOR POTENTIAL MEMBERS
-			<br />
+@section('afterMainContent')
+	<div class="masthead" style="background-image: url('{{ asset('img/banner-half-img.jpg') }}');">
+		<div class="color-overlay d-flex flex-column justify-content-center text-start float-start">
+			<div class="container ">
+				<h1 class="barlow banner-header">Signup for <span class="color-orange">Newsletter</span></h1>
 
-			EXPLORE HUNDREDS OF GYMS
+				<p class="poppins">Sign up now to receive hot special offers
+					and information about the best Gyms and Plans!
 
-			<br />
+				</p>
 
-			excuses don't kill the fat, exercies do. join our membership today in just 4 easy steps!
+				<div class="input-group mb-3 float-start">
+					<input type="text" class="form-control short-input " placeholder="Enter your email"
+						aria-label="Recipient's username" aria-describedby="button-addon2">
+					<button class="btn btn-orange" type="button" id="button-addon2">></button>
+				</div>
 
-		</p>
+
+			</div>
+
+
+		</div>
+
 	</div>
-
-
-
-	<div class="p-5 border">
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit.
-			Necessitatibus veniam ipsa earum quibusdam, atque ipsum error maiores
-			natus iusto fugit id saepe neque rerum magni laudantium accusantium
-			dolorem numquam quasi. df
-		</p>
-	</div> --}}
 @endsection
 
 @section('bodyScript')
