@@ -68,6 +68,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/gym/store-member', [GymController::class, 'store_member_details'])
                 ->name('store-member-details');
 
+    Route::post('/pw/change', [MemberController::class, 'password_change'])
+                ->name('password-change-member');
+
+    Route::get('/pw/change/member', [MemberController::class, 'password_change_ui'])
+                ->name('password-change-ui');
+
     Route::get('/gyms', [GymController::class, 'gyms'])
                 ->name('gyms');
 
@@ -112,6 +118,10 @@ Route::prefix('/staff')->name('staff.')->group(function(){
 
         Route::post('/edit-member', [GymController::class, 'edit_member'])
                 ->name('edit-member');
+
+        Route::get('/password/change', [StaffController::class,'staff_change_password_ui'])->name('staff_change_password_ui');
+
+        Route::post('/password/change/staff', [StaffController::class,'staff_change_password'])->name('staff_change_password');
 
     });
 

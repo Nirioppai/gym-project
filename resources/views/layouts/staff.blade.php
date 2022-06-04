@@ -92,6 +92,23 @@
 										</div>
 									</a>
 								</li>
+
+								<li class="mb-2">
+									<a class="dropdown-item border-radius-md text-black" href="{{ route('staff.staff_change_password_ui') }}">
+										<div class="d-flex py-1">
+											<div class="my-auto">
+												<i class="fa-solid fa-unlock"></i>
+											</div>
+											&nbsp;
+											&nbsp;
+											<div class="d-flex flex-column justify-content-center">
+												<h6 class="text-sm font-weight-normal mb-1">
+													<span class="font-weight-bold">Change Password</span>
+												</h6>
+											</div>
+										</div>
+									</a>
+								</li>
 								<li class="mb-2">
 									<a class="dropdown-item border-radius-md text-black" href="{{ route('staff.logout') }}">
 										<div class="d-flex py-1">

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Models\Staff;
 
 
 use Haruncpi\LaravelIdGenerator\IdGenerator as IdGenerator;
@@ -263,6 +264,38 @@ class StaffController extends Controller
   
 
         return redirect('/staff/gym-management');
+
+    }
+
+    public function staff_change_password_ui()
+    {
+        $staffGym = $this->getGym();
+
+        return view('staff.change_password', ['staffGym' => $staffGym])
+            ->with('staffGym',  $staffGym);
+    }
+
+    public function staff_change_password(Request $request)
+    {
+        $staffGym = $this->getGym();
+        
+        $request->validate([
+            'old_password' => ['required', 'string', ],
+            'new_password' => ['required','min:8', 'string', 'confirmed'],
+        ]);
+
+      if(!Hash::check($request->old_password,auth()->guard('staff')->user()->password))
+      {
+          return back()->with("error", "Current Password is incorrect.");
+      }
+
+        
+
+        Staff::whereId(auth()->guard('staff')->user()->id)->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return back()->with("success", "Password updated successfully.");
 
     }
 

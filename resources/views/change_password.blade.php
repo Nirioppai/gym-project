@@ -1,7 +1,7 @@
 @extends('layouts.member')
 
 @section('title')
-	VS Gym - Gyms
+	VS Gym - Welcome
 @endsection
 
 @section('styles')
@@ -30,7 +30,6 @@
 						<a class="dropdown-item" href="/pw/change/member"><i class="fa-solid fa-unlock"></i>
 							Edit Password</a>
 					</li>
-
 					<li>
 						<a class="dropdown-item" href="/user-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>
 							Logout</a>
@@ -46,9 +45,9 @@
 	<div class="masthead" style="background-image: url('{{ asset('img/banner-half-img.jpg') }}');">
 		<div class="color-overlay d-flex flex-column justify-content-center text-left ">
 			<div class="container ">
-				<h1 class="barlow banner-header">View <span class="color-orange">Gyms</span></h1>
+				<h1 class="barlow banner-header">My <span class="color-orange">Account</span></h1>
 
-				<p class="poppins">Edit this description</p>
+				<p class="poppins">Your one stop for all of your membership needs and more!</p>
 			</div>
 
 
@@ -59,65 +58,57 @@
 
 @section('mainContent')
 	<div class="container">
+		<form action="{{ route('password-change-member') }}" name="password-change-form" id="password-change-form"
+			method="post">
+			@csrf
 
-		<form>
-			<div class="input-group mb-3">
+			@if (session('success'))
+				<div class="alert alert-success">
+					<div class="text-white">{{ session('success') }}</div>
+				</div>
+			@endif
 
-				<input type="text" class="form-control" placeholder="Search for Gym Name, Location"
-					aria-label="Recipient's username" aria-describedby="button-addon2">
-				<button class="btn btn-orange" type="submit" id="button-addon2">Search</button>
+			@if (session('error'))
+				<div class="alert alert-danger">
+					<div class="text-white">{{ session('error') }}</div>
+				</div>
+			@endif
+
+			<div class="mb-3">
+				<label for="exampleInputPassword1" class="form-label">Current Password</label>
+				<input class="form-control @error('old_password') is-invalid @enderror" id="old_password" type="password"
+					name="old_password" required="required" />
+
+				@error('old_password')
+					<span class="text-danger">{{ $message }}</span>
+				@enderror
 			</div>
+
+			<div class="mb-3">
+				<label for="password" class="form-label">New Password</label>
+				<input class="form-control @error('new_password') is-invalid @enderror" id="new_password" type="password"
+					name="new_password" required="required" autocomplete="new_password" />
+
+				@error('new_password')
+					<span class="text-danger">{{ $message }}</span>
+				@enderror
+			</div>
+
+			<!-- Confirm Password -->
+			<div class="mb-3">
+				<label for="password" class="form-label">Confirm Password</label>
+				<input class="form-control  @error('new_password_confirmation') is-invalid @enderror" id="new_password_confirmation"
+					type="password" name="new_password_confirmation" required="required" />
+
+				@error('new_password_confirmation')
+					<span class="text-danger">{{ $message }}</span>
+				@enderror
+			</div>
+
+			<button class="btn btn-orange text-end" type="submit">Submit</button>
 		</form>
 
-
-		<div class="row g-4 my-5 mx-auto owl-carousel owl-theme">
-
-			@foreach ($gyms as $gym)
-				<div class="col product-item mx-auto">
-					<div class="product-img">
-						<img src="{{ asset('storage/gym_images/' . $gym->GYM_IMAGE) }}" alt="" class="img-fluid d-block mx-auto" />
-
-						<div class="row btns w-100 mx-auto text-center">
-
-							<button type="button" onclick="window.location.href='/gym/{{ $gym->GYM_ID }}'">
-
-
-								<i class="fa-solid fa-badge-check"></i> Register as Member</button>
-
-
-						</div>
-					</div>
-
-					<div class="product-info p-3">
-						<span class="product-type">{{ $gym->GYM_LOCATION }}</span>
-						<a href="/gym/{{ $gym->GYM_ID }}"
-							class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
-
-					</div>
-				</div>
-			@endforeach
-
-
-
-
-
-
-		</div>
 	</div>
-
-	{{-- <div class="p-5 border">
-		<p>
-			FOR POTENTIAL MEMBERS
-			<br />
-
-			EXPLORE HUNDREDS OF GYMS
-
-			<br />
-
-			excuses don't kill the fat, exercies do. join our membership today in just 4 easy steps!
-
-		</p>
-	</div> --}}
 @endsection
 
 @section('bodyScript')

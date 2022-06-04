@@ -31,6 +31,10 @@
 						<a class="dropdown-item" href="/user-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>
 							Logout</a>
 					</li>
+					<li>
+						<a class="dropdown-item" href="/pw/change/member"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+							Edit Password</a>
+					</li>
 				</ul>
 			</li>
 		</ul>
@@ -72,7 +76,7 @@
 						<input type="hidden" name="GYM_ID" class="form-control" id="GYM_ID">
 						<input type="hidden" name="PLAN_AMOUNT" class="form-control" id="PLAN_AMOUNT">
 
-						<div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center">
+						<div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center subnav_links">
 
 							@foreach ($gym_plans as $gym_plan)
 								<div class="col">
@@ -96,7 +100,7 @@
 												<li>{{ $gym_plan->PLAN_DESCRIPTION }}</li>
 
 											</ul>
-											<button type="button"
+											<button id="{{ $gym_plan->PLAN_ID }}" type="button"
 												onclick="plan_select('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->GYM_ID }}','{{ $gym_plan->PLAN_AMOUNT }}')"
 												class="w-100 btn btn-lg btn-outline-primary">Choose {{ $gym_plan->PLAN_NAME }}</button>
 										</div>
@@ -104,7 +108,10 @@
 								</div>
 							@endforeach
 
+
 						</div>
+
+
 
 
 					</div>
@@ -198,6 +205,20 @@
 @endsection
 
 @section('bodyScript')
+	<!-- jquery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+	<script>
+	 $(document).ready(function() {
+	  $('.subnav_links button').click(function() {
+	   $(this).addClass('btn-orange').siblings().removeClass('btn-orange');
+	  });
+	 });
+	</script>
+
 	<script>
 	 function plan_select(id1, id2, amount) {
 	  var plan_id = id1;
@@ -206,7 +227,14 @@
 	  document.getElementById("PLAN_ID").value = plan_id;
 	  document.getElementById("GYM_ID").value = gym_id;
 	  document.getElementById("PLAN_AMOUNT").value = plan_amount;
+
+
+
 	 }
+
+
+
+
 
 	 function payment_select(id) {
 	  console.log(id);
@@ -239,10 +267,7 @@
 	 });
 	</script>
 
-	<!-- jquery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-	 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-	 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 	<script>

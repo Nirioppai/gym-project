@@ -27,9 +27,15 @@
 				<ul id="navdrop" class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
 
 					<li>
+						<a class="dropdown-item" href="/pw/change/member"><i class="fa-solid fa-unlock"></i>
+							Edit Password</a>
+					</li>
+
+					<li>
 						<a class="dropdown-item" href="/user-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>
 							Logout</a>
 					</li>
+
 				</ul>
 			</li>
 		</ul>
@@ -58,6 +64,32 @@
 				<h1 class="text-start">Your <span class="color-orange">Active Plans</span></h1>
 
 				@foreach ($active_member_plans as $active_member_plan)
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal{{ $active_member_plan->PAYMENT_ID }}" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">{{ $active_member_plan->PAYMENT_ID }} Details</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<b>Member Address</b>: {{ $active_member_plan->MEMBER_ADDRESS }}<br />
+									<b>Member Gender</b>: {{ $active_member_plan->MEMBER_GENDER }}<br />
+									<b>Member Date of Birth</b>: {{ $active_member_plan->MEMBER_DATE_OF_BIRTH }}<br />
+									<b>Member Phone Number</b>: {{ $active_member_plan->MEMBER_PHONE_NUMBER }}<br />
+									<b>Member Payment Method</b>: {{ $active_member_plan->MEMBER_PAYMENT }}<br />
+									<b>Member Height</b>: {{ $active_member_plan->HEALTH_HEIGHT }}<br />
+									<b>Member Weight</b>: {{ $active_member_plan->HEALTH_WEIGHT }}<br />
+									<b>Member Waistline</b>: {{ $active_member_plan->HEALTH_WAIST }}<br />
+									<b>Member Health Remarks</b>: {{ $active_member_plan->HEALTH_REMARKS }}<br />
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
 					<div class="alert alert-warning" role="alert">
 						<div class="container">
 							<div class="row">
@@ -76,6 +108,15 @@
 								</div>
 								<div class="col text-end">
 									Expiry Date: {{ \Carbon\Carbon::parse($active_member_plan->MEMBER_EXPIRY_DATE)->format('jS F y') }}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col text-start">
+
+								</div>
+								<div data-bs-toggle="modal" data-bs-target="#exampleModal{{ $active_member_plan->PAYMENT_ID }}"
+									class="col text-end">
+									<a href="#" class="link-primary">More Details</a>
 								</div>
 							</div>
 						</div>

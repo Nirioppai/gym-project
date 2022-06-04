@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class MemberController extends Controller
 {
@@ -35,6 +37,35 @@ class MemberController extends Controller
             ->with('gyms',  $gyms)
             ->with('active_member_plans', $active_member_plans)
             ->with('other_plans', $other_plans);
+    }
+
+    public function password_change_ui()
+    {
+        return view ('change_password');
+    }
+
+    public function password_change(Request $request)
+    {
+
+
+        $request->validate([
+            'old_password' => ['required', 'string', ],
+            'new_password' => ['required','min:8', 'string', 'confirmed'],
+        ]);
+
+      if(!Hash::check($request->old_password, Auth::user()->password))
+      {
+          return back()->with("error", "Current Password is incorrect.");
+      }
+
+        
+
+        User::whereId(Auth::user()->id)->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return back()->with("success", "Password updated successfully.");
+        
     }
 
 
