@@ -36,6 +36,9 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
+
+    Route::get('/terms', [MemberController::class, 'display_terms'])
+                ->name('terms-and-conditions');
 });
 
 Route::middleware('auth')->group(function () {
@@ -122,6 +125,12 @@ Route::prefix('/staff')->name('staff.')->group(function(){
         Route::get('/password/change', [StaffController::class,'staff_change_password_ui'])->name('staff_change_password_ui');
 
         Route::post('/password/change/staff', [StaffController::class,'staff_change_password'])->name('staff_change_password');
+
+        Route::get('/delete/{MEMBER_ID}', [MemberController::class, 'delete_member'])
+                ->name('delete-member');
+
+        Route::get('/delete/plan/{PLAN_ID}', [GymController::class, 'delete_plan'])
+                ->name('delete-plan');
 
     });
 

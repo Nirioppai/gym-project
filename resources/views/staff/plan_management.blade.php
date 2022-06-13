@@ -215,12 +215,16 @@
 													</td>
 
 													<td>
-
-														<button type="button" class="btn btn-primary btn-sm mt-3" data-bs-toggle="modal"
-															data-bs-target="#exampleModal"
+														<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
 															onclick="activateMember('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->PLAN_NAME }}',' {{ $gym_plan->PLAN_DESCRIPTION }}', '{{ $gym_plan->PLAN_VALIDITY }}','{{ $gym_plan->PLAN_AMOUNT }}')">
 															Edit
 														</button>
+													</td>
+
+													<td>
+														<a class="btn btn-danger btn-sm" href="/staff/delete/plan/{{ $gym_plan->PLAN_ID }}">
+															Delete
+														</a>
 													</td>
 
 												</tr>

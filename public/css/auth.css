@@ -85,3 +85,7 @@ input[type="color"]:focus,
 .load-height {
     height: 887px;
 }
+
+.terms-caption {
+    font-size: 60px;
+}

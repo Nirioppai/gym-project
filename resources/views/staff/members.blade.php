@@ -285,8 +285,7 @@
 																				aria-labelledby="details-tab">
 																				<div class="mb-3">
 																					<label for="MEMBER_ADDRESS">Address</label>
-																					<textarea name="MEMBER_ADDRESS" rows="5" class="form-control"
-                      id="MEMBER_ADDRESS">{{ $activeMember->MEMBER_ADDRESS }}</textarea>
+																					<textarea name="MEMBER_ADDRESS" rows="5" class="form-control" id="MEMBER_ADDRESS">{{ $activeMember->MEMBER_ADDRESS }}</textarea>
 																				</div>
 																				<div class="mb-3">
 																					<label for="MEMBER_GENDER">Gender</label>
@@ -337,8 +336,7 @@
 																				</div>
 																				<div class="mb-3">
 																					<label for="HEALTH_REMARKS">Member Remarks</label>
-																					<textarea class="form-control" name="HEALTH_REMARKS" id="HEALTH_REMARKS"
-                      rows="3">{{ $activeMember->HEALTH_REMARKS }}</textarea>
+																					<textarea class="form-control" name="HEALTH_REMARKS" id="HEALTH_REMARKS" rows="3">{{ $activeMember->HEALTH_REMARKS }}</textarea>
 																				</div>
 																			</div>
 
@@ -431,6 +429,14 @@
 																	data-bs-target="#editModal{{ $activeMember->MEMBER_ID }}">
 																	Edit
 																</button>
+															</div>
+														</td>
+														<td>
+															<div class="text-start">
+																<!-- Button trigger modal -->
+																<a class="btn btn-danger btn-sm" href="/staff/delete/{{ $activeMember->MEMBER_ID }}">
+																	Delete
+																</a>
 															</div>
 														</td>
 

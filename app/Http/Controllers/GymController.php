@@ -271,5 +271,11 @@ class GymController extends Controller
         //
     }
 
+    public function delete_plan($PLAN_ID)
+    {
+        $plan_to_delete = DB::table('plans')->where('PLAN_ID', $PLAN_ID)->delete();
+        return redirect('/staff/plan-management');
+    }
+
 
 }

@@ -63,10 +63,14 @@
 
 									<!-- Password -->
 
-									<div class="mb-5">
+									<div class="mb-3">
 										<label for="password" class="form-label">Password</label>
 										<input class="form-control" id="password" type="password" name="password" required="required"
 											autocomplete="current-password" />
+									</div>
+
+									<div class="mb-3">
+										<p>By logging in, I agree to the <a href="/terms">Terms and Conditions</a> of this website.</p>
 									</div>
 
 									<div class="d-grid gap-2 ">
@@ -83,11 +87,9 @@
 	</main>
 
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-	 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-	</script>
+	 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-	 integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-	</script>
+	 integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 
 </html>

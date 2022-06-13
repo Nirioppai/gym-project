@@ -145,4 +145,17 @@ class MemberController extends Controller
 
         return redirect('/');
     }
+
+    public function display_terms()
+    {
+        return view('auth.terms');
+    }
+
+    public function delete_member($MEMBER_ID)
+    {
+        $member_to_delete = DB::table('member_details')->where('MEMBER_ID', $MEMBER_ID)->delete();
+        $user_to_delete = DB::table('users')->where('MEMBER_ID', $MEMBER_ID)->delete();
+
+        return redirect('/staff/members');
+    }
 }
