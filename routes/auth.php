@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Staff\Auth\AuthenticatedSessionController as StaffAuth;
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController as AdminAuth;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\GymController;
 use App\Http\Controllers\Staff\StaffController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 
@@ -134,10 +136,44 @@ Route::prefix('/staff')->name('staff.')->group(function(){
 
     });
 
-// Usage of Protected routes
-
-//   Route::get('/simple', function(){
-//     return 'Staff Simple';
-//   })->middleware('staff');
   
 });
+
+
+# Admin routes
+Route::prefix('/admin')->name('admin.')->group(function(){
+        Route::get('/login', [AdminAuth::class, 'create'])->middleware('guest:admin')->name('login');
+        Route::post('/login', [AdminAuth::class, 'store'])->middleware('guest:admin');
+    
+        
+    
+        Route::middleware('admin')->group(function(){
+            Route::get('/logout', [AdminAuth::class, 'destroy'])->name('logout');
+    
+            Route::get('/dashboard', [AdminController::class,'index']);
+            Route::get('/create', [AdminController::class,'create'])->name('create');
+            Route::post('/store', [AdminController::class,'store'])->name('store');
+
+            Route::get('/password/change', [AdminController::class,'admin_change_password_ui'])->name('admin_change_password_ui');
+
+            Route::post('/password/change/staff', [AdminController::class,'admin_change_password'])->name('admin_change_password');
+                
+            Route::get('/delete/member/{MEMBER_ID}', [AdminController::class, 'delete_member'])
+                ->name('delete-member');
+
+            Route::get('/delete/owner/{MEMBER_ID}', [AdminController::class, 'delete_owner'])
+                ->name('delete-owner');
+
+            Route::get('/gyms', [AdminController::class,'gyms']);
+
+            Route::get('/delete/gym/{GYM_ID}', [AdminController::class, 'delete_gym'])
+                ->name('delete-gym');
+        
+            Route::get('/plans', [AdminController::class,'plans']);
+
+            Route::get('/delete/plan/{PLAN_ID}', [AdminController::class, 'delete_plan'])
+                ->name('delete-plan');
+    
+        });
+    
+    });

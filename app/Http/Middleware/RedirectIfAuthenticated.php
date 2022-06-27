@@ -28,6 +28,10 @@ class RedirectIfAuthenticated
                     return redirect(RouteServiceProvider::STAFF_HOME);
                 }
 
+                if($guard === 'admin'){
+                    return redirect(RouteServiceProvider::ADMIN_HOME);
+                }
+
                 return redirect(RouteServiceProvider::HOME);
             }
         }

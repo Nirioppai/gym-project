@@ -17,6 +17,7 @@ return new class extends Migration
         DB::statement("CREATE VIEW view_plan_list AS
 Select
     vs_gym.member_details.MEMBER_ID,
+    vs_gym.plans.PLAN_ID,
     vs_gym.plans.PLAN_NAME,
     vs_gym.member_details.created_at,
     vs_gym.member_details.MEMBER_EXPIRY_DATE,
