@@ -1,5 +1,5 @@
 @extends('layouts.admin') @section('title')
-	Admin - Dashboard
+	Admin - Plans
 @endsection
 
 @section('breadcrumb')
@@ -9,7 +9,7 @@
 				<a class="opacity-5 text-white" href="javascript:;">Pages</a>
 			</li>
 			<li class="breadcrumb-item text-sm text-white active" aria-current="page">
-				Dashboard
+				Plans
 			</li>
 		</ol>
 	</nav>
@@ -81,138 +81,101 @@
 	</aside>
 @endsection
 @section('content')
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form action="{{ route('admin.create-location') }}" name="create-location-form" id="create-location-form"
+					method="post">
+					@csrf
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Add Location</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+
+						<div class="mb-3">
+							<label for="LOCATION_NAME">Location Name</label>
+							<input type="text" class="form-control" name="LOCATION_NAME" id="LOCATION_NAME" required>
+
+
+						</div>
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<div class="card">
 
-		<div class="card-header pb-0 p-3">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item" role="presentation">
-					<button class="nav-link active" id="member-list-tab" data-bs-toggle="tab" data-bs-target="#member-list"
-						type="button" role="tab" aria-controls="member-list" aria-selected="true">Member List</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="owner-tab" data-bs-toggle="tab" data-bs-target="#owner" type="button" role="tab"
-						aria-controls="owner" aria-selected="false">Gym Owner List
-					</button>
-				</li>
 
-			</ul>
-
-		</div>
 		<div class="card-body">
 
 
-			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade show active" id="member-list" role="tabpanel" aria-labelledby="member-list-tab">
+			@if ($locations->isEmpty())
+				<div class="text-center justify-content-center">
 
+					<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
+					<h2 class="mt-4">Kruu Kruu~</h2>
+					<h6 class="mt-4 mb-3">There are no locations at the moment.</h6>
 
-					@if ($members->isEmpty())
-						<div class="text-center justify-content-center">
-
-							<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
-							<h2 class="mt-4">Kruu Kruu~</h2>
-							<h6 class="mt-4 mb-3">There are no gym members at the moment.</h6>
-
-						</div>
-					@endif
-
-					@if (!$members->isEmpty())
-						<div class="table-responsive">
-
-							<table class="table align-items-start ">
-								<tbody>
-									@foreach ($members as $member)
-										<tr>
-											<td class="w-30">
-												<div class="d-flex px-2 py-1 align-items-start">
-
-													<div class="ms-4">
-														<p class="text-xs font-weight-bold mb-0">Member ID:</p>
-														<h6 class="text-sm mb-0">{{ $member->MEMBER_ID }}</h6>
-													</div>
-												</div>
-											</td>
-
-											<td>
-												<div class="text-start">
-													<p class="text-xs font-weight-bold mb-0">Member Name:</p>
-													<h6 class="text-sm mb-0">{{ $member->name }}</h6>
-												</div>
-											</td>
-
-											<td>
-												<div class="text-end">
-													<!-- Button trigger modal -->
-													<a class="btn btn-danger btn-sm" href="/admin/delete/member/{{ $member->MEMBER_ID }}">
-														Delete
-													</a>
-												</div>
-											</td>
-
-										</tr>
-									@endforeach
-								</tbody>
-							</table>
-						</div>
-					@endif
-
-
-
+					<div class="mb-7">
+						<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Add Location
+						</button>
+					</div>
 
 				</div>
-				<div class="tab-pane fade" id="owner" role="tabpanel" aria-labelledby="owner-tab">
+			@endif
 
-					@if ($owners->isEmpty())
-						<div class="text-center justify-content-center">
+			@if (!$locations->isEmpty())
+				<div class="table-responsive">
 
-							<img class="mt-9" width="30%" src="{{ asset('img/svg/empty.svg') }}" alt="svg1">
-							<h2 class="mt-4">Kruu Kruu~</h2>
-							<h6 class="mt-4 mb-3">There are no gym owners at the moment.</h6>
+					<table class="table align-items-start ">
+						<tbody>
+							@foreach ($locations as $location)
+								<tr>
+									<td class="w-30">
+										<div class="d-flex px-2 py-1 align-items-start">
 
-						</div>
-					@endif
+											<div class="ms-4">
+												<p class="text-xs font-weight-bold mb-0">Location ID:</p>
+												<h6 class="text-sm mb-0">{{ $location->LOCATION_ID }}</h6>
+											</div>
+										</div>
+									</td>
 
-					@if (!$owners->isEmpty())
-						<div class="table-responsive">
+									<td>
+										<div class="text-start">
+											<p class="text-xs font-weight-bold mb-0">Location Name:</p>
+											<h6 class="text-sm mb-0">{{ $location->LOCATION_NAME }}</h6>
+										</div>
+									</td>
 
-							<table class="table align-items-start ">
-								<tbody>
-									@foreach ($owners as $owner)
-										<tr>
-											<td class="w-30">
-												<div class="d-flex px-2 py-1 align-items-start">
 
-													<div class="ms-4">
-														<p class="text-xs font-weight-bold mb-0">Owner ID:</p>
-														<h6 class="text-sm mb-0">{{ $owner->MEMBER_ID }}</h6>
-													</div>
-												</div>
-											</td>
+									<td>
+										<div class="text-end">
+											<!-- Button trigger modal -->
+											<a class="btn btn-danger btn-sm" href="/admin/delete/location/{{ $location->LOCATION_ID }}">
+												Delete
+											</a>
+										</div>
+									</td>
 
-											<td>
-												<div class="text-start">
-													<p class="text-xs font-weight-bold mb-0">Owner Name:</p>
-													<h6 class="text-sm mb-0">{{ $owner->name }}</h6>
-												</div>
-											</td>
-
-											<td>
-												<div class="text-end">
-													<!-- Button trigger modal -->
-													<a class="btn btn-danger btn-sm" href="/admin/delete/owner/{{ $owner->MEMBER_ID }}">
-														Delete
-													</a>
-												</div>
-											</td>
-
-										</tr>
-									@endforeach
-								</tbody>
-							</table>
-						</div>
-					@endif
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
 				</div>
+			@endif
 
-			</div>
+
 		</div>
 	</div>
 @endsection {{-- <h1>admin Dashboard: {{ auth()->guard('admin')->user()->name }}</h1>

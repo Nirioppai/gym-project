@@ -173,6 +173,11 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
             Route::get('/delete/plan/{PLAN_ID}', [AdminController::class, 'delete_plan'])
                 ->name('delete-plan');
+
+            Route::get('/locations', [AdminController::class,'locations']);
+
+            Route::post('/location/create', [AdminController::class, 'create_location'])
+                ->name('create-location');
     
         });
     

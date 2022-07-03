@@ -9,6 +9,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\DB;
+use Haruncpi\LaravelIdGenerator\IdGenerator as IdGenerator;
 
 class AdminController extends Controller
 {
@@ -20,7 +21,7 @@ class AdminController extends Controller
     public function index()
     {
 
-        $members = DB::table('view_plan_list')
+        $members = DB::table('users')
             ->get();
         $owners = DB::table('view_gym_owners')
         ->get();
@@ -50,6 +51,17 @@ class AdminController extends Controller
         
         return view('admin.plans')
         ->with('plans',  $plans);
+    }
+
+    public function locations()
+    {
+
+        $locations = DB::table('locations')
+            ->get();
+
+        
+        return view('admin.locations')
+        ->with('locations',  $locations);
     }
 
     /**
@@ -155,6 +167,7 @@ class AdminController extends Controller
     public function delete_member($MEMBER_ID)
     {
         $member_to_delete = DB::table('member_details')->where('MEMBER_ID', $MEMBER_ID)->delete();
+        $user_to_delete = DB::table('users')->where('MEMBER_ID', $MEMBER_ID)->delete();
 
 
         return redirect('/admin/dashboard');
@@ -210,5 +223,42 @@ class AdminController extends Controller
 
 
         return redirect('/admin/plans');
+    }
+
+    public function delete_location($LOCATION_ID)
+    {
+
+        $location_to_delete = DB::table('locations')->where('LOCATION_ID', $LOCATION_ID)->first();
+        // delete location
+        $delete_location = DB::table('locations')->where('LOCATION_ID', $LOCATION_ID)->delete();
+
+        // delete gyms
+
+
+        return redirect('/admin/plans');
+    }
+
+    public function create_location(Request $request)
+    {
+
+        $request->validate([
+            'LOCATION_NAME' => ['required', 'string', 'max:255'],
+        ]);
+
+        $config=['table'=>'locations','length'=>10,'prefix'=>'LOC-', 'field' => 'LOCATION_ID'];
+        $id = IdGenerator::generate($config);
+
+        DB::table('locations')->insert(
+            [
+            'LOCATION_ID' => $id,
+             'LOCATION_NAME' => $request->LOCATION_NAME, 
+
+             
+             'created_at' => now(), 
+             'updated_at' => now()]
+        );
+
+
+        return redirect('/admin/locations');
     }
 }
