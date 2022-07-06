@@ -14,19 +14,19 @@ return new class extends Migration
      */
     public function up()
     {
-        DB::statement("CREATE VIEW view_plans AS
+        DB::statement("CREATE OR REPLACE VIEW view_plans AS
 Select
-    vs_gym.plans.PLAN_ID,
-    vs_gym.plans.PLAN_NAME,
-    vs_gym.plans.PLAN_DESCRIPTION,
-    vs_gym.plans.PLAN_VALIDITY,
-    vs_gym.plans.PLAN_AMOUNT,
-    vs_gym.plans.PLAN_STATUS,
-    vs_gym.gym_lists.GYM_ID,
-    vs_gym.gym_lists.GYM_NAME
+    plans.PLAN_ID,
+    plans.PLAN_NAME,
+    plans.PLAN_DESCRIPTION,
+    plans.PLAN_VALIDITY,
+    plans.PLAN_AMOUNT,
+    plans.PLAN_STATUS,
+    gym_lists.GYM_ID,
+    gym_lists.GYM_NAME
 From
-    vs_gym.plans Inner Join
-    vs_gym.gym_lists On vs_gym.gym_lists.GYM_ID = vs_gym.plans.GYM_ID
+    plans Inner Join
+    gym_lists On gym_lists.GYM_ID = plans.GYM_ID
                                 
                              ");
     }
@@ -38,6 +38,6 @@ From
      */
     public function down()
     {
-        Schema::dropIfExists('plan_lists');
+        
     }
 };

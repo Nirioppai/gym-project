@@ -15,19 +15,19 @@ return new class extends Migration
      */
     public function up()
     {
-        DB::statement("CREATE VIEW view_gym_owners AS
+        DB::statement("CREATE OR REPLACE VIEW view_gym_owners AS
 Select
-    vs_gym.staff.MEMBER_ID,
-    vs_gym.staff.name,
-    vs_gym.staff.email,
-    vs_gym.gym_lists.GYM_ID,
-    vs_gym.gym_lists.GYM_NAME,
-    vs_gym.gym_lists.GYM_OWNER,
-    vs_gym.gym_lists.GYM_LOCATION,
-    vs_gym.gym_lists.GYM_DETAILS
+    staff.MEMBER_ID,
+    staff.name,
+    staff.email,
+    gym_lists.GYM_ID,
+    gym_lists.GYM_NAME,
+    gym_lists.GYM_OWNER,
+    gym_lists.GYM_LOCATION,
+    gym_lists.GYM_DETAILS
 From
-    vs_gym.staff Inner Join
-    vs_gym.gym_lists On vs_gym.staff.MEMBER_ID = vs_gym.gym_lists.GYM_OWNER
+    staff Inner Join
+    gym_lists On staff.MEMBER_ID = gym_lists.GYM_OWNER
                                 
                              ");
     }
@@ -39,6 +39,6 @@ From
      */
     public function down()
     {
-        Schema::dropIfExists('gym_owner_lists');
+        DB::statement("CREATE OR REPLACE VIEW view_gym_owners");
     }
 };

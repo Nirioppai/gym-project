@@ -14,31 +14,31 @@ return new class extends Migration
      */
     public function up()
     {
-        DB::statement("CREATE VIEW view_plan_list AS
+        DB::statement("CREATE OR REPLACE VIEW view_plan_list AS
 Select
-    vs_gym.member_details.MEMBER_ID,
-    vs_gym.plans.PLAN_ID,
-    vs_gym.plans.PLAN_NAME,
-    vs_gym.member_details.created_at,
-    vs_gym.member_details.MEMBER_EXPIRY_DATE,
-    vs_gym.member_details.MEMBER_STATUS,
-    vs_gym.member_details.MEMBER_ADDRESS,
-    vs_gym.member_details.MEMBER_GENDER,
-    vs_gym.member_details.MEMBER_DATE_OF_BIRTH,
-    vs_gym.member_details.MEMBER_PHONE_NUMBER,
-    vs_gym.member_details.PAYMENT_ID,
-    vs_gym.member_details.MEMBER_PAYMENT,
-    vs_gym.member_details.HEALTH_HEIGHT,
-    vs_gym.member_details.HEALTH_WEIGHT,
-    vs_gym.member_details.HEALTH_WAIST,
-    vs_gym.member_details.HEALTH_REMARKS,
-    vs_gym.member_details.GYM_ID,
+    member_details.MEMBER_ID,
+    plans.PLAN_ID,
+    plans.PLAN_NAME,
+    member_details.created_at,
+    member_details.MEMBER_EXPIRY_DATE,
+    member_details.MEMBER_STATUS,
+    member_details.MEMBER_ADDRESS,
+    member_details.MEMBER_GENDER,
+    member_details.MEMBER_DATE_OF_BIRTH,
+    member_details.MEMBER_PHONE_NUMBER,
+    member_details.PAYMENT_ID,
+    member_details.MEMBER_PAYMENT,
+    member_details.HEALTH_HEIGHT,
+    member_details.HEALTH_WEIGHT,
+    member_details.HEALTH_WAIST,
+    member_details.HEALTH_REMARKS,
+    member_details.GYM_ID,
 
-    vs_gym.users.name
+    users.name
 From
-    vs_gym.users Inner Join
-    vs_gym.member_details On vs_gym.users.MEMBER_ID = vs_gym.member_details.MEMBER_ID Inner Join
-    vs_gym.plans On vs_gym.plans.PLAN_ID = vs_gym.member_details.PLAN_ID
+    users Inner Join
+    member_details On users.MEMBER_ID = member_details.MEMBER_ID Inner Join
+    plans On plans.PLAN_ID = member_details.PLAN_ID
                                 
                              ");
 
@@ -54,6 +54,6 @@ From
      */
     public function down()
     {
-        //
+        DB::statement("CREATE OR REPLACE VIEW view_plan_list");
     }
 };
