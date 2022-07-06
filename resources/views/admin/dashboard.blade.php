@@ -127,7 +127,7 @@
 
 													<div class="ms-4">
 														<p class="text-xs font-weight-bold mb-0">Member ID:</p>
-														<h6 class="text-sm mb-0">{{ $member->MEMBER_ID }}</h6>
+														<h6 class="text-sm mb-0">{{ $member->member_id }}</h6>
 													</div>
 												</div>
 											</td>
@@ -142,7 +142,7 @@
 											<td>
 												<div class="text-end">
 													<!-- Button trigger modal -->
-													<a class="btn btn-danger btn-sm" href="/admin/delete/member/{{ $member->MEMBER_ID }}">
+													<a class="btn btn-danger btn-sm" href="/admin/delete/member/{{ $member->member_id }}">
 														Delete
 													</a>
 												</div>
@@ -183,7 +183,7 @@
 
 													<div class="ms-4">
 														<p class="text-xs font-weight-bold mb-0">Owner ID:</p>
-														<h6 class="text-sm mb-0">{{ $owner->MEMBER_ID }}</h6>
+														<h6 class="text-sm mb-0">{{ $owner->member_id }}</h6>
 													</div>
 												</div>
 											</td>
@@ -198,7 +198,7 @@
 											<td>
 												<div class="text-end">
 													<!-- Button trigger modal -->
-													<a class="btn btn-danger btn-sm" href="/admin/delete/owner/{{ $owner->MEMBER_ID }}">
+													<a class="btn btn-danger btn-sm" href="/admin/delete/owner/{{ $owner->member_id }}">
 														Delete
 													</a>
 												</div>

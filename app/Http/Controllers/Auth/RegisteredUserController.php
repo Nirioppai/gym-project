@@ -41,11 +41,11 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $config=['table'=>'users','length'=>10,'prefix'=>'GM-', 'field' => 'MEMBER_ID'];
+        $config=['table'=>'users','length'=>10,'prefix'=>'GM-', 'field' => 'member_id'];
         $id = IdGenerator::generate($config);
 
         DB::table('users')->insert(
-            ['MEMBER_ID' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password),'created_at' => now(), 'updated_at' => now()]
+            ['member_id' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password),'created_at' => now(), 'updated_at' => now()]
         );
 
 
@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
         //  $user = User::create([
         //     'name' => $request->name,
         //     'email' => $request->email,
-        //     'MEMBER_ID' => $id,
+        //     'member_id' => $id,
         //     'password' => Hash::make($request->password),
         // ]);
 
@@ -64,7 +64,7 @@ class RegisteredUserController extends Controller
         // Auth::login([
         //     'name' => $request->name,
         //     'email' => $request->email,
-        //     'MEMBER_ID' => $id,
+        //     'member_id' => $id,
         //     'password' => Hash::make($request->password),
         // ]);
 

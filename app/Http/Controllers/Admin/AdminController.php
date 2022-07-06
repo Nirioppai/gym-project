@@ -164,62 +164,62 @@ class AdminController extends Controller
 
     }
 
-    public function delete_member($MEMBER_ID)
+    public function delete_member($member_id)
     {
-        $member_to_delete = DB::table('member_details')->where('MEMBER_ID', $MEMBER_ID)->delete();
-        $user_to_delete = DB::table('users')->where('MEMBER_ID', $MEMBER_ID)->delete();
+        $member_to_delete = DB::table('member_details')->where('member_id', $member_id)->delete();
+        $user_to_delete = DB::table('users')->where('member_id', $member_id)->delete();
 
 
         return redirect('/admin/dashboard');
     }
 
-    public function delete_owner($MEMBER_ID)
+    public function delete_owner($member_id)
     {
 
-        $owner_to_delete = DB::table('view_gym_owners')->where('MEMBER_ID', $MEMBER_ID)->first();
+        $owner_to_delete = DB::table('view_gym_owners')->where('member_id', $member_id)->first();
 
         //delete owner
-        $delete_owner = DB::table('staff')->where('MEMBER_ID', $MEMBER_ID)->delete();
+        $delete_owner = DB::table('staff')->where('member_id', $member_id)->delete();
 
         //delete gym
-        $gym_to_delete = DB::table('gym_lists')->where('GYM_ID', $owner_to_delete->GYM_ID)->delete();
+        $gym_to_delete = DB::table('gym_lists')->where('gym_id', $owner_to_delete->gym_id)->delete();
 
         //delete all members
-        $members_to_delete = DB::table('member_details')->where('GYM_ID', $owner_to_delete->GYM_ID)->delete();
+        $members_to_delete = DB::table('member_details')->where('gym_id', $owner_to_delete->gym_id)->delete();
 
         //delete plans
-        $plans_to_delete = DB::table('plans')->where('GYM_ID', $owner_to_delete->GYM_ID)->delete();
+        $plans_to_delete = DB::table('plans')->where('gym_id', $owner_to_delete->gym_id)->delete();
 
         return redirect('/admin/dashboard');
     }
 
-    public function delete_gym($GYM_ID)
+    public function delete_gym($gym_id)
     {
 
-        $gym_to_delete = DB::table('view_gyms')->where('GYM_ID', $GYM_ID)->first();
+        $gym_to_delete = DB::table('view_gyms')->where('gym_id', $gym_id)->first();
 
         // delete gym
-        $delete_gym = DB::table('gym_lists')->where('GYM_ID', $gym_to_delete->GYM_ID)->delete();
+        $delete_gym = DB::table('gym_lists')->where('gym_id', $gym_to_delete->gym_id)->delete();
 
         // delete all members
-        $members_to_delete = DB::table('member_details')->where('GYM_ID', $gym_to_delete->GYM_ID)->delete();
+        $members_to_delete = DB::table('member_details')->where('gym_id', $gym_to_delete->gym_id)->delete();
 
         // delete plans
-        $plans_to_delete = DB::table('plans')->where('GYM_ID', $gym_to_delete->GYM_ID)->delete();
+        $plans_to_delete = DB::table('plans')->where('gym_id', $gym_to_delete->gym_id)->delete();
 
 
         return redirect('/admin/gyms');
     }
 
-    public function delete_plan($PLAN_ID)
+    public function delete_plan($plan_id)
     {
 
-        $plan_to_delete = DB::table('view_plans')->where('PLAN_ID', $PLAN_ID)->first();
+        $plan_to_delete = DB::table('view_plans')->where('plan_id', $plan_id)->first();
         // delete plan
-        $delete_plan = DB::table('plans')->where('PLAN_ID', $PLAN_ID)->delete();
+        $delete_plan = DB::table('plans')->where('plan_id', $plan_id)->delete();
 
         // delete all members registered to plan
-        $members_to_delete = DB::table('member_details')->where('PLAN_ID', $PLAN_ID)->delete();
+        $members_to_delete = DB::table('member_details')->where('plan_id', $plan_id)->delete();
 
 
         return redirect('/admin/plans');

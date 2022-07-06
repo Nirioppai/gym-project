@@ -65,24 +65,24 @@
 
 				@foreach ($active_member_plans as $active_member_plan)
 					<!-- Modal -->
-					<div class="modal fade" id="exampleModal{{ $active_member_plan->PAYMENT_ID }}" tabindex="-1"
+					<div class="modal fade" id="exampleModal{{ $active_member_plan->payment_id }}" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">{{ $active_member_plan->PAYMENT_ID }} Details</h5>
+									<h5 class="modal-title" id="exampleModalLabel">{{ $active_member_plan->payment_id }} Details</h5>
 									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<b>Member Address</b>: {{ $active_member_plan->MEMBER_ADDRESS }}<br />
-									<b>Member Gender</b>: {{ $active_member_plan->MEMBER_GENDER }}<br />
-									<b>Member Date of Birth</b>: {{ $active_member_plan->MEMBER_DATE_OF_BIRTH }}<br />
-									<b>Member Phone Number</b>: {{ $active_member_plan->MEMBER_PHONE_NUMBER }}<br />
-									<b>Member Payment Method</b>: {{ $active_member_plan->MEMBER_PAYMENT }}<br />
-									<b>Member Height</b>: {{ $active_member_plan->HEALTH_HEIGHT }}<br />
-									<b>Member Weight</b>: {{ $active_member_plan->HEALTH_WEIGHT }}<br />
-									<b>Member Waistline</b>: {{ $active_member_plan->HEALTH_WAIST }}<br />
-									<b>Member Health Remarks</b>: {{ $active_member_plan->HEALTH_REMARKS }}<br />
+									<b>Member Address</b>: {{ $active_member_plan->member_address }}<br />
+									<b>Member Gender</b>: {{ $active_member_plan->member_gender }}<br />
+									<b>Member Date of Birth</b>: {{ $active_member_plan->member_date_of_birth }}<br />
+									<b>Member Phone Number</b>: {{ $active_member_plan->member_phone_number }}<br />
+									<b>Member Payment Method</b>: {{ $active_member_plan->member_payment }}<br />
+									<b>Member Height</b>: {{ $active_member_plan->health_height }}<br />
+									<b>Member Weight</b>: {{ $active_member_plan->health_weight }}<br />
+									<b>Member Waistline</b>: {{ $active_member_plan->health_waist }}<br />
+									<b>Member Health Remarks</b>: {{ $active_member_plan->health_remarks }}<br />
 								</div>
 
 							</div>
@@ -94,7 +94,7 @@
 						<div class="container">
 							<div class="row">
 								<div class="col text-start">
-									Plan: {{ $active_member_plan->PLAN_NAME }}
+									Plan: {{ $active_member_plan->plan_name }}
 								</div>
 								<div class="col text-end">
 									Start Date:
@@ -104,17 +104,17 @@
 							</div>
 							<div class="row">
 								<div class="col text-start">
-									Status: {{ $active_member_plan->MEMBER_STATUS }}
+									Status: {{ $active_member_plan->member_status }}
 								</div>
 								<div class="col text-end">
-									Expiry Date: {{ \Carbon\Carbon::parse($active_member_plan->MEMBER_EXPIRY_DATE)->format('jS F y') }}
+									Expiry Date: {{ \Carbon\Carbon::parse($active_member_plan->member_expiry_date)->format('jS F y') }}
 								</div>
 							</div>
 							<div class="row">
 								<div class="col text-start">
 
 								</div>
-								<div data-bs-toggle="modal" data-bs-target="#exampleModal{{ $active_member_plan->PAYMENT_ID }}"
+								<div data-bs-toggle="modal" data-bs-target="#exampleModal{{ $active_member_plan->payment_id }}"
 									class="col text-end">
 									<a href="#" class="link-primary">More Details</a>
 								</div>
@@ -143,10 +143,10 @@
 						<tbody>
 							@foreach ($other_plans as $other_plan)
 								<tr>
-									<th scope="row">{{ $other_plan->PLAN_NAME }}</th>
-									<td>{{ $other_plan->MEMBER_STATUS }}</td>
+									<th scope="row">{{ $other_plan->plan_name }}</th>
+									<td>{{ $other_plan->member_status }}</td>
 									<td>{{ \Carbon\Carbon::parse($other_plan->created_at)->format('jS F y') }}</td>
-									<td>{{ \Carbon\Carbon::parse($other_plan->MEMBER_EXPIRY_DATE)->format('jS F y') }}
+									<td>{{ \Carbon\Carbon::parse($other_plan->member_expiry_date)->format('jS F y') }}
 									</td>
 								</tr>
 							@endforeach
@@ -168,7 +168,8 @@
 				</p>
 				<div class="text-start">
 
-					<a class="btn btn-orange" href="/gyms" role="button">View all Gyms <i class="fa-solid fa-arrow-right-long"></i></a>
+					<a class="btn btn-orange" href="/gyms" role="button">View all Gyms <i
+							class="fa-solid fa-arrow-right-long"></i></a>
 
 
 
@@ -180,17 +181,18 @@
 				@foreach ($gyms as $gym)
 					<div class="col product-item mx-auto">
 						<div class="product-img">
-							<img src="{{ asset('storage/gym_images/' . $gym->GYM_IMAGE) }}" alt="" class="img-fluid d-block mx-auto" />
+							<img src="{{ asset('storage/gym_images/' . $gym->gym_image) }}" alt=""
+								class="img-fluid d-block mx-auto" />
 							<div class="row btns w-100 mx-auto text-center">
-								<button type="button" onclick="window.location.href='/gym/{{ $gym->GYM_ID }}'">
+								<button type="button" onclick="window.location.href='/gym/{{ $gym->gym_id }}'">
 									<i class="fa-solid fa-badge-check"></i> Register as Member</button>
 							</div>
 						</div>
 
 						<div class="product-info p-3">
-							<span class="product-type">{{ $gym->GYM_LOCATION }}</span>
-							<a href="/gym/{{ $gym->GYM_ID }}"
-								class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
+							<span class="product-type">{{ $gym->gym_location }}</span>
+							<a href="/gym/{{ $gym->gym_id }}"
+								class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->gym_name }}</a>
 						</div>
 					</div>
 				@endforeach
@@ -214,25 +216,25 @@
 								<div class="container">
 									<div class="row">
 										<div class="col text-start">
-											Member Height: {{ $active_member_plan->HEALTH_HEIGHT }}
+											Member Height: {{ $active_member_plan->health_height }}
 										</div>
 
 									</div>
 									<div class="row">
 										<div class="col text-start">
-											Member Weight: {{ $active_member_plan->HEALTH_WEIGHT }}
+											Member Weight: {{ $active_member_plan->health_weight }}
 										</div>
 
 									</div>
 									<div class="row">
 										<div class="col text-start">
-											Member Waistline: {{ $active_member_plan->HEALTH_WAIST }}
+											Member Waistline: {{ $active_member_plan->health_waist }}
 										</div>
 
 									</div>
 									<div class="row">
 										<div class="col text-start">
-											Health Remarks: {{ $active_member_plan->HEALTH_REMARKS }}
+											Health Remarks: {{ $active_member_plan->health_remarks }}
 										</div>
 
 									</div>

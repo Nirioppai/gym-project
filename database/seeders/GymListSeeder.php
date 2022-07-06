@@ -16,12 +16,12 @@ class GymListSeeder extends Seeder
     public function run()
     {
         GymList::create([
-            'GYM_ID' => 'GYM-000001',
-            'GYM_NAME' => 'Gym Name',
-            'GYM_OWNER' => 'GO-0000001',
-            'GYM_LOCATION' => 'Gym Location',
-            'GYM_IMAGE' => 'Gym Image',
-            'GYM_DETAILS' => 'Gym Details',
+            'gym_id' => 'GYM-000001',
+            'gym_name' => 'Gym Name',
+            'gym_owner' => 'GO-0000001',
+            'gym_location' => 'Gym Location',
+            'gym_image' => 'Gym Image',
+            'gym_details' => 'Gym Details',
         ]);
     }
 }

@@ -75,11 +75,12 @@
 			@foreach ($gyms as $gym)
 				<div class="col product-item mx-auto">
 					<div class="product-img">
-						<img src="{{ asset('storage/gym_images/' . $gym->GYM_IMAGE) }}" alt="" class="img-fluid d-block mx-auto" />
+						<img src="{{ asset('storage/gym_images/' . $gym->gym_image) }}" alt=""
+							class="img-fluid d-block mx-auto" />
 
 						<div class="row btns w-100 mx-auto text-center">
 
-							<button type="button" onclick="window.location.href='/gym/{{ $gym->GYM_ID }}'">
+							<button type="button" onclick="window.location.href='/gym/{{ $gym->gym_id }}'">
 
 
 								<i class="fa-solid fa-badge-check"></i> Register as Member</button>
@@ -89,9 +90,9 @@
 					</div>
 
 					<div class="product-info p-3">
-						<span class="product-type">{{ $gym->GYM_LOCATION }}</span>
-						<a href="/gym/{{ $gym->GYM_ID }}"
-							class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->GYM_NAME }}</a>
+						<span class="product-type">{{ $gym->gym_location }}</span>
+						<a href="/gym/{{ $gym->gym_id }}"
+							class="d-block text-dark text-decoration-none py-2 product-name">{{ $gym->gym_name }}</a>
 
 					</div>
 				</div>

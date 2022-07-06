@@ -128,10 +128,10 @@ Route::prefix('/staff')->name('staff.')->group(function(){
 
         Route::post('/password/change/staff', [StaffController::class,'staff_change_password'])->name('staff_change_password');
 
-        Route::get('/delete/{MEMBER_ID}', [MemberController::class, 'delete_member'])
+        Route::get('/delete/{member_id}', [MemberController::class, 'delete_member'])
                 ->name('delete-member');
 
-        Route::get('/delete/plan/{PLAN_ID}', [GymController::class, 'delete_plan'])
+        Route::get('/delete/plan/{plan_id}', [GymController::class, 'delete_plan'])
                 ->name('delete-plan');
 
     });
@@ -158,20 +158,20 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
             Route::post('/password/change/staff', [AdminController::class,'admin_change_password'])->name('admin_change_password');
                 
-            Route::get('/delete/member/{MEMBER_ID}', [AdminController::class, 'delete_member'])
+            Route::get('/delete/member/{member_id}', [AdminController::class, 'delete_member'])
                 ->name('delete-member');
 
-            Route::get('/delete/owner/{MEMBER_ID}', [AdminController::class, 'delete_owner'])
+            Route::get('/delete/owner/{member_id}', [AdminController::class, 'delete_owner'])
                 ->name('delete-owner');
 
             Route::get('/gyms', [AdminController::class,'gyms']);
 
-            Route::get('/delete/gym/{GYM_ID}', [AdminController::class, 'delete_gym'])
+            Route::get('/delete/gym/{gym_id}', [AdminController::class, 'delete_gym'])
                 ->name('delete-gym');
         
             Route::get('/plans', [AdminController::class,'plans']);
 
-            Route::get('/delete/plan/{PLAN_ID}', [AdminController::class, 'delete_plan'])
+            Route::get('/delete/plan/{plan_id}', [AdminController::class, 'delete_plan'])
                 ->name('delete-plan');
 
             Route::get('/locations', [AdminController::class,'locations']);

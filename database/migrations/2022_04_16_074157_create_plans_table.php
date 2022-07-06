@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->string('PLAN_ID');
-            $table->string('PLAN_NAME');
-            $table->string('PLAN_DESCRIPTION');
-            $table->string('PLAN_VALIDITY'); // days
-            $table->string('PLAN_AMOUNT'); // php
-            $table->string('PLAN_STATUS');
-            $table->string('GYM_ID');
+            $table->string('plan_id');
+            $table->string('plan_name');
+            $table->string('plan_description');
+            $table->string('plan_validity'); // days
+            $table->string('plan_amount'); // php
+            $table->string('plan_status');
+            $table->string('gym_id');
             $table->timestamps();
         });
     }

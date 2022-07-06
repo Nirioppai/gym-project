@@ -108,7 +108,7 @@
 
 											<div class="ms-4">
 												<p class="text-xs font-weight-bold mb-0">Gym ID:</p>
-												<h6 class="text-sm mb-0">{{ $gym->GYM_ID }}</h6>
+												<h6 class="text-sm mb-0">{{ $gym->gym_id }}</h6>
 											</div>
 										</div>
 									</td>
@@ -116,7 +116,7 @@
 									<td>
 										<div class="text-start">
 											<p class="text-xs font-weight-bold mb-0">Gym Name:</p>
-											<h6 class="text-sm mb-0">{{ $gym->GYM_NAME }}</h6>
+											<h6 class="text-sm mb-0">{{ $gym->gym_name }}</h6>
 										</div>
 									</td>
 
@@ -130,14 +130,14 @@
 									<td>
 										<div class="text-start">
 											<p class="text-xs font-weight-bold mb-0">Gym Location:</p>
-											<h6 class="text-sm mb-0">{{ $gym->GYM_LOCATION }}</h6>
+											<h6 class="text-sm mb-0">{{ $gym->gym_location }}</h6>
 										</div>
 									</td>
 
 									<td>
 										<div class="text-end">
 											<!-- Button trigger modal -->
-											<a class="btn btn-danger btn-sm" href="/admin/delete/gym/{{ $gym->GYM_ID }}">
+											<a class="btn btn-danger btn-sm" href="/admin/delete/gym/{{ $gym->gym_id }}">
 												Delete
 											</a>
 										</div>

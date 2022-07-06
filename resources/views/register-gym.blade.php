@@ -1,7 +1,7 @@
 @extends('layouts.member')
 
 @section('title')
-	VS Gym - {{ $gym->GYM_NAME }}
+	VS Gym - {{ $gym->gym_name }}
 @endsection
 
 @section('styles')
@@ -45,9 +45,9 @@
 	<div class="masthead" style="background-image: url('{{ asset('img/banner-half-img.jpg') }}');">
 		<div class="color-overlay d-flex flex-column justify-content-center text-left ">
 			<div class="container ">
-				<h1 class="barlow banner-header">{{ $gym->GYM_NAME }}</h1>
+				<h1 class="barlow banner-header">{{ $gym->gym_name }}</h1>
 
-				<p class="poppins">{{ $gym->GYM_LOCATION }}</p>
+				<p class="poppins">{{ $gym->gym_location }}</p>
 			</div>
 
 
@@ -72,9 +72,9 @@
 				<div class="tab-pane fade show active" id="step1">
 					<h4>Select Plan</h4>
 					<div class="mb-3">
-						<input type="hidden" name="PLAN_ID" class="form-control" id="PLAN_ID">
-						<input type="hidden" name="GYM_ID" class="form-control" id="GYM_ID">
-						<input type="hidden" name="PLAN_AMOUNT" class="form-control" id="PLAN_AMOUNT">
+						<input type="hidden" name="plan_id" class="form-control" id="plan_id">
+						<input type="hidden" name="gym_id" class="form-control" id="gym_id">
+						<input type="hidden" name="plan_amount" class="form-control" id="plan_amount">
 
 						<div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center subnav_links">
 
@@ -82,7 +82,7 @@
 								<div class="col">
 									<div class="card mb-4 rounded-3 shadow-sm">
 										<div class="card-header py-3">
-											<h4 class="my-0 fw-normal">{{ $gym_plan->PLAN_NAME }}</h4>
+											<h4 class="my-0 fw-normal">{{ $gym_plan->plan_name }}</h4>
 										</div>
 										<div class="card-body">
 
@@ -94,15 +94,15 @@
 
 
 
-											<h1 class="card-title pricing-card-title">₱{{ $gym_plan->PLAN_AMOUNT }}<small class="text-muted fw-light">
-													for {{ $gym_plan->PLAN_VALIDITY }} day/s</small></h1>
+											<h1 class="card-title pricing-card-title">₱{{ $gym_plan->plan_amount }}<small class="text-muted fw-light">
+													for {{ $gym_plan->plan_validity }} day/s</small></h1>
 											<ul class="list-unstyled mt-3 mb-4">
-												<li>{{ $gym_plan->PLAN_DESCRIPTION }}</li>
+												<li>{{ $gym_plan->plan_description }}</li>
 
 											</ul>
-											<button id="{{ $gym_plan->PLAN_ID }}" type="button"
-												onclick="plan_select('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->GYM_ID }}','{{ $gym_plan->PLAN_AMOUNT }}')"
-												class="w-100 btn btn-lg btn-outline-primary">Choose {{ $gym_plan->PLAN_NAME }}</button>
+											<button id="{{ $gym_plan->plan_id }}" type="button"
+												onclick="plan_select('{{ $gym_plan->plan_id }}','{{ $gym_plan->gym_id }}','{{ $gym_plan->plan_amount }}')"
+												class="w-100 btn btn-lg btn-outline-primary">Choose {{ $gym_plan->plan_name }}</button>
 										</div>
 									</div>
 								</div>
@@ -119,24 +119,24 @@
 				<div class="tab-pane fade" id="step2">
 					<h4>Personal Information</h4>
 					<div class="mb-3">
-						<label for="MEMBER_ADDRESS">Address</label>
-						<textarea name="MEMBER_ADDRESS" rows="5" class="form-control" id="MEMBER_ADDRESS" required></textarea>
+						<label for="member_address">Address</label>
+						<textarea name="member_address" rows="5" class="form-control" id="member_address" required></textarea>
 					</div>
 					<div class="mb-3">
-						<label for="MEMBER_GENDER">Gender</label>
-						<select class="form-select" name="MEMBER_GENDER" id="MEMBER_GENDER" aria-label="Default select example"
+						<label for="member_gender">Gender</label>
+						<select class="form-select" name="member_gender" id="member_gender" aria-label="Default select example"
 							required>
 							<option disabled selected>Gender</option>
 							<option value="Male">Male</option>
 							<option value="Female">Female</option>
 						</select>
-						{{-- <input type="text" name="MEMBER_GENDER" class="form-control" id="MEMBER_GENDER" required> --}}
+						{{-- <input type="text" name="member_gender" class="form-control" id="member_gender" required> --}}
 					</div>
 					<div class="mb-3">
-						<label for="MEMBER_DATE_OF_BIRTH">Date of Birth</label>
+						<label for="member_date_of_birth">Date of Birth</label>
 
 						<div class="input-group date">
-							<input type="text" class="form-control" name="MEMBER_DATE_OF_BIRTH" id="datepicker" required>
+							<input type="text" class="form-control" name="member_date_of_birth" id="datepicker" required>
 							<span class="input-group-append">
 								<span class="input-group-text bg-white d-block">
 									<i class="fa fa-calendar"></i>
@@ -145,17 +145,17 @@
 						</div>
 
 
-						{{-- <input type="text" name="MEMBER_DATE_OF_BIRTH" class="form-control" id="MEMBER_DATE_OF_BIRTH" required> --}}
+						{{-- <input type="text" name="member_date_of_birth" class="form-control" id="member_date_of_birth" required> --}}
 					</div>
 					<div class="mb-3">
-						<label for="MEMBER_PHONE_NUMBER">Phone Number</label>
-						<input type="text" name="MEMBER_PHONE_NUMBER" class="form-control" id="MEMBER_PHONE_NUMBER" required>
+						<label for="member_phone_number">Phone Number</label>
+						<input type="text" name="member_phone_number" class="form-control" id="member_phone_number" required>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="step3">
 					<h4>Mode of Payment</h4>
 					<div class="mb-3">
-						<input type="hidden" name="MEMBER_PAYMENT" class="form-control" id="MEMBER_PAYMENT" required>
+						<input type="hidden" name="member_payment" class="form-control" id="member_payment" required>
 					</div>
 
 					<div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center">
@@ -169,7 +169,8 @@
 
 									<img class="mb-3" src="{{ asset('img/gcash.png') }}" alt="gcash">
 
-									<button type="button" onclick="payment_select('Gcash')" class="w-100 btn btn-outline-primary">Select</button>
+									<button type="button" onclick="payment_select('Gcash')"
+										class="w-100 btn btn-outline-primary">Select</button>
 								</div>
 							</div>
 						</div>
@@ -183,7 +184,8 @@
 
 									<img class="mb-3" src="{{ asset('img/paymaya.png') }}" alt="paymaya">
 
-									<button type="button" onclick="payment_select('Paymaya')" class="w-100 btn btn-outline-primary">Select</button>
+									<button type="button" onclick="payment_select('Paymaya')"
+										class="w-100 btn btn-outline-primary">Select</button>
 								</div>
 							</div>
 						</div>
@@ -224,9 +226,9 @@
 	  var plan_id = id1;
 	  var gym_id = id2;
 	  var plan_amount = amount;
-	  document.getElementById("PLAN_ID").value = plan_id;
-	  document.getElementById("GYM_ID").value = gym_id;
-	  document.getElementById("PLAN_AMOUNT").value = plan_amount;
+	  document.getElementById("plan_id").value = plan_id;
+	  document.getElementById("gym_id").value = gym_id;
+	  document.getElementById("plan_amount").value = plan_amount;
 
 
 
@@ -239,7 +241,7 @@
 	 function payment_select(id) {
 	  console.log(id);
 	  var payment = id;
-	  document.getElementById("MEMBER_PAYMENT").value = payment;
+	  document.getElementById("member_payment").value = payment;
 
 	 }
 	</script>

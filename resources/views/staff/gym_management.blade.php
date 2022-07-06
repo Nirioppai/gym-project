@@ -107,24 +107,24 @@
 								<div class="numbers">
 									<form method="POST" action="{{ route('staff.gym-update') }}" enctype="multipart/form-data" action="">
 										@csrf
-										<input type="hidden" name="GYM_ID" value="{{ $staffGym->GYM_ID }}">
+										<input type="hidden" name="gym_id" value="{{ $staffGym->gym_id }}">
 										<div class="mb-3">
 											<label class="form-label">Gym Name</label>
-											<input type="text" value="{{ $staffGym->GYM_NAME }}" class="form-control" name="GYM_NAME"
+											<input type="text" value="{{ $staffGym->gym_name }}" class="form-control" name="gym_name"
 												id="GYM_NAME_EDIT" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Gym Location</label>
-											<textarea class="form-control" name="GYM_LOCATION" id="GYM_LOCATION_EDIT" rows="3"></textarea>
+											<textarea class="form-control" name="gym_location" id="GYM_LOCATION_EDIT" rows="3"></textarea>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Gym Details</label>
-											<textarea class="form-control" name="GYM_DETAILS" id="GYM_DETAILS_EDIT" rows="3"></textarea>
+											<textarea class="form-control" name="gym_details" id="GYM_DETAILS_EDIT" rows="3"></textarea>
 										</div>
 
 										<div class="mb-3">
 											<label class="form-label">Gym Image</label>
-											<input class="form-control" type="file" name="GYM_IMAGE" id="GYM_IMAGE_EDIT" />
+											<input class="form-control" type="file" name="gym_image" id="GYM_IMAGE_EDIT" />
 										</div>
 
 										<div class="text-end">
@@ -154,24 +154,25 @@
 										You don't have a Gym yet. Create one now.
 									</h5>
 
-									<form method="POST" action="{{ route('staff.gym-create') }}" enctype="multipart/form-data" action="">
+									<form method="POST" action="{{ route('staff.gym-create') }}" enctype="multipart/form-data"
+										action="">
 										@csrf
 										<div class="mb-3">
 											<label class="form-label">Gym Name</label>
-											<input type="text" class="form-control" name="GYM_NAME" id="GYM_NAME" />
+											<input type="text" class="form-control" name="gym_name" id="gym_name" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Gym Location</label>
-											<textarea class="form-control" name="GYM_LOCATION" id="GYM_LOCATION" rows="3"></textarea>
+											<textarea class="form-control" name="gym_location" id="gym_location" rows="3"></textarea>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Gym Details</label>
-											<textarea class="form-control" name="GYM_DETAILS" id="GYM_DETAILS" rows="3"></textarea>
+											<textarea class="form-control" name="gym_details" id="gym_details" rows="3"></textarea>
 										</div>
 
 										<div class="mb-3">
 											<label class="form-label">Gym Image</label>
-											<input class="form-control" type="file" name="GYM_IMAGE" id="GYM_IMAGE" />
+											<input class="form-control" type="file" name="gym_image" id="gym_image" />
 										</div>
 
 										<div class="text-end">
@@ -191,8 +192,8 @@
 @endsection
 
 <?php
-$gymLocation = $staffGym->GYM_LOCATION;
-$gymDetails = $staffGym->GYM_DETAILS;
+$gymLocation = $staffGym->gym_location;
+$gymDetails = $staffGym->gym_details;
 ?>
 
 @section('bodyscript')

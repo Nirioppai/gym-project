@@ -16,17 +16,17 @@ return new class extends Migration
     {
         DB::statement("CREATE OR REPLACE VIEW view_plans AS
 Select
-    plans.PLAN_ID,
-    plans.PLAN_NAME,
-    plans.PLAN_DESCRIPTION,
-    plans.PLAN_VALIDITY,
-    plans.PLAN_AMOUNT,
-    plans.PLAN_STATUS,
-    gym_lists.GYM_ID,
-    gym_lists.GYM_NAME
+    plans.plan_id,
+    plans.plan_name,
+    plans.plan_description,
+    plans.plan_validity,
+    plans.plan_amount,
+    plans.plan_status,
+    gym_lists.gym_id,
+    gym_lists.gym_name
 From
     plans Inner Join
-    gym_lists On gym_lists.GYM_ID = plans.GYM_ID
+    gym_lists On gym_lists.gym_id = plans.gym_id
                                 
                              ");
     }

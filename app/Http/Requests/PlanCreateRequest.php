@@ -24,9 +24,9 @@ class PlanCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'PLAN_NAME' => 'required',
-            // 'PLAN_VALIDITY' => 'required|integer',
-            // 'PLAN_AMOUNT' => 'required|integer', 
+            // 'plan_name' => 'required',
+            // 'plan_validity' => 'required|integer',
+            // 'plan_amount' => 'required|integer', 
         ];
     }
 }

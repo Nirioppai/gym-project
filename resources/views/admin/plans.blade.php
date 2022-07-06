@@ -109,7 +109,7 @@
 
 											<div class="ms-4">
 												<p class="text-xs font-weight-bold mb-0">Plan ID:</p>
-												<h6 class="text-sm mb-0">{{ $plan->PLAN_ID }}</h6>
+												<h6 class="text-sm mb-0">{{ $plan->plan_id }}</h6>
 											</div>
 										</div>
 									</td>
@@ -117,35 +117,35 @@
 									<td>
 										<div class="text-start">
 											<p class="text-xs font-weight-bold mb-0">Plan Name:</p>
-											<h6 class="text-sm mb-0">{{ $plan->PLAN_NAME }}</h6>
+											<h6 class="text-sm mb-0">{{ $plan->plan_name }}</h6>
 										</div>
 									</td>
 
 									<td>
 										<div class="text-start">
 											<p class="text-xs font-weight-bold mb-0">Plan Description:</p>
-											<h6 class="text-sm mb-0">{{ $plan->PLAN_DESCRIPTION }}</h6>
+											<h6 class="text-sm mb-0">{{ $plan->plan_description }}</h6>
 										</div>
 									</td>
 
 									<td>
 										<div class="text-start">
 											<p class="text-xs font-weight-bold mb-0">Plan Validity:</p>
-											<h6 class="text-sm mb-0">{{ $plan->PLAN_VALIDITY }}</h6>
+											<h6 class="text-sm mb-0">{{ $plan->plan_validity }}</h6>
 										</div>
 									</td>
 
 									<td>
 										<div class="text-start">
 											<p class="text-xs font-weight-bold mb-0">Plan Amount:</p>
-											<h6 class="text-sm mb-0">{{ $plan->PLAN_AMOUNT }}</h6>
+											<h6 class="text-sm mb-0">{{ $plan->plan_amount }}</h6>
 										</div>
 									</td>
 
 									<td>
 										<div class="text-start">
 											<p class="text-xs font-weight-bold mb-0">Gym ID:</p>
-											<h6 class="text-sm mb-0">{{ $plan->GYM_ID }}</h6>
+											<h6 class="text-sm mb-0">{{ $plan->gym_id }}</h6>
 										</div>
 									</td>
 
@@ -153,7 +153,7 @@
 									<td>
 										<div class="text-end">
 											<!-- Button trigger modal -->
-											<a class="btn btn-danger btn-sm" href="/admin/delete/plan/{{ $plan->PLAN_ID }}">
+											<a class="btn btn-danger btn-sm" href="/admin/delete/plan/{{ $plan->plan_id }}">
 												Delete
 											</a>
 										</div>

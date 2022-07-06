@@ -15,22 +15,22 @@ return new class extends Migration
     {
         Schema::create('member_details', function (Blueprint $table) {
             $table->id();
-            $table->string('MEMBER_ID');
-            $table->string('MEMBER_EXPIRY_DATE');
-            $table->string('MEMBER_ADDRESS'); 
-            $table->string('MEMBER_GENDER');
-            $table->string('MEMBER_DATE_OF_BIRTH');
-            $table->string('MEMBER_PHONE_NUMBER');
-            $table->string('MEMBER_STATUS');
-            $table->string('HEALTH_HEIGHT')->default('');
-            $table->string('HEALTH_WEIGHT')->default('');
-            $table->string('HEALTH_WAIST')->default('');
-            $table->string('HEALTH_REMARKS')->default('');
-            $table->string('GYM_ID');
-            $table->string('PAYMENT_ID');
-            $table->string('MEMBER_PAYMENT');
-            $table->string('PLAN_ID');
-            $table->string('PLAN_AMOUNT');
+            $table->string('member_id');
+            $table->string('member_expiry_date');
+            $table->string('member_address'); 
+            $table->string('member_gender');
+            $table->string('member_date_of_birth');
+            $table->string('member_phone_number');
+            $table->string('member_status');
+            $table->string('health_height')->default('');
+            $table->string('health_weight')->default('');
+            $table->string('health_waist')->default('');
+            $table->string('health_remarks')->default('');
+            $table->string('gym_id');
+            $table->string('payment_id');
+            $table->string('member_payment');
+            $table->string('plan_id');
+            $table->string('plan_amount');
             $table->timestamps();
         });
     }

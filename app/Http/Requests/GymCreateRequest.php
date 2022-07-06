@@ -24,8 +24,8 @@ class GymCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'GYM_NAME' => 'required',
-            'GYM_LOCATION' => 'required',
+            'gym_name' => 'required',
+            'gym_location' => 'required',
         ];
     }
 }

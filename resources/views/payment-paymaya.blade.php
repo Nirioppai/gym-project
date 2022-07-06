@@ -59,7 +59,7 @@
 
 								<div class="card-header py-3">
 									<button onclick="submit_payment()" class="clear-btn"><span class="express">PHP
-											{{ $gym_plan->PLAN_AMOUNT }}</span>
+											{{ $gym_plan->plan_amount }}</span>
 										<br />
 										<span class="express-subtitle">VS Gym Payments</span></button>
 								</div>
@@ -76,22 +76,22 @@
 
 	<form action="{{ route('store-member-details') }}" name="store-member-form" id="store-member-form" method="post">
 		@csrf
-		<input type="hidden" name="MEMBER_PAYMENT" class="form-control" id="MEMBER_PAYMENT"
-			value="{{ $previous_request['MEMBER_PAYMENT'] }}">
-		<input type="hidden" name="PLAN_ID" class="form-control" id="PLAN_ID" value="{{ $previous_request['PLAN_ID'] }}">
-		<input type="hidden" name="MEMBER_ADDRESS" class="form-control" value="{{ $previous_request['MEMBER_ADDRESS'] }}">
-		<input type="hidden" name="MEMBER_GENDER" class="form-control" id="MEMBER_GENDER"
-			value="{{ $previous_request['MEMBER_GENDER'] }}">
-		<input type="hidden" name="MEMBER_DATE_OF_BIRTH" class="form-control" id="MEMBER_DATE_OF_BIRTH"
-			value="{{ $previous_request['MEMBER_DATE_OF_BIRTH'] }}">
-		<input type="hidden" name="MEMBER_PHONE_NUMBER" class="form-control" id="MEMBER_PHONE_NUMBER"
-			value="{{ $previous_request['MEMBER_PHONE_NUMBER'] }}">
-		<input type="hidden" name="GYM_ID" class="form-control" id="GYM_ID" value="{{ $previous_request['GYM_ID'] }}">
-		<input type="hidden" name="PLAN_AMOUNT" class="form-control" id="PLAN_AMOUNT"
-			value="{{ $previous_request['PLAN_AMOUNT'] }}">
+		<input type="hidden" name="member_payment" class="form-control" id="member_payment"
+			value="{{ $previous_request['member_payment'] }}">
+		<input type="hidden" name="plan_id" class="form-control" id="plan_id" value="{{ $previous_request['plan_id'] }}">
+		<input type="hidden" name="member_address" class="form-control" value="{{ $previous_request['member_address'] }}">
+		<input type="hidden" name="member_gender" class="form-control" id="member_gender"
+			value="{{ $previous_request['member_gender'] }}">
+		<input type="hidden" name="member_date_of_birth" class="form-control" id="member_date_of_birth"
+			value="{{ $previous_request['member_date_of_birth'] }}">
+		<input type="hidden" name="member_phone_number" class="form-control" id="member_phone_number"
+			value="{{ $previous_request['member_phone_number'] }}">
+		<input type="hidden" name="gym_id" class="form-control" id="gym_id" value="{{ $previous_request['gym_id'] }}">
+		<input type="hidden" name="plan_amount" class="form-control" id="plan_amount"
+			value="{{ $previous_request['plan_amount'] }}">
 
-		<input type="hidden" name="PLAN_VALIDITY" id="PLAN_VALIDITY" value="{{ $gym_plan->PLAN_VALIDITY }}">
-		<input type="hidden" name="PLAN_ID" id="PLAN_ID" value="{{ $gym_plan->PLAN_ID }}">
+		<input type="hidden" name="plan_validity" id="plan_validity" value="{{ $gym_plan->plan_validity }}">
+		<input type="hidden" name="plan_id" id="plan_id" value="{{ $gym_plan->plan_id }}">
 	</form>
 
 
@@ -101,11 +101,9 @@
 	 }
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-	 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-	</script>
+	 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-	 integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-	</script>
+	 integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 
 </html>

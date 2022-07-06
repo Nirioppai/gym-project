@@ -21,14 +21,14 @@ class MemberController extends Controller
         $gyms = DB::table('gym_lists')->take(5)->get();
 
         $active_member_plans = DB::table('view_plan_list')
-        ->where('MEMBER_ID', Auth::user()->MEMBER_ID)
-        ->where('MEMBER_STATUS', 'Active')
+        ->where('member_id', Auth::user()->member_id)
+        ->where('member_status', 'Active')
         ->get();
 
         $other_plans = DB::table('view_plan_list')
-        ->where('MEMBER_ID', Auth::user()->MEMBER_ID)
+        ->where('member_id', Auth::user()->member_id)
         ->whereNot(function ($query) {
-            $query->where('MEMBER_STATUS', 'Active');
+            $query->where('member_status', 'Active');
         })
         ->get();
     
@@ -151,10 +151,10 @@ class MemberController extends Controller
         return view('auth.terms');
     }
 
-    public function delete_member($MEMBER_ID)
+    public function delete_member($member_id)
     {
-        $member_to_delete = DB::table('member_details')->where('MEMBER_ID', $MEMBER_ID)->delete();
-        // $user_to_delete = DB::table('users')->where('MEMBER_ID', $MEMBER_ID)->delete();
+        $member_to_delete = DB::table('member_details')->where('member_id', $member_id)->delete();
+        // $user_to_delete = DB::table('users')->where('member_id', $member_id)->delete();
 
         return redirect('/staff/members');
     }

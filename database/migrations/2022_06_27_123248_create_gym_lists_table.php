@@ -17,15 +17,15 @@ return new class extends Migration
     {
         DB::statement("CREATE OR REPLACE VIEW view_gyms AS
 Select
-    gym_lists.GYM_ID,
-    gym_lists.GYM_NAME,
+    gym_lists.gym_id,
+    gym_lists.gym_name,
     staff.name,
-    gym_lists.GYM_LOCATION,
-    gym_lists.GYM_IMAGE,
-    gym_lists.GYM_DETAILS
+    gym_lists.gym_location,
+    gym_lists.gym_image,
+    gym_lists.gym_details
 From
     gym_lists Inner Join
-    staff On gym_lists.GYM_OWNER = staff.MEMBER_ID
+    staff On gym_lists.gym_owner = staff.member_id
                                 
                              ");
     }
@@ -37,6 +37,6 @@ From
      */
     public function down()
     {
-        DB::statement("CREATE OR REPLACE VIEW view_gyms");
+
     }
 };

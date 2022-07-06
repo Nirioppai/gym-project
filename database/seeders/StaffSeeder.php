@@ -20,14 +20,14 @@ class StaffSeeder extends Seeder
         Staff::create([
             'name' => 'Staff',
             'email' => 'staff@gmail.com',
-            'MEMBER_ID' => 'GO-0000001',
+            'member_id' => 'GO-0000001',
             'password' => Hash::make('password'),
         ]);
 
         User::create([
             'name' => 'User',
             'email' => 'user@gmail.com',
-            'MEMBER_ID' => 'GM-0000001',
+            'member_id' => 'GM-0000001',
             'password' => Hash::make('password'),
         ]);
     }

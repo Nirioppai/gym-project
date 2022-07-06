@@ -176,20 +176,20 @@
 										@csrf
 										<div class="mb-3">
 											<label class="form-label">Gym Name</label>
-											<input type="text" class="form-control" name="GYM_NAME" id="GYM_NAME" />
+											<input type="text" class="form-control" name="gym_name" id="gym_name" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Gym Location</label>
-											<textarea class="form-control" name="GYM_LOCATION" id="GYM_LOCATION" rows="3"></textarea>
+											<textarea class="form-control" name="gym_location" id="gym_location" rows="3"></textarea>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Gym Details</label>
-											<textarea class="form-control" name="GYM_DETAILS" id="GYM_DETAILS" rows="3"></textarea>
+											<textarea class="form-control" name="gym_details" id="gym_details" rows="3"></textarea>
 										</div>
 
 										<div class="mb-3">
 											<label class="form-label">Gym Image</label>
-											<input class="form-control" type="file" name="GYM_IMAGE" id="GYM_IMAGE" />
+											<input class="form-control" type="file" name="gym_image" id="gym_image" />
 										</div>
 
 										<div class="text-end">

@@ -154,7 +154,8 @@
 																</div>
 																<div class="mb-3">
 																	<label class="form-label">Plan Description</label>
-																	<input type="text" class="form-control" name="PLAN_DESCRIPTION_EDIT" id="PLAN_DESCRIPTION_EDIT" />
+																	<input type="text" class="form-control" name="PLAN_DESCRIPTION_EDIT"
+																		id="PLAN_DESCRIPTION_EDIT" />
 																</div>
 																<div class="mb-3">
 																	<label class="form-label">Plan Validity</label>
@@ -181,48 +182,49 @@
 														<p class="text-xs font-weight-bold mb-0">
 															Plan ID:
 														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_ID }}</h6>
+														<h6 class="text-sm mb-0">{{ $gym_plan->plan_id }}</h6>
 													</td>
 													<td>
 														<p class="text-xs font-weight-bold mb-0">
 															Plan Name:
 														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_NAME }}</h6>
+														<h6 class="text-sm mb-0">{{ $gym_plan->plan_name }}</h6>
 													</td>
 													<td>
 														<p class="text-xs font-weight-bold mb-0">
 															Plan Description:
 														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_DESCRIPTION }}</h6>
+														<h6 class="text-sm mb-0">{{ $gym_plan->plan_description }}</h6>
 													</td>
 													<td>
 														<p class="text-xs font-weight-bold mb-0">
 															Plan Validity:
 														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_VALIDITY }} Day/s</h6>
+														<h6 class="text-sm mb-0">{{ $gym_plan->plan_validity }} Day/s</h6>
 													</td>
 													<td>
 														<p class="text-xs font-weight-bold mb-0">
 															Plan Amount:
 														</p>
-														<h6 class="text-sm mb-0">₱{{ $gym_plan->PLAN_AMOUNT }}</h6>
+														<h6 class="text-sm mb-0">₱{{ $gym_plan->plan_amount }}</h6>
 													</td>
 													<td>
 														<p class="text-xs font-weight-bold mb-0">
 															Plan Status:
 														</p>
-														<h6 class="text-sm mb-0">{{ $gym_plan->PLAN_STATUS }}</h6>
+														<h6 class="text-sm mb-0">{{ $gym_plan->plan_status }}</h6>
 													</td>
 
 													<td>
-														<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
-															onclick="activateMember('{{ $gym_plan->PLAN_ID }}','{{ $gym_plan->PLAN_NAME }}',' {{ $gym_plan->PLAN_DESCRIPTION }}', '{{ $gym_plan->PLAN_VALIDITY }}','{{ $gym_plan->PLAN_AMOUNT }}')">
+														<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+															data-bs-target="#exampleModal"
+															onclick="activateMember('{{ $gym_plan->plan_id }}','{{ $gym_plan->plan_name }}',' {{ $gym_plan->plan_description }}', '{{ $gym_plan->plan_validity }}','{{ $gym_plan->plan_amount }}')">
 															Edit
 														</button>
 													</td>
 
 													<td>
-														<a class="btn btn-danger btn-sm" href="/staff/delete/plan/{{ $gym_plan->PLAN_ID }}">
+														<a class="btn btn-danger btn-sm" href="/staff/delete/plan/{{ $gym_plan->plan_id }}">
 															Delete
 														</a>
 													</td>
@@ -256,20 +258,20 @@
 						<div class="modal-body">
 							<div class="mb-3">
 								<label class="form-label">Plan Name</label>
-								<input type="text" class="form-control" name="PLAN_NAME" id="PLAN_NAME" />
+								<input type="text" class="form-control" name="plan_name" id="plan_name" />
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Plan Description</label>
-								<input type="text" class="form-control" name="PLAN_DESCRIPTION" id="PLAN_DESCRIPTION" />
+								<input type="text" class="form-control" name="plan_description" id="plan_description" />
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Plan Validity</label>
-								<input type="number" class="form-control" name="PLAN_VALIDITY" id="PLAN_VALIDITY" />
+								<input type="number" class="form-control" name="plan_validity" id="plan_validity" />
 								<div id="validity_help" class="form-text">Enter plan validity in Days.</div>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Plan Amount</label>
-								<input type="number" class="form-control" name="PLAN_AMOUNT" id="PLAN_AMOUNT" />
+								<input type="number" class="form-control" name="plan_amount" id="plan_amount" />
 								<div id="amount_help" class="form-text">Enter plan amount in Pesos.</div>
 							</div>
 						</div>
@@ -299,24 +301,25 @@
 										You don't have a Gym yet. Create one now.
 									</h5>
 
-									<form method="POST" action="{{ route('staff.gym-create') }}" enctype="multipart/form-data" action="">
+									<form method="POST" action="{{ route('staff.gym-create') }}" enctype="multipart/form-data"
+										action="">
 										@csrf
 										<div class="mb-3">
 											<label class="form-label">Gym Name</label>
-											<input type="text" class="form-control" name="GYM_NAME" id="GYM_NAME" />
+											<input type="text" class="form-control" name="gym_name" id="gym_name" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Gym Location</label>
-											<textarea class="form-control" name="GYM_LOCATION" id="GYM_LOCATION" rows="3"></textarea>
+											<textarea class="form-control" name="gym_location" id="gym_location" rows="3"></textarea>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Gym Details</label>
-											<textarea class="form-control" name="GYM_DETAILS" id="GYM_DETAILS" rows="3"></textarea>
+											<textarea class="form-control" name="gym_details" id="gym_details" rows="3"></textarea>
 										</div>
 
 										<div class="mb-3">
 											<label class="form-label">Gym Image</label>
-											<input class="form-control" type="file" name="GYM_IMAGE" id="GYM_IMAGE" />
+											<input class="form-control" type="file" name="gym_image" id="gym_image" />
 										</div>
 
 										<div class="text-end">
@@ -338,14 +341,14 @@
 @section('bodyscript')
 	<script>
 	 function activateMember(_PLAN_ID, _PLAN_NAME, _PLAN_DESCRIPTION, _PLAN_VALIDITY, _PLAN_AMOUNT) {
-	  var PLAN_ID = _PLAN_ID;
+	  var plan_id = _PLAN_ID;
 	  var PLAN_NAME_EDIT = _PLAN_NAME;
 	  var PLAN_DESCRIPTION_EDIT = _PLAN_DESCRIPTION;
 	  var PLAN_VALIDITY_EDIT = _PLAN_VALIDITY;
 	  var PLAN_AMOUNT_EDIT = _PLAN_AMOUNT;
 
 
-	  document.getElementById("PLAN_ID_EDIT").value = PLAN_ID;
+	  document.getElementById("PLAN_ID_EDIT").value = plan_id;
 	  document.getElementById("PLAN_NAME_EDIT").value = PLAN_NAME_EDIT;
 	  document.getElementById("PLAN_DESCRIPTION_EDIT").value = PLAN_DESCRIPTION_EDIT;
 	  document.getElementById("PLAN_VALIDITY_EDIT").value = PLAN_VALIDITY_EDIT;

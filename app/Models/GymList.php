@@ -10,6 +10,6 @@ class GymList extends Model
     use HasFactory;
 
         protected $fillable = [
-            'GYM_NAME', 'GYM_OWNER', 'GYM_LOCATION', 'GYM_IMAGE', 'GYM_DETAILS'
+            'gym_name', 'gym_owner', 'gym_location', 'gym_image', 'gym_details'
         ];
 }

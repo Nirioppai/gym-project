@@ -10,6 +10,6 @@ class Plans extends Model
     use HasFactory;
 
     protected $fillable = [
-        'PLAN_NAME', 'PLAN_DESCRIPTION', 'PLAN_VALIDITY', 'PLAN_AMOUNT', 'PLAN_STATUS', 'GYM_ID'
+        'plan_name', 'plan_description', 'plan_validity', 'plan_amount', 'plan_status', 'gym_id'
     ];
 }

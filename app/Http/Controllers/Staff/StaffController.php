@@ -23,10 +23,10 @@ class StaffController extends Controller
      */
 
      public function getGym(){
-        $staffID = auth()->guard('staff')->user()->MEMBER_ID;
+        $staffID = auth()->guard('staff')->user()->member_id;
 
         $staffGym = DB::table('gym_lists')
-            ->where('GYM_OWNER', $staffID)
+            ->where('gym_owner', $staffID)
             ->first();
 
             return $staffGym;
@@ -36,8 +36,8 @@ class StaffController extends Controller
         $staffGym = $this->getGym();
 
         $gym_plans = DB::table('plans')
-            ->where('GYM_ID', $staffGym->GYM_ID)
-            ->where('PLAN_STATUS', 'Active')
+            ->where('gym_id', $staffGym->gym_id)
+            ->where('plan_status', 'Active')
             ->get();
 
         return $gym_plans;
@@ -50,14 +50,14 @@ class StaffController extends Controller
 
         if($staffGym){
             $activeMembers = DB::table('view_plan_list')
-            ->where('GYM_ID', $staffGym->GYM_ID)
-            ->where('MEMBER_STATUS', 'Active')
+            ->where('gym_id', $staffGym->gym_id)
+            ->where('member_status', 'Active')
             ->count();
     
             $pendingMembers = DB::table('view_plan_list')
-            ->where('GYM_ID', $staffGym->GYM_ID)
+            ->where('gym_id', $staffGym->gym_id)
             ->whereNot(function ($query) {
-                $query->where('MEMBER_STATUS', 'Active');
+                $query->where('member_status', 'Active');
             })
             ->count();
         }
@@ -79,14 +79,14 @@ class StaffController extends Controller
         $staffGym = $this->getGym();
 
         $activeMembers = DB::table('view_plan_list')
-        ->where('GYM_ID', $staffGym->GYM_ID)
-        ->where('MEMBER_STATUS', 'Active')
+        ->where('gym_id', $staffGym->gym_id)
+        ->where('member_status', 'Active')
         ->get();
 
         $pendingMembers = DB::table('view_plan_list')
-        ->where('GYM_ID', $staffGym->GYM_ID)
+        ->where('gym_id', $staffGym->gym_id)
         ->whereNot(function ($query) {
-            $query->where('MEMBER_STATUS', 'Active');
+            $query->where('member_status', 'Active');
         })
         ->get();
         
@@ -141,11 +141,11 @@ class StaffController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:staff'],
         ]);
 
-        $config=['table'=>'staff','length'=>10,'prefix'=>'GO-', 'field' => 'MEMBER_ID'];
+        $config=['table'=>'staff','length'=>10,'prefix'=>'GO-', 'field' => 'member_id'];
         $id = IdGenerator::generate($config);
 
         DB::table('staff')->insert(
-            ['MEMBER_ID' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password),'created_at' => now(), 'updated_at' => now()]
+            ['member_id' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password),'created_at' => now(), 'updated_at' => now()]
         );
         
         return redirect('staff/dashboard');
@@ -198,19 +198,19 @@ class StaffController extends Controller
 
     public function gym_create(GymCreateRequest $request)
     {
-        $image = $request->file('GYM_IMAGE')->store('public/gym_images');
-        $staffID = auth()->guard('staff')->user()->MEMBER_ID;
+        $image = $request->file('gym_image')->store('public/gym_images');
+        $staffID = auth()->guard('staff')->user()->member_id;
 
-        $config=['table'=>'gym_lists','length'=>10,'prefix'=>'GYM-', 'field' => 'GYM_ID'];
+        $config=['table'=>'gym_lists','length'=>10,'prefix'=>'GYM-', 'field' => 'gym_id'];
         $id = IdGenerator::generate($config);
 
         DB::table('gym_lists')->insert(
-            ['GYM_ID' => $id, 
-             'GYM_NAME' => $request->GYM_NAME,
-             'GYM_OWNER' => $staffID,
-             'GYM_LOCATION' => $request->GYM_LOCATION, 
-             'GYM_IMAGE' => $request->GYM_IMAGE->hashName(), 
-             'GYM_DETAILS' => $request->GYM_DETAILS, 
+            ['gym_id' => $id, 
+             'gym_name' => $request->gym_name,
+             'gym_owner' => $staffID,
+             'gym_location' => $request->gym_location, 
+             'gym_image' => $request->gym_image->hashName(), 
+             'gym_details' => $request->gym_details, 
              'created_at' => now(), 
              'updated_at' => now()]
         );
@@ -221,19 +221,19 @@ class StaffController extends Controller
 
     public function gym_update(GymCreateRequest $request)
     {
-        // $image = $request->file('GYM_IMAGE')->store('public/gym_images');
-        // $staffID = auth()->guard('staff')->user()->MEMBER_ID;
+        // $image = $request->file('gym_image')->store('public/gym_images');
+        // $staffID = auth()->guard('staff')->user()->member_id;
 
-        // $config=['table'=>'gym_lists','length'=>10,'prefix'=>'GYM-', 'field' => 'GYM_ID'];
+        // $config=['table'=>'gym_lists','length'=>10,'prefix'=>'GYM-', 'field' => 'gym_id'];
         // $id = IdGenerator::generate($config);
 
         // DB::table('gym_lists')->insert(
-        //     ['GYM_ID' => $id, 
-        //      'GYM_NAME' => $request->GYM_NAME,
-        //      'GYM_OWNER' => $staffID,
-        //      'GYM_LOCATION' => $request->GYM_LOCATION, 
-        //      'GYM_IMAGE' => $request->GYM_IMAGE->hashName(), 
-        //      'GYM_DETAILS' => $request->GYM_DETAILS, 
+        //     ['gym_id' => $id, 
+        //      'gym_name' => $request->gym_name,
+        //      'gym_owner' => $staffID,
+        //      'gym_location' => $request->gym_location, 
+        //      'gym_image' => $request->gym_image->hashName(), 
+        //      'gym_details' => $request->gym_details, 
         //      'created_at' => now(), 
         //      'updated_at' => now()]
         // );
@@ -242,24 +242,24 @@ class StaffController extends Controller
 
 
 
-        if ($request->hasFile('GYM_IMAGE')) {
-            $image = $request->file('GYM_IMAGE')->store('public/gym_images');
+        if ($request->hasFile('gym_image')) {
+            $image = $request->file('gym_image')->store('public/gym_images');
             $affected = DB::table('gym_lists')
-        ->where('GYM_ID', $request->GYM_ID)
+        ->where('gym_id', $request->gym_id)
         ->update([
-        'GYM_NAME' =>  $request->GYM_NAME, 
-        'GYM_LOCATION' =>  $request->GYM_LOCATION,
-        'GYM_IMAGE' => $request->GYM_IMAGE->hashName(), 
-        'GYM_DETAILS' =>  $request->GYM_DETAILS]);
+        'gym_name' =>  $request->gym_name, 
+        'gym_location' =>  $request->gym_location,
+        'gym_image' => $request->gym_image->hashName(), 
+        'gym_details' =>  $request->gym_details]);
         }
 
-        if (!$request->hasFile('GYM_IMAGE')) {
+        if (!$request->hasFile('gym_image')) {
             $affected = DB::table('gym_lists')
-            ->where('GYM_ID', $request->GYM_ID)
+            ->where('gym_id', $request->gym_id)
             ->update([
-            'GYM_NAME' =>  $request->GYM_NAME, 
-            'GYM_LOCATION' =>  $request->GYM_LOCATION,
-            'GYM_DETAILS' =>  $request->GYM_DETAILS]);
+            'gym_name' =>  $request->gym_name, 
+            'gym_location' =>  $request->gym_location,
+            'gym_details' =>  $request->gym_details]);
         }
   
 
@@ -304,17 +304,17 @@ class StaffController extends Controller
 
         $staffGym = $this->getGym();
 
-        $config=['table'=>'plans','length'=>10,'prefix'=>'PLAN-', 'field' => 'PLAN_ID'];
+        $config=['table'=>'plans','length'=>10,'prefix'=>'PLAN-', 'field' => 'plan_id'];
         $id = IdGenerator::generate($config);
 
         DB::table('plans')->insert(
-            ['PLAN_ID' => $id, 
-             'PLAN_NAME' => $request->PLAN_NAME,
-             'PLAN_DESCRIPTION' => $request->PLAN_DESCRIPTION,
-             'PLAN_VALIDITY' => $request->PLAN_VALIDITY, 
-             'PLAN_AMOUNT' => $request->PLAN_AMOUNT, 
-             'PLAN_STATUS' => 'Active', 
-             'GYM_ID' => $staffGym->GYM_ID, 
+            ['plan_id' => $id, 
+             'plan_name' => $request->plan_name,
+             'plan_description' => $request->plan_description,
+             'plan_validity' => $request->plan_validity, 
+             'plan_amount' => $request->plan_amount, 
+             'plan_status' => 'Active', 
+             'gym_id' => $staffGym->gym_id, 
              'created_at' => now(), 
              'updated_at' => now()]
         );

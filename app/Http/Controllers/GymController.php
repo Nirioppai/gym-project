@@ -38,7 +38,7 @@ class GymController extends Controller
     public function getPlan($plan_id){
 
         $gym_plan = DB::table('plans')
-            ->where('PLAN_ID', $plan_id)
+            ->where('plan_id', $plan_id)
             ->first();
 
         return $gym_plan;
@@ -55,13 +55,13 @@ class GymController extends Controller
 
         $previous_request = $request->all();
         $gym_plan = DB::table('plans')
-        ->where('PLAN_ID',  $previous_request['PLAN_ID'])
+        ->where('plan_id',  $previous_request['plan_id'])
         ->first();
 
-        $plan_id = $previous_request['PLAN_ID'];
-        $member_adddress = $previous_request['MEMBER_ADDRESS'];
-        $member_date_of_birth = $previous_request['MEMBER_DATE_OF_BIRTH'];
-        $member_payment = $previous_request['MEMBER_PAYMENT'];
+        $plan_id = $previous_request['plan_id'];
+        $member_adddress = $previous_request['member_address'];
+        $member_date_of_birth = $previous_request['member_date_of_birth'];
+        $member_payment = $previous_request['member_payment'];
 
         if($plan_id == null)
         {
@@ -81,12 +81,12 @@ class GymController extends Controller
             return view('register-gym')->with('error', 'Please enter Payment Method');
         }
 
-        if($request->MEMBER_PAYMENT =='Gcash')
+        if($request->member_payment =='Gcash')
         {
             return view('payment-gcash', ['previous_request' => $previous_request], ['gym_plan' => $gym_plan]);
         }
 
-        if($request->MEMBER_PAYMENT =='Paymaya')
+        if($request->member_payment =='Paymaya')
         {
             return view('payment-paymaya', ['previous_request' => $previous_request], ['gym_plan' => $gym_plan]);
         }
@@ -102,23 +102,23 @@ class GymController extends Controller
 
     public function store_member_details(Request $request)
     {
-        $config=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'PAYMENT_ID'];
+        $config=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'payment_id'];
         $id = IdGenerator::generate($config);
-        $newDateTime = Carbon::now()->addDays($request->PLAN_VALIDITY);
+        $newDateTime = Carbon::now()->addDays($request->plan_validity);
         
         DB::table('member_details')->insert(
-            ['MEMBER_ID' => Auth::user()->MEMBER_ID, 
-             'MEMBER_EXPIRY_DATE' => $newDateTime, // remove this 
-             'MEMBER_ADDRESS' => $request->MEMBER_ADDRESS, 
-             'MEMBER_GENDER' => $request->MEMBER_GENDER, 
-             'MEMBER_DATE_OF_BIRTH' => $request->MEMBER_DATE_OF_BIRTH, 
-             'MEMBER_PHONE_NUMBER' => $request->MEMBER_PHONE_NUMBER, 
-             'MEMBER_STATUS' => 'Pending', 
-             'GYM_ID' => $request->GYM_ID, 
-             'MEMBER_PAYMENT' => $request->MEMBER_PAYMENT, 
-             'PLAN_AMOUNT' => $request->PLAN_AMOUNT,
-             'PLAN_ID' => $request->PLAN_ID, 
-             'PAYMENT_ID' => $id,
+            ['member_id' => Auth::user()->member_id, 
+             'member_expiry_date' => $newDateTime, // remove this 
+             'member_address' => $request->member_address, 
+             'member_gender' => $request->member_gender, 
+             'member_date_of_birth' => $request->member_date_of_birth, 
+             'member_phone_number' => $request->member_phone_number, 
+             'member_status' => 'Pending', 
+             'gym_id' => $request->gym_id, 
+             'member_payment' => $request->member_payment, 
+             'plan_amount' => $request->plan_amount,
+             'plan_id' => $request->plan_id, 
+             'payment_id' => $id,
              'created_at' => now(), 
              'updated_at' => now()]
         );
@@ -129,16 +129,16 @@ class GymController extends Controller
     public function edit_member(Request $request)
     {
         $affected = DB::table('member_details')
-              ->where('MEMBER_ID', $request->MEMBER_ID)
+              ->where('member_id', $request->member_id)
               ->update([
-              'MEMBER_ADDRESS' =>  $request->MEMBER_ADDRESS, 
-              'MEMBER_GENDER' =>  $request->MEMBER_GENDER,
-              'MEMBER_DATE_OF_BIRTH' =>  $request->MEMBER_DATE_OF_BIRTH,
-              'MEMBER_PHONE_NUMBER' =>  $request->MEMBER_PHONE_NUMBER,
-              'HEALTH_HEIGHT' =>  $request->HEALTH_HEIGHT,
-              'HEALTH_WEIGHT' =>  $request->HEALTH_WEIGHT,
-              'HEALTH_WAIST' =>  $request->HEALTH_WAIST,
-              'HEALTH_REMARKS' =>  $request->HEALTH_REMARKS]);
+              'member_address' =>  $request->member_address, 
+              'member_gender' =>  $request->member_gender,
+              'member_date_of_birth' =>  $request->member_date_of_birth,
+              'member_phone_number' =>  $request->member_phone_number,
+              'health_height' =>  $request->health_height,
+              'health_weight' =>  $request->health_weight,
+              'health_waist' =>  $request->health_waist,
+              'health_remarks' =>  $request->health_remarks]);
 
             return redirect('/staff/members');
         
@@ -152,35 +152,35 @@ class GymController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
 
-        $config=['table'=>'users','length'=>10,'prefix'=>'GM-', 'field' => 'MEMBER_ID'];
+        $config=['table'=>'users','length'=>10,'prefix'=>'GM-', 'field' => 'member_id'];
         $id = IdGenerator::generate($config);
-        $gym_plan = $this->getPlan($request->PLAN_ID);
+        $gym_plan = $this->getPlan($request->plan_id);
 
         if($gym_plan)
         {
             DB::table('users')->insert(
-                ['MEMBER_ID' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make('password'),'created_at' => now(), 'updated_at' => now()]
+                ['member_id' => $id, 'name' => $request->name, 'email' => $request->email, 'password' => Hash::make('password'),'created_at' => now(), 'updated_at' => now()]
             );
     
-            $config2=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'PAYMENT_ID'];
+            $config2=['table'=>'member_details','length'=>10,'prefix'=>'PAY-', 'field' => 'payment_id'];
             $id2 = IdGenerator::generate($config2);
-            $newDateTime = Carbon::now()->addDays($gym_plan->PLAN_VALIDITY);
+            $newDateTime = Carbon::now()->addDays($gym_plan->plan_validity);
     
             
     
             DB::table('member_details')->insert(
-                ['MEMBER_ID' =>$id, 
-                 'MEMBER_EXPIRY_DATE' => $newDateTime, // remove this 
-                 'MEMBER_ADDRESS' => $request->MEMBER_ADDRESS, 
-                 'MEMBER_GENDER' => $request->MEMBER_GENDER, 
-                 'MEMBER_DATE_OF_BIRTH' => $request->MEMBER_DATE_OF_BIRTH, 
-                 'MEMBER_PHONE_NUMBER' => $request->MEMBER_PHONE_NUMBER, 
-                 'MEMBER_STATUS' => 'Active', 
-                 'GYM_ID' =>$gym_plan->GYM_ID, 
-                 'MEMBER_PAYMENT' => 'Cash', 
-                 'PLAN_AMOUNT' =>$gym_plan->PLAN_AMOUNT,
-                 'PLAN_ID' => $request->PLAN_ID, 
-                 'PAYMENT_ID' => $id2,
+                ['member_id' =>$id, 
+                 'member_expiry_date' => $newDateTime, // remove this 
+                 'member_address' => $request->member_address, 
+                 'member_gender' => $request->member_gender, 
+                 'member_date_of_birth' => $request->member_date_of_birth, 
+                 'member_phone_number' => $request->member_phone_number, 
+                 'member_status' => 'Active', 
+                 'gym_id' =>$gym_plan->gym_id, 
+                 'member_payment' => 'Cash', 
+                 'plan_amount' =>$gym_plan->plan_amount,
+                 'plan_id' => $request->plan_id, 
+                 'payment_id' => $id2,
                  'created_at' => now(), 
                  'updated_at' => now()]
             );
@@ -194,8 +194,8 @@ class GymController extends Controller
     {
 
         $affected = DB::table('member_details')
-              ->where('PAYMENT_ID', $request->member_payment_id)
-              ->update(['MEMBER_STATUS' => 'Active']);
+              ->where('payment_id', $request->member_payment_id)
+              ->update(['member_status' => 'Active']);
 
 
         return redirect('/staff/members');
@@ -206,12 +206,12 @@ class GymController extends Controller
 
         
         $affected = DB::table('plans')
-              ->where('PLAN_ID', $request->PLAN_ID_EDIT)
+              ->where('plan_id', $request->PLAN_ID_EDIT)
               ->update([
-              'PLAN_NAME' =>  $request->PLAN_NAME_EDIT, 
-              'PLAN_DESCRIPTION' =>  $request->PLAN_DESCRIPTION_EDIT,
-              'PLAN_VALIDITY' =>  $request->PLAN_VALIDITY_EDIT,
-              'PLAN_AMOUNT' =>  $request->PLAN_AMOUNT_EDIT]);
+              'plan_name' =>  $request->PLAN_NAME_EDIT, 
+              'plan_description' =>  $request->PLAN_DESCRIPTION_EDIT,
+              'plan_validity' =>  $request->PLAN_VALIDITY_EDIT,
+              'plan_amount' =>  $request->PLAN_AMOUNT_EDIT]);
               
 
         return redirect('/staff/plan-management');
@@ -226,12 +226,12 @@ class GymController extends Controller
     public function show($id)
     {
         $gym = DB::table('gym_lists')
-            ->where('GYM_ID', $id)
+            ->where('gym_id', $id)
             ->first();
 
         $gym_plans = DB::table('plans')
-            ->where('GYM_ID', $id)
-            ->where('PLAN_STATUS', 'Active')
+            ->where('gym_id', $id)
+            ->where('plan_status', 'Active')
             ->get();
 
         return view('register-gym', ['gym' => $gym], ['gym_plans' => $gym_plans]);
@@ -271,9 +271,9 @@ class GymController extends Controller
         //
     }
 
-    public function delete_plan($PLAN_ID)
+    public function delete_plan($plan_id)
     {
-        $plan_to_delete = DB::table('plans')->where('PLAN_ID', $PLAN_ID)->delete();
+        $plan_to_delete = DB::table('plans')->where('plan_id', $plan_id)->delete();
         return redirect('/staff/plan-management');
     }
 
